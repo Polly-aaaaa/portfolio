@@ -1,0 +1,189 @@
+<!doctype html>
+<!-- Шаблон страниц кейсов: case-<id>.html собирает tools/build.mjs. Правьте здесь, а не в готовых страницах. -->
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Функционал для сбора отпусков и удалёнок — Полина Артамонова</title>
+  <meta name="description" content="Компания сталкивалась с трудностями в учёте отпусков и удалённых дней сотрудников: данные хранились в разных местах и у разных людей, из-за чего процесс сбора информации становился долгим и…" />
+  <link rel="canonical" href="https://polly-aaaaa.github.io/portfolio/case-vacation.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="Полина Артамонова — UI/UX дизайнер" />
+  <meta property="og:title" content="Функционал для сбора отпусков и удалёнок" />
+  <meta property="og:description" content="Компания сталкивалась с трудностями в учёте отпусков и удалённых дней сотрудников: данные хранились в разных местах и у разных людей, из-за чего процесс сбора информации становился долгим и…" />
+  <meta property="og:url" content="https://polly-aaaaa.github.io/portfolio/case-vacation.html" />
+  <meta property="og:image" content="https://polly-aaaaa.github.io/portfolio/assets/og/vacation.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+  <link rel="icon" href="assets/favicon-32.png" sizes="32x32" type="image/png" />
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Onest:wght@400..900&family=Caveat:wght@500..700&display=swap" rel="stylesheet" />
+  <script>document.documentElement.classList.add('js')</script>
+  <link rel="stylesheet" href="css/site.css?v=20261022224359" />
+  <link rel="stylesheet" href="css/tw.css?v=20261022224359" />
+</head>
+<body class="font-sans text-ink">
+  <div class="read-progress" aria-hidden="true"></div>
+
+  <!-- ===== Nav ===== -->
+  <header class="fixed inset-x-0 top-4 z-50 flex justify-center px-4">
+    <nav id="nav" class="w-full max-w-[22rem] rounded-xl border border-black/10 bg-white shadow-[0_2px_8px_rgba(0,0,0,.08)]">
+      <div class="flex items-center justify-between py-2.5 pl-3 pr-2">
+        <a href="index.html" class="pill pill-blue !m-0 !text-[11px]">П. Артамонова</a>
+        <button id="menuBtn" aria-label="Меню" aria-expanded="false" class="flex h-8 w-8 flex-col items-center justify-center gap-[5px]">
+          <span class="block h-[2.5px] w-5 rounded bg-ink transition-transform duration-300"></span>
+          <span class="block h-[2.5px] w-5 rounded bg-ink transition-transform duration-300"></span>
+        </button>
+      </div>
+      <div id="menu" class="grid grid-rows-[0fr] transition-all duration-300">
+        <div class="overflow-hidden">
+          <ul class="mono flex flex-col gap-1 px-3 pb-3 text-[13px]">
+            <li><a href="index.html" class="block rounded-md px-2 py-2 transition-colors hover:bg-[#e5f4ff]">Главная</a></li>
+            <li><a href="index.html#work" class="block rounded-md px-2 py-2 transition-colors hover:bg-[#e5f4ff]">Все проекты</a></li>
+            <li><a href="#contact" class="block rounded-md px-2 py-2 transition-colors hover:bg-[#e5f4ff]">Контакты</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <div id="top" class="mx-auto max-w-[1200px] px-4 sm:px-8">
+    <main id="app">
+
+  <section class="pb-14 pt-32 sm:pb-20 sm:pt-40">
+    <div class="reveal"><a href="case-corp.html" class="mono group inline-flex items-center gap-2 text-[12px]"><span class="nudge-left inline-block"><span data-icon="arrow-l" class="inline-block shrink-0 h-4 w-4"></span></span><span class="link-u">Корпоративный сервис</span></a></div>
+    <div class="relative mt-14 max-w-5xl">
+      <p class="drop hand absolute -top-10 left-0 text-[1.6rem] leading-none text-purple" style="--d:250ms">Кейс № 1</p>
+      <h1 data-split class="display text-[1.95rem] sm:text-[4.5rem] lg:text-[6rem]">Функционал для сбора отпусков и удалёнок</h1>
+    </div>
+    
+    <p style="--stagger:550ms" class="reveal mt-6 text-[22px] leading-[1.9]"><span class="pill pill-blue !ml-0">B2E</span><span class="pill pill-white">Web</span></p>
+  </section>
+  <div class="pb-20 sm:pb-28">
+    <div class="print" data-label="Обложка" data-size="2880 × 2304">
+      <div class="overflow-hidden" style="background:#eef3ff; view-transition-name: cover-vacation"><img src="assets/vacation.webp" width="2880" height="2304" alt="Функционал для сбора отпусков и удалёнок"  decoding="async"
+    class="zoomable cursor-zoom-in block h-auto w-full " /></div>
+    </div>
+  </div>
+  <section class="py-16 sm:py-24">
+    <div class="reveal"><h2 class="display text-[2.1rem] sm:text-[4.5rem]">Задача и итог</h2></div>
+    <div class="mt-12">
+      
+  <div class="grid gap-10 md:grid-cols-2 md:gap-12">
+    <div class="reveal note note-lined">
+      <p class="hand text-[2.1rem]">Проблема</p>
+      <p class="prose-case mt-3 text-[17px] leading-[1.6]">Компания сталкивалась с трудностями в учёте отпусков и удалённых дней сотрудников: данные хранились в разных местах и у разных людей, из-за чего процесс сбора информации становился долгим и неэффективным.</p>
+    </div>
+    <div class="reveal note note-marker" style="--stagger:120ms">
+      <p class="hand text-[2.1rem] leading-none">Задача</p>
+      <p class="prose-case mt-4 text-[1.2rem] font-medium leading-[1.45]">Разработать функционал, который позволит HR самостоятельно собирать и централизованно хранить данные об отпусках и удалённых днях, а сотрудникам — удобно и быстро вносить необходимую информацию.</p>
+    </div>
+  </div>
+      
+      
+  <div class="mt-16">
+    <h3 class="reveal display text-[2.6rem] sm:text-[4rem]">Результаты</h3>
+    <ul class="mt-8 space-y-6"><li class="reveal border-t-[1.5px] border-ink pt-5 text-[1.3rem] leading-[1.45] sm:text-[1.55rem] [&_b]:bg-[rgba(13,153,255,.2)] [&_b]:font-semibold">Спроектированный функционал заполнения и хранения данных об отпусках и удалёнках сотрудников позволил HR экономить до <b>30% времени на сбор и обработку информации</b>, объединяя все данные в одном месте.</li></ul>
+    
+  </div>
+    </div>
+  </section>
+    <section class="border-t-[1.5px] border-ink py-16 sm:py-24">
+      <div class="reveal mb-12"><h2 class="display text-[2.1rem] sm:text-[4.5rem]">Как шла работа</h2></div>
+      <div class="space-y-7">
+        
+        <div class="reveal stages mx-auto max-w-2xl">
+    <p class="mono text-[12px] text-ink/70">Этапы</p>
+    <ol class="mt-3 flex flex-wrap gap-2"><li class="flex items-center gap-2 rounded-full border-[1.5px] border-ink bg-white py-1 pl-1 pr-3.5 text-[15px]"><span class="stage-dot mono grid h-6 w-6 place-items-center rounded-full border-[1.5px] border-ink !text-[10px] !tracking-normal">1</span>Сбор обратной связи от HR и сотрудников</li><li class="flex items-center gap-2 rounded-full border-[1.5px] border-ink bg-white py-1 pl-1 pr-3.5 text-[15px]"><span class="stage-dot mono grid h-6 w-6 place-items-center rounded-full border-[1.5px] border-ink !text-[10px] !tracking-normal">2</span>Первая итерация</li><li class="flex items-center gap-2 rounded-full border-[1.5px] border-ink bg-white py-1 pl-1 pr-3.5 text-[15px]"><span class="stage-dot mono grid h-6 w-6 place-items-center rounded-full border-[1.5px] border-ink !text-[10px] !tracking-normal">3</span>Доработка после обратной связи</li><li class="flex items-center gap-2 rounded-full border-[1.5px] border-ink bg-white py-1 pl-1 pr-3.5 text-[15px]"><span class="stage-dot mono grid h-6 w-6 place-items-center rounded-full border-[1.5px] border-ink !text-[10px] !tracking-normal">4</span>Вторая итерация</li><li class="flex items-center gap-2 rounded-full border-[1.5px] border-ink bg-white py-1 pl-1 pr-3.5 text-[15px]"><span class="stage-dot mono grid h-6 w-6 place-items-center rounded-full border-[1.5px] border-ink !text-[10px] !tracking-normal">5</span>Результат</li>
+    </ol>
+  </div>
+        <h3 class="reveal mx-auto max-w-2xl pt-8 text-[1.75rem] font-extrabold leading-tight tracking-tight sm:text-[2rem]">Сбор обратной связи от HR</h3>
+<p class="reveal prose-case mx-auto max-w-2xl text-[18px] leading-[1.65] text-ink/85">Перед тем, как приступить к проектированию функционала, я совместно с менеджером проекта провела интервью с HR-специалистом, чтобы изучить текущий процесс сбора отпусков и удалёнок, а также выяснить, с какими сложностями сталкивается HR.</p>
+<h3 class="reveal mx-auto max-w-2xl pt-8 text-[1.75rem] font-extrabold leading-tight tracking-tight sm:text-[2rem]">Первая итерация</h3>
+<p class="reveal prose-case mx-auto max-w-2xl text-[18px] leading-[1.65] text-ink/85">Поскольку раздел разрабатывался с нуля, мы решили внедрять функционал поэтапно — в две итерации. В первой итерации реализовали базовый флоу: HR задаёт дедлайн для внесения удалённых дней, а сотрудники указывают свои удалёнки до наступления установленной даты.</p>
+<p class="reveal prose-case mx-auto max-w-2xl text-[18px] leading-[1.65] text-ink/85">На этом этапе я провела коридорное тестирование, чтобы определить, где сотрудникам удобнее видеть уведомление о начале сбора удалёнок.</p>
+<p class="reveal prose-case mx-auto max-w-2xl text-[18px] leading-[1.65] text-ink/85">По результатам теста большинство выбрало первый вариант, отметив, что он выглядит более заметным и интуитивным.</p>
+<div class="grid gap-8 py-4 sm:grid-cols-2"><figure class="reveal ">
+    <div class="print mt-6" data-label="Вариант 1 — баннер" data-size="2880 × 1800"><img src="assets/cases/vacation-01.webp" width="2880" height="1800" alt="Вариант 1 — баннер" loading="lazy" decoding="async"
+    class="zoomable cursor-zoom-in block h-auto w-full " /></div>
+  </figure><figure class="reveal ">
+    <div class="print mt-6" data-label="Вариант 2 — слева" data-size="2880 × 1800"><img src="assets/cases/vacation-02.webp" width="2880" height="1800" alt="Вариант 2 — слева" loading="lazy" decoding="async"
+    class="zoomable cursor-zoom-in block h-auto w-full " /></div>
+  </figure></div>
+<h3 class="reveal mx-auto max-w-2xl pt-8 text-[1.75rem] font-extrabold leading-tight tracking-tight sm:text-[2rem]">Доработка после обратной связи</h3>
+<p class="reveal prose-case mx-auto max-w-2xl text-[18px] leading-[1.65] text-ink/85">По результатам первого этапа использования сервиса сотрудниками и HR я собрала обратную связь, на основе которой во второй итерации мы не только добавили новый функционал, но и внесли улучшения в существующие решения.</p>
+<div class="py-4"><figure class="reveal ">
+    <div class="print mt-6" data-label="Скриншот" data-size="2880 × 1800"><img src="assets/cases/vacation-03.webp" width="2880" height="1800" alt="" loading="lazy" decoding="async"
+    class="zoomable cursor-zoom-in block h-auto w-full " /></div>
+  </figure></div>
+<h3 class="reveal mx-auto max-w-2xl pt-8 text-[1.75rem] font-extrabold leading-tight tracking-tight sm:text-[2rem]">Вторая итерация</h3>
+<p class="reveal prose-case mx-auto max-w-2xl text-[18px] leading-[1.65] text-ink/85">Во второй итерации я реализовала флоу для HR по сбору данных об отпусках и установлению дедлайна, а также сценарий для сотрудников по внесению информации об отпусках.</p>
+<p class="reveal prose-case mx-auto max-w-2xl text-[18px] leading-[1.65] text-ink/85">Помимо этого, я обновила внутренний календарь сотрудника — теперь он позволяет просматривать как отдельные дни в месяце, так и периоды за год, с возможностью переключения между месячным и годовым режимами для удобства использования.</p>
+<div class="reveal mx-auto max-w-2xl pt-2"><span class="pill pill-white !ml-0 !text-[13px]">Было</span></div>
+<div class="py-4"><figure class="reveal ">
+    <div class="print mt-6" data-label="Скриншот" data-size="2880 × 1964"><img src="assets/cases/vacation-04.webp" width="2880" height="1964" alt="" loading="lazy" decoding="async"
+    class="zoomable cursor-zoom-in block h-auto w-full " /></div>
+  </figure></div>
+<div class="reveal mx-auto max-w-2xl pt-2"><span class="pill pill-marker !ml-0 !text-[13px]">Стало</span></div>
+<div class="py-4"><figure class="reveal ">
+    <div class="print mt-6" data-label="Скриншот" data-size="2880 × 1800"><img src="assets/cases/vacation-05.webp" width="2880" height="1800" alt="" loading="lazy" decoding="async"
+    class="zoomable cursor-zoom-in block h-auto w-full " /></div>
+  </figure></div>
+<div class="py-4"><figure class="reveal ">
+    <div class="print mt-6" data-label="Скриншот" data-size="2880 × 1800"><img src="assets/cases/vacation-06.webp" width="2880" height="1800" alt="" loading="lazy" decoding="async"
+    class="zoomable cursor-zoom-in block h-auto w-full " /></div>
+  </figure></div>
+      </div>
+    </section>
+  <section class="border-t-[1.5px] border-ink py-16 sm:py-24">
+    <a href="case-review.html" class="reveal group grid items-center gap-10 md:grid-cols-2">
+      <div class="print" data-label="Следующий проект" data-size="2880 × 2304">
+        <div class="overflow-hidden" style="background:#eef3ff;view-transition-name: cover-review"><img src="assets/review.webp" width="2880" height="2304" alt="Функционал для проведения ревью 360°" loading="lazy" decoding="async"
+    class="block h-auto w-full aspect-[5/3] object-cover" /></div>
+      </div>
+      <div>
+        <span class="pill pill-marker !ml-0 !text-[12px]">Следующий кейс</span>
+        <h2 class="display mt-5 text-[1.7rem] sm:text-[3.6rem]"><span class="link-u">Функционал для проведения ревью 360°</span></h2>
+      </div>
+    </a>
+  </section>
+    </main>
+
+    <!-- ===== CTA ===== -->
+    <section id="contact" class="relative py-24 sm:py-32">
+      <h2 class="reveal display max-w-4xl text-[3rem] sm:text-[6rem]">Давайте обсудим ваш продукт</h2>
+      <div class="reveal note note-red mt-8 w-56 md:absolute md:right-2 md:top-10 md:mt-0">
+        <p class="hand text-[1.6rem] leading-[1.05]">Часть проектов под NDA — покажу макеты на созвоне</p>
+      </div>
+      <div class="reveal mt-10 flex flex-wrap items-center gap-3">
+        <a href="https://t.me/p_p_polly" target="_blank" rel="noopener" class="btn bg-blue text-white">Телеграм</a>
+        <a href="mailto:psineleva@bk.ru" class="btn bg-purple text-white">psineleva@bk.ru</a>
+        <a href="https://drive.google.com/file/d/1vTA9CH9CJkSyZ6TN2uQzDy6aibkoubeJ/view" target="_blank" rel="noopener" class="btn bg-marker">Резюме</a>
+      </div>
+    </section>
+
+    <!-- ===== Footer ===== -->
+    <footer class="mono flex flex-col items-center justify-between gap-4 border-t border-black/15 py-8 text-[12px] sm:flex-row">
+      <p>© 2026 Полина Артамонова · Санкт-Петербург</p>
+      <div class="flex gap-6">
+        <a href="https://t.me/p_p_polly" target="_blank" rel="noopener" class="link-u">Телеграм</a>
+        <a href="mailto:psineleva@bk.ru" class="link-u">Почта</a>
+        <a href="https://drive.google.com/file/d/1vTA9CH9CJkSyZ6TN2uQzDy6aibkoubeJ/view" target="_blank" rel="noopener" class="link-u">Резюме</a>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Увеличение картинок -->
+  <div id="lightbox" class="hidden-lb fixed inset-0 z-[60] flex cursor-zoom-out items-center justify-center bg-ink/85 p-4 sm:p-10" role="dialog" aria-modal="true" aria-label="Изображение">
+    <button id="lightboxClose" aria-label="Закрыть" class="mono absolute right-4 top-4 rounded-full bg-marker px-4 py-2 text-[12px] text-ink">Закрыть</button>
+  </div>
+
+  <script src="js/case.js?v=20261022224359"></script>
+  <script src="js/doodles.js?v=20261022224359"></script>
+  <script src="js/site.js?v=20261022224359"></script>
+</body>
+</html>

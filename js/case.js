@@ -1,5 +1,5 @@
-// Рендер страницы кейса по ?id=… из данных CASES (js/cases.js). Стиль — скрапбук:
-// огромные заголовки, плашки-маркеры, отпечатки на скотче, записки и стикеры.
+// Разметка страницы кейса из данных CASES (js/cases.js). Страницы case-<id>.html собирает
+// tools/build.mjs с уже готовой разметкой; в браузере файл только подхватывает лайтбокс.
 
 const icon = (name, cls = 'h-5 w-5') => `<span data-icon="${name}" class="inline-block shrink-0 ${cls}"></span>`;
 
@@ -26,7 +26,7 @@ function renderBlock(b) {
   if (b.h) return `<h3 class="reveal mx-auto max-w-2xl pt-8 text-[1.75rem] font-extrabold leading-tight tracking-tight sm:text-[2rem]">${b.h}</h3>`;
   if (b.p) return `<p class="reveal prose-case mx-auto max-w-2xl text-[18px] leading-[1.65] text-ink/85">${b.p}</p>`;
   if (b.label) return `<div class="reveal mx-auto max-w-2xl pt-2"><span class="pill ${b.label === 'Было' ? 'pill-white' : 'pill-marker'} !ml-0 !text-[13px]">${b.label}</span></div>`;
-  if (b.ul) return `<ul class="reveal prose-case mx-auto max-w-2xl space-y-2.5 text-[18px] leading-[1.6] text-ink/85">${b.ul.map((li) => `<li class="flex gap-3"><span class="mt-[.55em] h-2 w-2 shrink-0 rounded-full bg-red"></span><span>${li}</span></li>`).join('')}</ul>`;
+  if (b.ul) return `<ul class="reveal prose-case mx-auto max-w-2xl space-y-2.5 text-[18px] leading-[1.6] text-ink/85">${b.ul.map((li) => `<li class="flex gap-3"><span class="mt-[.55em] h-2 w-2 shrink-0 rounded-full bg-blue"></span><span>${li}</span></li>`).join('')}</ul>`;
   if (b.img) return `<div class="py-4">${figure(b.img, b.caption, { narrow: b.narrow })}</div>`;
   if (b.pair) return `<div class="grid gap-8 py-4 sm:grid-cols-2">${b.pair.map((k, i) => figure(k, b.captions?.[i] || '')).join('')}</div>`;
   return '';
@@ -84,7 +84,7 @@ function resultsBlock(c) {
 
 function caseCard(id, i) {
   const c = CASES[id];
-  return `<a href="case.html?id=${id}" class="reveal group block">
+  return `<a href="case-${id}.html" class="reveal group block">
     <div class="print" data-label="${c.kicker || 'Кейс'}" data-size="${(DIMS[c.cover] || []).join(' × ')}">
       <div class="overflow-hidden" style="background:${c.coverBg}; view-transition-name: cover-${id}">${picture(c.cover, { alt: c.title, zoom: false, cls: 'aspect-[5/4] object-cover' })}</div>
     </div>
@@ -95,14 +95,13 @@ function caseCard(id, i) {
 
 const h2 = (html) => `<h2 class="display text-[2.1rem] sm:text-[4.5rem]">${html}</h2>`;
 
-function render(id) {
+function caseHTML(id) {
   const c = CASES[id];
   const parent = c.parent && CASES[c.parent];
-  document.title = `${c.title} — Полина Артамонова`;
 
   const backLink = (href, text) =>
     `<a href="${href}" class="mono group inline-flex items-center gap-2 text-[12px]"><span class="nudge-left inline-block">${icon('arrow-l', 'h-4 w-4')}</span><span class="link-u">${text}</span></a>`;
-  const back = parent ? backLink(`case.html?id=${c.parent}`, parent.title) : backLink('index.html#work', 'Все проекты');
+  const back = parent ? backLink(`case-${c.parent}.html`, parent.title) : backLink('index.html#work', 'Все проекты');
   const sticker = c.kicker || c.period;
 
   const hero = `
@@ -169,7 +168,7 @@ function render(id) {
   const nextVT = c.subcases?.includes(next) ? '' : `view-transition-name: cover-${next}`;
   const nextBlock = `
   <section class="border-t-[1.5px] border-ink py-16 sm:py-24">
-    <a href="case.html?id=${next}" class="reveal group grid items-center gap-10 md:grid-cols-2">
+    <a href="case-${next}.html" class="reveal group grid items-center gap-10 md:grid-cols-2">
       <div class="print" data-label="Следующий проект" data-size="${(DIMS[nc.cover] || []).join(' × ')}">
         <div class="overflow-hidden" style="background:${nc.coverBg};${nextVT}">${picture(nc.cover, { alt: nc.title, zoom: false, cls: 'aspect-[5/3] object-cover' })}</div>
       </div>
@@ -180,52 +179,47 @@ function render(id) {
     </a>
   </section>`;
 
-  document.getElementById('app').innerHTML = hero + summary + sections + subcases + nextBlock;
+  return hero + summary + sections + subcases + nextBlock;
 }
 
-const id = new URLSearchParams(location.search).get('id');
-if (CASES[id]) {
-  render(id);
-} else {
-  location.replace('index.html#work');
+if (typeof document !== 'undefined') {
+  // Увеличение картинок: картинка вырастает из миниатюры и возвращается в неё
+  const lb = document.getElementById('lightbox');
+  const lbImg = document.createElement('img');
+  lbImg.className = 'max-h-full max-w-full rounded-xl object-contain shadow-2xl';
+  lb.prepend(lbImg);
+  const lbReduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let lbThumb = null;
+
+  function flipFrom(thumb) {
+    const a = thumb.getBoundingClientRect();
+    const b = lbImg.getBoundingClientRect();
+    return `translate(${a.left + a.width / 2 - (b.left + b.width / 2)}px, ${a.top + a.height / 2 - (b.top + b.height / 2)}px) scale(${a.width / b.width})`;
+  }
+
+  async function openLb(thumb) {
+    lbThumb = thumb;
+    lbImg.src = thumb.currentSrc || thumb.src;
+    lbImg.alt = thumb.alt;
+    lb.classList.remove('hidden-lb');
+    if (lbReduce) return;
+    await lbImg.decode().catch(() => {});
+    lbImg.animate([{ transform: flipFrom(thumb), opacity: 0.6 }, { transform: 'none', opacity: 1 }],
+      { duration: 420, easing: 'cubic-bezier(0.16, 1, 0.3, 1)' });
+  }
+
+  function closeLb() {
+    if (lb.classList.contains('hidden-lb')) return;
+    lb.classList.add('hidden-lb');
+    if (lbReduce || !lbThumb) return;
+    lbImg.animate([{ transform: 'none' }, { transform: flipFrom(lbThumb) }],
+      { duration: 260, easing: 'cubic-bezier(0.4, 0, 1, 1)' });
+  }
+
+  document.addEventListener('click', (e) => {
+    const img = e.target.closest('img.zoomable');
+    if (img) openLb(img);
+  });
+  lb.addEventListener('click', closeLb);
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeLb(); });
 }
-
-// Увеличение картинок: картинка вырастает из миниатюры и возвращается в неё
-const lb = document.getElementById('lightbox');
-const lbImg = document.createElement('img');
-lbImg.className = 'max-h-full max-w-full rounded-xl object-contain shadow-2xl';
-lb.prepend(lbImg);
-const lbReduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
-let lbThumb = null;
-
-function flipFrom(thumb) {
-  const a = thumb.getBoundingClientRect();
-  const b = lbImg.getBoundingClientRect();
-  return `translate(${a.left + a.width / 2 - (b.left + b.width / 2)}px, ${a.top + a.height / 2 - (b.top + b.height / 2)}px) scale(${a.width / b.width})`;
-}
-
-async function openLb(thumb) {
-  lbThumb = thumb;
-  lbImg.src = thumb.currentSrc || thumb.src;
-  lbImg.alt = thumb.alt;
-  lb.classList.remove('hidden-lb');
-  if (lbReduce) return;
-  await lbImg.decode().catch(() => {});
-  lbImg.animate([{ transform: flipFrom(thumb), opacity: 0.6 }, { transform: 'none', opacity: 1 }],
-    { duration: 420, easing: 'cubic-bezier(0.16, 1, 0.3, 1)' });
-}
-
-function closeLb() {
-  if (lb.classList.contains('hidden-lb')) return;
-  lb.classList.add('hidden-lb');
-  if (lbReduce || !lbThumb) return;
-  lbImg.animate([{ transform: 'none' }, { transform: flipFrom(lbThumb) }],
-    { duration: 260, easing: 'cubic-bezier(0.4, 0, 1, 1)' });
-}
-
-document.addEventListener('click', (e) => {
-  const img = e.target.closest('img.zoomable');
-  if (img) openLb(img);
-});
-lb.addEventListener('click', closeLb);
-document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeLb(); });

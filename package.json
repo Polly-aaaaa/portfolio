@@ -1,0 +1,10 @@
+{
+  "name": "portfolio",
+  "private": true,
+  "scripts": {
+    "build": "node tools/build.mjs && tailwindcss -i css/tailwind.src.css -o css/tw.css --minify"
+  },
+  "devDependencies": {
+    "tailwindcss": "3.4.17"
+  }
+}

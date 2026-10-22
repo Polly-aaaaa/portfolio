@@ -166,6 +166,8 @@ html.js .reveal {
   transition-delay: var(--stagger, 0ms);
 }
 html.js .reveal.in { opacity: 1; transform: none; }
+/* крупные блоки с картинками не прячем целиком — только сдвигаем, чтобы при быстром скролле не было пустых экранов */
+html.js .reveal:has(.print) { opacity: 1; }
 html.js:not(.motion-ready) .reveal { animation: failsafe-show 0s 2s forwards; }
 @keyframes failsafe-show { to { opacity: 1; transform: none; visibility: visible; } }
 

@@ -70,8 +70,20 @@ const io = new IntersectionObserver((entries) => {
     e.target.querySelectorAll('[data-count]').forEach(countUp);
     io.unobserve(e.target);
   });
-}, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+}, { threshold: 0, rootMargin: '0px 0px 15% 0px' });
 document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
+
+// Переход по якорю: всё, что выше цели и в ней, показываем сразу, не дожидаясь наблюдателя
+function revealUpTo(hash) {
+  const target = hash.length > 1 && document.getElementById(hash.slice(1));
+  if (!target) return;
+  const bottom = target.getBoundingClientRect().bottom + innerHeight;
+  document.querySelectorAll('.reveal:not(.in)').forEach((el) => {
+    if (el.getBoundingClientRect().top < bottom) { el.classList.add('in'); io.unobserve(el); }
+  });
+}
+addEventListener('hashchange', () => revealUpTo(location.hash));
+revealUpTo(location.hash);
 
 document.documentElement.classList.add('motion-ready');
 

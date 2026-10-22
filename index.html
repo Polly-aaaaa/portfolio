@@ -5,6 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Полина Артамонова — UI/UX дизайнер</title>
   <meta name="description" content="Полина Артамонова — UI/UX дизайнер из Санкт-Петербурга. Интерфейсы для B2E и B2C продуктов." />
+  <link rel="canonical" href="https://polly-aaaaa.github.io/portfolio/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Полина Артамонова — UI/UX дизайнер" />
+  <meta property="og:description" content="UI/UX дизайнер из Санкт-Петербурга, 3+ года в B2E и B2C. Кейсы: HR-сервис, техподдержка, документы." />
+  <meta property="og:url" content="https://polly-aaaaa.github.io/portfolio/" />
+  <meta property="og:image" content="https://polly-aaaaa.github.io/portfolio/assets/og/index.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
   <link rel="icon" href="assets/favicon-32.png" sizes="32x32" type="image/png" />
   <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
@@ -12,18 +21,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Onest:wght@400..900&family=Caveat:wght@500..700&display=swap" rel="stylesheet" />
   <script>document.documentElement.classList.add('js')</script>
-  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          fontFamily: { sans: ['Onest', 'sans-serif'] },
-          colors: { ink: '#1e1e1e', paper: '#f5f5f5', line: '#e3e3e3', purple: '#7b3fe4', blue: '#0b72d6', marker: '#ffcd29', sel: '#0d99ff' },
-        },
-      },
-    };
-  </script>
-  <link rel="stylesheet" href="css/site.css?v=20261022222939" />
+  <link rel="stylesheet" href="css/site.css?v=20261022224359" />
+  <link rel="stylesheet" href="css/tw.css?v=20261022224359" />
 </head>
 <body class="font-sans text-ink">
 
@@ -42,7 +41,7 @@
           <ul class="mono flex flex-col gap-1 px-3 pb-3 text-[13px]">
             <li><a href="#work" class="block rounded-md px-2 py-2 transition-colors hover:bg-[#e5f4ff]">Проекты</a></li>
             <li><a href="#process" class="block rounded-md px-2 py-2 transition-colors hover:bg-[#e5f4ff]">Как я работаю</a></li>
-            <li><a href="#results" class="block rounded-md px-2 py-2 transition-colors hover:bg-[#e5f4ff]">Результаты</a></li>
+            <li><a href="#results" class="block rounded-md px-2 py-2 transition-colors hover:bg-[#e5f4ff]">Что изменилось</a></li>
             <li><a href="#contact" class="block rounded-md px-2 py-2 transition-colors hover:bg-[#e5f4ff]">Контакты</a></li>
           </ul>
         </div>
@@ -73,8 +72,8 @@
       <p class="display reveal mt-8 text-[1.6rem] text-ink/45 sm:mt-10 sm:text-[2.6rem] lg:max-w-[44rem] lg:text-[3rem] xl:max-w-none" style="--stagger:350ms">Дизайнер интерфейсов</p>
 
       <!-- фото на телефоне — в потоке -->
-      <figure class="reveal print mx-auto mt-14 w-48 lg:hidden" data-label="Полина.jpg" data-size="900 × 1125">
-        <img src="assets/avatar.jpg" width="900" height="1350" alt="Полина Артамонова" class="aspect-[4/5] w-full object-cover object-[50%_30%]" />
+      <figure class="reveal print mx-auto mt-14 w-48 lg:hidden" data-label="Полина.jpg" data-size="900 × 1125" aria-hidden="true">
+        <img src="assets/avatar.jpg" width="900" height="1350" alt="" class="aspect-[4/5] w-full object-cover object-[50%_30%]" />
       </figure>
 
       <p class="reveal mt-10 max-w-3xl text-[1.3rem] leading-[1.45] sm:text-[1.65rem]" style="--stagger:500ms">
@@ -102,7 +101,7 @@
       </div>
 
       <div data-stagger class="mt-14 grid gap-x-12 gap-y-16 md:grid-cols-2">
-        <a href="case.html?id=corp" class="reveal group block">
+        <a href="case-corp.html" class="reveal group block">
           <div class="print" data-label="Обложка / HR-сервис" data-size="2880 × 1728">
             <div style="view-transition-name: cover-corp" class="overflow-hidden bg-[#eef3ff]"><img src="assets/corp.webp" width="2880" height="1728" alt="Корпоративный HR-сервис — главная страница" loading="lazy" class="aspect-[5/3] w-full object-cover" /></div>
           </div>
@@ -111,7 +110,7 @@
           <p class="mt-3 text-[20px] leading-[1.9]"><span class="pill pill-blue !ml-0">B2E</span><span class="pill pill-white">Web</span><span class="pill pill-purple">2 кейса внутри</span><span class="pill pill-white">2024–2025</span></p>
         </a>
 
-        <a href="case.html?id=support" class="reveal group block md:mt-24">
+        <a href="case-support.html" class="reveal group block md:mt-24">
           <div class="print" data-label="Обложка / Техподдержка" data-size="2000 × 1200">
             <div style="view-transition-name: cover-support" class="overflow-hidden bg-[#ffb800]"><img src="assets/support.webp" width="2000" height="1200" alt="Сервис технической поддержки — панель сотрудника и мобильный клиент" loading="lazy" class="aspect-[5/3] w-full object-cover" /></div>
           </div>
@@ -120,7 +119,7 @@
           <p class="mt-3 text-[20px] leading-[1.9]"><span class="pill pill-marker !ml-0">B2C</span><span class="pill pill-white">Web</span><span class="pill pill-white">PWA</span><span class="pill pill-white">2025</span></p>
         </a>
 
-        <a href="case.html?id=docs" class="reveal group block">
+        <a href="case-docs.html" class="reveal group block">
           <div class="print" data-label="Обложка / Документы" data-size="2000 × 1200">
             <div style="view-transition-name: cover-docs" class="overflow-hidden bg-[#f3efff]"><img src="assets/docs.webp" width="2000" height="1200" alt="Сервис для работы с документами — кабинет администратора" loading="lazy" class="aspect-[5/3] w-full object-cover" /></div>
           </div>
@@ -129,13 +128,13 @@
           <p class="mt-3 text-[20px] leading-[1.9]"><span class="pill pill-marker !ml-0">B2C</span><span class="pill pill-white">Web</span><span class="pill pill-white">2024–2025</span></p>
         </a>
 
-        <a href="case.html?id=biz" class="reveal group block md:mt-24">
+        <a href="case-biz.html" class="reveal group block md:mt-24">
           <div class="print" data-label="Обложка / Предприниматели" data-size="2000 × 1200">
-            <div style="view-transition-name: cover-biz" class="overflow-hidden bg-[#0b3d86]"><img src="assets/biz.webp" width="2000" height="1200" alt="Сервис для предпринимателей — макеты под NDA" loading="lazy" class="aspect-[5/3] w-full object-cover" /></div>
+            <div style="view-transition-name: cover-biz" class="overflow-hidden bg-[#0b3d86]"><img src="assets/biz.webp" width="2000" height="1200" alt="Сервис для предпринимателей — обложка проекта" loading="lazy" class="aspect-[5/3] w-full object-cover" /></div>
           </div>
           <h3 class="mt-6 text-2xl font-bold tracking-tight"><span class="link-u">Сервис для предпринимателей</span></h3>
           <p class="mt-2 max-w-md text-[16px] leading-relaxed text-ink/75">Сообщество предпринимателей для общения, обучения и поддержки. Проектировала раздел «Профиль».</p>
-          <p class="mt-3 text-[20px] leading-[1.9]"><span class="pill pill-purple !ml-0">Social Media</span><span class="pill pill-marker">B2C</span><span class="pill pill-white">Web</span><span class="pill pill-white">PWA</span><span class="pill pill-white">2025</span></p>
+          <p class="mt-3 text-[20px] leading-[1.9]"><span class="pill pill-purple !ml-0">Social Media</span><span class="pill pill-marker">B2C</span><span class="pill pill-white">Web</span><span class="pill pill-white">PWA</span><span class="pill pill-white">2025</span><span class="pill pill-purple">Исследование, макеты под NDA</span></p>
         </a>
       </div>
     </section>
@@ -146,7 +145,7 @@
 
       <div class="mt-12 grid gap-12 lg:grid-cols-[1.4fr_1fr] lg:gap-16">
         <p class="reveal text-[1.3rem] leading-[1.45] sm:text-[1.65rem]">
-          Отвечаю за <span class="mk-hl">весь дизайн-цикл</span> — от первых исследований до релиза. Сама провожу интервью с пользователями, тестирую интерактивные прототипы и защищаю решения перед командой. На двух проектах была <span class="mk-wave">единственным дизайнером</span>.
+          Отвечаю за весь дизайн-цикл — от первых исследований до релиза. Сама провожу интервью с пользователями, тестирую интерактивные прототипы и защищаю решения перед командой. На двух проектах была <span class="mk-hl">единственным дизайнером</span>.
         </p>
         <div class="reveal note note-lined self-start" style="--stagger:150ms">
           <p class="hand text-[1.9rem] leading-[32px]">С кем работаю:</p>
@@ -166,24 +165,32 @@
       </div>
       <ol data-stagger class="relative mt-20 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
         <li class="reveal note note-marker">
-          <span class="mono text-[12px]">01</span>
-          <h3 class="hand mt-1 text-[2rem] leading-none">Анализ и интервью</h3><svg class="noodle" viewBox="0 0 40 36" aria-hidden="true"><path d="M3 18 C 14 4, 24 32, 34 18"/><path d="M28 13 L 35 18 L 29 24"/><circle cx="3" cy="18" r="3"/></svg>
-          <p class="mt-3 text-[15px] leading-relaxed">Разбираю текущий сервис, общаюсь с сотрудниками и HR, нахожу узкие места.</p>
+          <a href="case-vacation.html" class="group block">
+            <span class="mono text-[12px]">01</span>
+            <h3 class="hand mt-1 text-[2rem] leading-none"><span class="link-u">Интервью с HR</span></h3><svg class="noodle" viewBox="0 0 40 36" aria-hidden="true"><path d="M3 18 C 14 4, 24 32, 34 18"/><path d="M28 13 L 35 18 L 29 24"/><circle cx="3" cy="18" r="3"/></svg>
+            <p class="mt-3 text-[15px] leading-relaxed">Перед проектированием отпусков выяснила, что данные хранятся у разных людей, и собрала их в одном разделе.</p>
+          </a>
         </li>
         <li class="reveal note note-red">
-          <span class="mono text-[12px]">02</span>
-          <h3 class="hand mt-1 text-[2rem] leading-none">Прототипирование</h3><svg class="noodle" viewBox="0 0 40 36" aria-hidden="true"><path d="M3 18 C 14 4, 24 32, 34 18"/><path d="M28 13 L 35 18 L 29 24"/><circle cx="3" cy="18" r="3"/></svg>
-          <p class="mt-3 text-[15px] leading-relaxed">Собираю интерактивные прототипы и проверяю их на пользователях.</p>
+          <a href="case-vacation.html" class="group block">
+            <span class="mono text-[12px]">02</span>
+            <h3 class="hand mt-1 text-[2rem] leading-none"><span class="link-u">Коридорный тест</span></h3><svg class="noodle" viewBox="0 0 40 36" aria-hidden="true"><path d="M3 18 C 14 4, 24 32, 34 18"/><path d="M28 13 L 35 18 L 29 24"/><circle cx="3" cy="18" r="3"/></svg>
+            <p class="mt-3 text-[15px] leading-relaxed">Показала сотрудникам два варианта уведомления о сборе удалёнок и оставила баннер — большинство сочло его заметнее.</p>
+          </a>
         </li>
         <li class="reveal note note-blue">
-          <span class="mono text-[12px]">03</span>
-          <h3 class="hand mt-1 text-[2rem] leading-none">Доработка</h3><svg class="noodle" viewBox="0 0 40 36" aria-hidden="true"><path d="M3 18 C 14 4, 24 32, 34 18"/><path d="M28 13 L 35 18 L 29 24"/><circle cx="3" cy="18" r="3"/></svg>
-          <p class="mt-3 text-[15px] leading-relaxed">Вношу правки по обратной связи и презентую решения команде.</p>
+          <a href="case-docs.html" class="group block">
+            <span class="mono text-[12px]">03</span>
+            <h3 class="hand mt-1 text-[2rem] leading-none"><span class="link-u">Тест с юристом</span></h3><svg class="noodle" viewBox="0 0 40 36" aria-hidden="true"><path d="M3 18 C 14 4, 24 32, 34 18"/><path d="M28 13 L 35 18 L 29 24"/><circle cx="3" cy="18" r="3"/></svg>
+            <p class="mt-3 text-[15px] leading-relaxed">Прототип конструктора шаблонов прошёл юрист, который будет в нём работать. Его комментарии вошли в финальные макеты.</p>
+          </a>
         </li>
         <li class="reveal note bg-white">
-          <span class="mono text-[12px]">04</span>
-          <h3 class="hand mt-1 text-[2rem] leading-none">Ревью вёрстки</h3>
-          <p class="mt-3 text-[15px] leading-relaxed">Довожу продукт до релиза и слежу, чтобы реализация совпала с макетом.</p>
+          <a href="case-review.html" class="group block">
+            <span class="mono text-[12px]">04</span>
+            <h3 class="hand mt-1 text-[2rem] leading-none"><span class="link-u">Вторая итерация</span></h3>
+            <p class="mt-3 text-[15px] leading-relaxed">После первого цикла ревью 360° разделила создание сессии на три шага и добавила в отчёт диаграмму.</p>
+          </a>
         </li>
       </ol>
     </section>
@@ -193,30 +200,29 @@
       <h2 class="reveal display text-[3rem] sm:text-[5.5rem]">Что изменилось</h2>
 
       <div class="mt-14 grid gap-10 md:grid-cols-2 md:gap-12">
-        <a href="case.html?id=vacation" class="reveal group flex items-center gap-5 sm:gap-7">
+        <a href="case-vacation.html" class="reveal group flex items-center gap-5 sm:gap-7">
           <span class="grade" data-label="Метрика / Отпуска"><span data-count="30" data-prefix="до " data-suffix="%">до 30%</span></span>
           <span class="text-[1.15rem] leading-snug sm:text-[1.35rem]"><span class="link-u">времени HR экономит сбор отпусков и удалёнок в одном месте</span></span>
         </a>
-        <a href="case.html?id=review" class="reveal group flex items-center gap-5 sm:gap-7">
+        <a href="case-review.html" class="reveal group flex items-center gap-5 sm:gap-7">
           <span class="grade" data-label="Метрика / Ревью 360°"><span data-count="15" data-suffix="%">15%</span></span>
-          <span class="text-[1.15rem] leading-snug sm:text-[1.35rem]"><span class="link-u">сотрудников получили повышение грейда по итогам ревью 360°</span></span>
+          <span class="text-[1.15rem] leading-snug sm:text-[1.35rem]"><span class="link-u">сотрудников повысили грейд по итогам первого ревью 360°, проведённого целиком в сервисе</span></span>
         </a>
       </div>
 
       <ul data-stagger class="mt-16 max-w-3xl space-y-5 text-[1.2rem] leading-[1.5] sm:text-[1.45rem]">
-        <li class="reveal"><a href="case.html?id=corp" class="group">Корпоративный сервис стал <span class="mk-hl">основным внутренним</span> сервисом компании</a></li>
-        <li class="reveal"><a href="case.html?id=review" class="group">Компания <span class="mk-wave">отказалась от сторонних решений</span> для оценки персонала</a></li>
-        <li class="reveal"><a href="case.html?id=support" class="group">Закрытие обращения в техподдержке стало <span class="mk-circle">короче</span></a></li>
+        <li class="reveal"><a href="case-corp.html" class="group">Корпоративный сервис стал основным внутренним сервисом компании</a></li>
+        <li class="reveal"><a href="case-review.html" class="group">Компания отказалась от сторонних решений для оценки персонала</a></li>
+        <li class="reveal"><a href="case-support.html" class="group">Закрытие обращения в техподдержке стало короче</a></li>
       </ul>
     </section>
 
     <!-- ===== CTA ===== -->
     <section id="contact" class="relative py-24 sm:py-32">
-      <div class="reveal note note-red absolute right-2 top-10 hidden w-56 md:block">
+      <h2 class="reveal display max-w-4xl text-[3rem] sm:text-[6rem]">Давайте обсудим ваш продукт</h2>
+      <div class="reveal note note-red mt-8 w-56 md:absolute md:right-2 md:top-10 md:mt-0">
         <p class="hand text-[1.6rem] leading-[1.05]">Часть проектов под NDA — покажу макеты на созвоне</p>
       </div>
-      <h2 class="reveal display max-w-4xl text-[3rem] sm:text-[6rem]">Давайте обсудим ваш продукт</h2>
-      <p class="reveal mt-6 max-w-md text-[17px] leading-relaxed text-ink/75 md:hidden">Часть проектов под NDA — подробные макеты могу показать на личном созвоне.</p>
       <div class="reveal mt-10 flex flex-wrap items-center gap-3">
         <a href="https://t.me/p_p_polly" target="_blank" rel="noopener" class="btn bg-blue text-white">Телеграм</a>
         <a href="mailto:psineleva@bk.ru" class="btn bg-purple text-white">psineleva@bk.ru</a>
@@ -235,7 +241,7 @@
     </footer>
   </main>
 
-  <script src="js/doodles.js?v=20261022222939"></script>
-  <script src="js/site.js?v=20261022222939"></script>
+  <script src="js/doodles.js?v=20261022224359"></script>
+  <script src="js/site.js?v=20261022224359"></script>
 </body>
 </html>
