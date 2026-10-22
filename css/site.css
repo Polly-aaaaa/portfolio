@@ -21,7 +21,7 @@ body { background: var(--paper); color: var(--ink); -webkit-font-smoothing: anti
 /* Зерно поверх всей страницы — как у печати аэрографом */
 body::after {
   content: ''; position: fixed; inset: 0; z-index: 80; pointer-events: none;
-  background: var(--grain); opacity: .16;
+  background: var(--grain); opacity: .035;
 }
 
 /* Курсор: мягкая небесная стрелка; над ссылками — персиковая */
@@ -52,16 +52,16 @@ html { scrollbar-color: var(--mist-300) transparent; }
   border: 1px solid rgba(255,255,255,.95);
   box-shadow:
     inset 0 1px 0 rgba(255,255,255,.95),
-    inset 0 -14px 24px -16px rgba(96,155,205,.5),
-    0 24px 44px -24px rgba(var(--glow), .55),
-    0 6px 16px -10px rgba(var(--glow), .3);
+    inset 0 -14px 24px -16px rgba(96,155,205,0.25),
+    0 24px 44px -24px rgba(var(--glow), 0.28),
+    0 6px 16px -10px rgba(var(--glow), 0.15);
   transition: transform .45s var(--ease-out), box-shadow .45s var(--ease-out), background-color .3s;
 }
 .puff-lg { box-shadow:
     inset 0 1px 0 rgba(255,255,255,.95),
-    inset 0 -18px 30px -18px rgba(96,155,205,.5),
-    0 36px 70px -34px rgba(var(--glow), .6),
-    0 10px 24px -14px rgba(var(--glow), .3); }
+    inset 0 -18px 30px -18px rgba(96,155,205,0.25),
+    0 36px 70px -34px rgba(var(--glow), 0.30),
+    0 10px 24px -14px rgba(var(--glow), 0.15); }
 /* Тёмно-синяя кнопка со свечением */
 .puff-ink {
   background: radial-gradient(130% 140% at 30% 0%, #44709f 0%, var(--ink) 55%, #172f4d 100%);
@@ -69,48 +69,48 @@ html { scrollbar-color: var(--mist-300) transparent; }
   box-shadow:
     inset 0 1px 0 rgba(255,255,255,.28),
     inset 0 -10px 18px -10px rgba(0,0,0,.35),
-    0 18px 34px -16px rgba(var(--glow), .75),
-    0 4px 10px -6px rgba(var(--glow), .5);
+    0 18px 34px -16px rgba(var(--glow), 0.38),
+    0 4px 10px -6px rgba(var(--glow), 0.25);
 }
 /* Подъём при наведении — форма всплывает, свечение под ней шире */
 .puff-btn:hover, .group:hover .puff-lift { transform: translateY(-3px); }
 .puff-btn:hover:not(.puff-ink), .group:hover .puff-lift {
   box-shadow:
     inset 0 1px 0 rgba(255,255,255,.95),
-    inset 0 -14px 24px -16px rgba(96,155,205,.55),
-    0 34px 56px -26px rgba(var(--glow), .65),
-    0 8px 20px -10px rgba(var(--glow), .35);
+    inset 0 -14px 24px -16px rgba(96,155,205,0.28),
+    0 34px 56px -26px rgba(var(--glow), 0.33),
+    0 8px 20px -10px rgba(var(--glow), 0.17);
 }
 .puff-ink:hover { box-shadow:
     inset 0 1px 0 rgba(255,255,255,.3),
     inset 0 -10px 18px -10px rgba(0,0,0,.35),
-    0 26px 44px -16px rgba(var(--glow), .85),
-    0 6px 14px -6px rgba(var(--glow), .55); }
+    0 26px 44px -16px rgba(var(--glow), 0.42),
+    0 6px 14px -6px rgba(var(--glow), 0.28); }
 .puff-btn:active, .group:active .puff-lift { transform: translateY(0) scale(.98); transition-duration: .1s; }
 
 /* Мелкие кружки, чипы, номера */
 .soft-edge {
   border: 1px solid rgba(255,255,255,.95);
-  box-shadow: inset 0 -3px 6px -2px rgba(96,155,205,.4), 0 6px 14px -8px rgba(var(--glow), .55);
+  box-shadow: inset 0 -3px 6px -2px rgba(96,155,205,0.20), 0 6px 14px -8px rgba(var(--glow), 0.28);
 }
 
 /* Ночная панель с зерном и огоньками */
 .night {
   position: relative; overflow: hidden; isolation: isolate; color: #fff;
   background: radial-gradient(90% 130% at 85% 0%, #4a77a8 0%, var(--ink) 50%, #152b47 100%);
-  box-shadow: 0 40px 70px -36px rgba(var(--glow), .8);
+  box-shadow: 0 40px 70px -36px rgba(var(--glow), 0.40);
 }
-.night::after { content: ''; position: absolute; inset: 0; z-index: -1; background: var(--grain); opacity: .35; mix-blend-mode: screen; pointer-events: none; }
+.night::after { content: ''; position: absolute; inset: 0; z-index: -1; background: var(--grain); opacity: .08; mix-blend-mode: screen; pointer-events: none; }
 
 /* Мягкая дымка и огоньки за первым экраном */
 .haze { position: absolute; border-radius: 9999px; filter: blur(60px); pointer-events: none; z-index: -1; }
 .orb { position: absolute; border-radius: 9999px; filter: blur(3px); pointer-events: none; animation: breathe 5s ease-in-out infinite alternate; }
-@keyframes breathe { from { opacity: .45; transform: scale(.85); } to { opacity: 1; transform: scale(1.1); } }
+@keyframes breathe { from { opacity: .2; transform: scale(.95); } to { opacity: .5; transform: scale(1.03); } }
 
 /* ---------- Появление: из размытия в фокус ----------
    Скрываем только когда JS точно есть; если site.js не загрузился — показываем через 2 с. */
 html.js .reveal {
-  opacity: 0; transform: translateY(14px); filter: blur(10px);
+  opacity: 0; transform: translateY(10px); filter: blur(3px);
   transition: opacity .7s var(--ease-out), transform .8s var(--ease-out), filter .9s var(--ease-out);
   transition-delay: var(--stagger, 0ms);
 }
@@ -124,12 +124,12 @@ html.js:not(.motion-ready) .reveal { animation: failsafe-show 0s 2s forwards; }
 html.js [data-split]:not(.split-done) { visibility: hidden; }
 html.js:not(.motion-ready) [data-split] { animation: failsafe-show 0s 2s forwards; }
 .split-done .w > .wi { animation: word-in 1.1s var(--ease-out) both; animation-delay: var(--d, 0ms); }
-@keyframes word-in { from { opacity: 0; filter: blur(12px); transform: translateY(.25em); } to { opacity: 1; filter: none; transform: none; } }
+@keyframes word-in { from { opacity: 0; filter: blur(4px); transform: translateY(.2em); } to { opacity: 1; filter: none; transform: none; } }
 
 /* Аватар в заголовке */
 .split-done .avatar-pop { animation: avatar-pop 1.2s var(--ease-out) backwards; animation-delay: var(--d, 0ms); }
 @keyframes avatar-pop {
-  from { transform: scale(.6) rotate(-20deg); opacity: 0; filter: blur(10px); }
+  from { transform: scale(.8) rotate(-14deg); opacity: 0; filter: blur(3px); }
   to { transform: scale(1) rotate(-6deg); opacity: 1; filter: none; }
 }
 
@@ -151,7 +151,7 @@ html.js:not(.motion-ready) [data-split] { animation: failsafe-show 0s 2s forward
 /* ---------- Этапы зажигаются по очереди ---------- */
 html.js .stages .stage-dot { background: var(--mist-200); color: var(--ink); }
 .stage-dot { transition: background-color .4s, color .4s, box-shadow .4s; transition-delay: calc(var(--i, 0) * 110ms + 250ms); }
-html.js .stages.in .stage-dot { background: var(--ink); color: #fff; box-shadow: 0 0 0 4px rgba(169,203,224,.45), 0 6px 14px -6px rgba(var(--glow), .8); }
+html.js .stages.in .stage-dot { background: var(--ink); color: #fff; box-shadow: 0 0 0 4px rgba(169,203,224,.45), 0 6px 14px -6px rgba(var(--glow), 0.40); }
 
 /* ---------- Цифры ---------- */
 [data-count] { font-variant-numeric: tabular-nums; }
@@ -172,7 +172,7 @@ html.js .stages.in .stage-dot { background: var(--ink); color: #fff; box-shadow:
 .doodle { display: block; width: 100%; height: 100%; overflow: visible;
   transition: opacity 1s var(--ease-out), filter 1.2s var(--ease-out), transform 1.2s var(--ease-out);
   transition-delay: calc(var(--stagger, 0ms) + 80ms); }
-html.js .reveal:not(.in) .doodle { opacity: 0; filter: blur(14px); transform: scale(.9); }
+html.js .reveal:not(.in) .doodle { opacity: 0; filter: blur(4px); transform: scale(.96); }
 html.js:not(.motion-ready) .doodle { opacity: 1; filter: none; transform: none; }
 .doodle .breathe { transform-box: fill-box; transform-origin: center; animation: breathe 4.5s ease-in-out infinite alternate; animation-delay: var(--b, 0s); }
 .doodle-slot { display: inline-block; }

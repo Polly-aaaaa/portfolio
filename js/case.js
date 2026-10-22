@@ -113,8 +113,8 @@ function render(id) {
   const hero = `
   <section class="relative isolate px-4 pb-16 pt-36 text-center sm:px-8 sm:pb-20 sm:pt-44">
     <div aria-hidden="true" class="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
-      <span class="haze" style="width:24rem;height:16rem;left:50%;top:8%;transform:translateX(-80%);background:#cfe3f2;opacity:.8"></span>
-      <span class="haze" style="width:20rem;height:14rem;left:50%;top:24%;transform:translateX(0%);background:#fcdccb;opacity:.7"></span>
+      <span class="haze" style="width:24rem;height:16rem;left:50%;top:8%;transform:translateX(-80%);background:#cfe3f2;opacity:0.36"></span>
+      <span class="haze" style="width:20rem;height:14rem;left:50%;top:24%;transform:translateX(0%);background:#fcdccb;opacity:0.32"></span>
       <span class="orb" style="width:9px;height:9px;left:16%;top:40%;background:#fbd38f"></span>
       <span class="orb" style="width:11px;height:11px;right:17%;top:30%;background:#f5a27f;animation-delay:1s"></span>
     </div>

@@ -12,11 +12,11 @@ const DEFS = `<defs>
   <linearGradient id="g-peach" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fde6d9"/><stop offset="1" stop-color="#f39472"/></linearGradient>
   <radialGradient id="g-sun" cx=".4" cy=".35" r=".7"><stop offset="0" stop-color="#fff7d6"/><stop offset=".55" stop-color="#fbd38f"/><stop offset="1" stop-color="#f5a27f"/></radialGradient>
   <filter id="spray" x="-40%" y="-40%" width="180%" height="180%">
-    <feGaussianBlur in="SourceGraphic" stdDeviation="1.6" result="b"/>
+    <feGaussianBlur in="SourceGraphic" stdDeviation=".7" result="b"/>
     <feTurbulence type="fractalNoise" baseFrequency="1.4" numOctaves="2" seed="4" result="n"/>
-    <feDisplacementMap in="b" in2="n" scale="7" xChannelSelector="R" yChannelSelector="G" result="d"/>
+    <feDisplacementMap in="b" in2="n" scale="2.5" xChannelSelector="R" yChannelSelector="G" result="d"/>
     <feTurbulence type="fractalNoise" baseFrequency="2.3" numOctaves="1" seed="9" result="g"/>
-    <feColorMatrix in="g" values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 -3 1.45" result="speck"/>
+    <feColorMatrix in="g" values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 -5 1.15" result="speck"/>
     <feComposite in="speck" in2="d" operator="in" result="s"/>
     <feMerge><feMergeNode in="d"/><feMergeNode in="s"/></feMerge>
   </filter>
@@ -42,7 +42,7 @@ const CLOUD = (x = 0, y = 0, s = 1) => `
 const DOODLES = {
   // Знак: мягкое облако с голубым свечением снизу и бликами сверху
   cloud: `
-    <g fill="#8fbfe0" opacity=".7" filter="url(#haze)" transform="translate(0 7)">${CLOUD()}</g>
+    <g fill="#8fbfe0" opacity="0.42" filter="url(#haze)" transform="translate(0 7)">${CLOUD()}</g>
     <g fill="url(#g-white)" filter="url(#spray)">${CLOUD()}</g>
     <ellipse cx="62" cy="78" rx="24" ry="9" fill="#a9cbe0" opacity=".55" filter="url(#soft)"/>
     <ellipse class="breathe" cx="52" cy="46" rx="11" ry="7" fill="#fff" filter="url(#soft)"/>
@@ -50,7 +50,7 @@ const DOODLES = {
 
   // Облачко «привет!»
   hello: `
-    <g fill="#8fbfe0" opacity=".65" filter="url(#haze)" transform="translate(-6 4) scale(1.12)">${CLOUD()}</g>
+    <g fill="#8fbfe0" opacity="0.39" filter="url(#haze)" transform="translate(-6 4) scale(1.12)">${CLOUD()}</g>
     <g fill="url(#g-white)" filter="url(#spray)" transform="translate(-6 -2) scale(1.12)">${CLOUD()}</g>
     <ellipse class="breathe" cx="54" cy="44" rx="13" ry="7" fill="#fff" filter="url(#soft)"/>
     <text x="62" y="80" text-anchor="middle" font-family="Geologica, Onest, sans-serif" font-size="17" font-weight="500" fill="${INK}" letter-spacing="-.3">привет!</text>
@@ -59,7 +59,7 @@ const DOODLES = {
   // Стикеры и курсор — проекты
   notes: `
     <g transform="rotate(9 70 46)"><rect x="46" y="18" width="54" height="54" rx="10" fill="url(#g-peach)" filter="url(#spray)"/></g>
-    <rect x="26" y="40" width="58" height="58" rx="12" fill="#8fbfe0" opacity=".55" filter="url(#haze)" transform="rotate(-7 50 60) translate(0 6)"/>
+    <rect x="26" y="40" width="58" height="58" rx="12" fill="#8fbfe0" opacity="0.33" filter="url(#haze)" transform="rotate(-7 50 60) translate(0 6)"/>
     <g transform="rotate(-7 50 60)">
       <rect x="22" y="32" width="58" height="58" rx="12" fill="url(#g-white)" filter="url(#spray)"/>
       <g fill="${INK}" opacity=".35" filter="url(#soft)"><rect x="33" y="50" width="34" height="4" rx="2"/><rect x="33" y="61" width="28" height="4" rx="2"/><rect x="33" y="72" width="20" height="4" rx="2"/></g>
@@ -70,7 +70,7 @@ const DOODLES = {
   // Карандаш — процесс
   pencil: `
     <g transform="rotate(-38 60 58)">
-      <rect x="22" y="62" width="84" height="20" rx="10" fill="#8fbfe0" opacity=".6" filter="url(#haze)"/>
+      <rect x="22" y="62" width="84" height="20" rx="10" fill="#8fbfe0" opacity="0.36" filter="url(#haze)"/>
       <rect x="26" y="48" width="74" height="20" rx="10" fill="url(#g-sky)" filter="url(#spray)"/>
       <path d="M28 48 L8 58 L28 68 Z" fill="url(#g-peach)" filter="url(#spray)"/>
       <ellipse cx="12" cy="58" rx="5" ry="4" fill="#f5a27f" filter="url(#soft)"/>
@@ -90,14 +90,14 @@ const DOODLES = {
 
   // Звезда — результаты
   star: `
-    <path d="M60 20 L71.2 46.6 L99.9 49 L78.1 67.9 L84.7 96 L60 81 L35.3 96 L41.9 67.9 L20.1 49 L48.8 46.6 Z" fill="#f5a27f" opacity=".55" filter="url(#haze)" transform="translate(0 6)"/>
+    <path d="M60 20 L71.2 46.6 L99.9 49 L78.1 67.9 L84.7 96 L60 81 L35.3 96 L41.9 67.9 L20.1 49 L48.8 46.6 Z" fill="#f5a27f" opacity="0.33" filter="url(#haze)" transform="translate(0 6)"/>
     <path d="M60 20 L71.2 46.6 L99.9 49 L78.1 67.9 L84.7 96 L60 81 L35.3 96 L41.9 67.9 L20.1 49 L48.8 46.6 Z" fill="url(#g-sun)" filter="url(#spray)"/>
     <ellipse class="breathe" cx="56" cy="50" rx="10" ry="8" fill="#fff" filter="url(#soft)"/>
     ${orb(104, 22, 3, '#a9cbe0', .2)}${orb(16, 92, 2.4, '#fbd38f', 1.4)}`,
 
   // Бабл-ти — «обсудим»
   tea: `
-    <path d="M30 50 L37 104 Q60 110 83 104 L90 50 Z" fill="#8fbfe0" opacity=".6" filter="url(#haze)" transform="translate(0 6)"/>
+    <path d="M30 50 L37 104 Q60 110 83 104 L90 50 Z" fill="#8fbfe0" opacity="0.36" filter="url(#haze)" transform="translate(0 6)"/>
     <path d="M62 44 L73 8 L80 10 L70 46 Z" fill="url(#g-navy)" filter="url(#spray)"/>
     <path d="M30 46 L37 104 Q60 110 83 104 L90 46 Z" fill="url(#g-white)" filter="url(#spray)"/>
     <path d="M33.5 66 Q60 60 86.5 66 L83 104 Q60 110 37 104 Z" fill="url(#g-peach)" filter="url(#spray)"/>
@@ -106,7 +106,7 @@ const DOODLES = {
 
   // Бумажный самолётик — дальше
   plane: `
-    <path d="M10 58 L110 16 L82 102 L58 78 Z" fill="#8fbfe0" opacity=".55" filter="url(#haze)" transform="translate(0 6)"/>
+    <path d="M10 58 L110 16 L82 102 L58 78 Z" fill="#8fbfe0" opacity="0.33" filter="url(#haze)" transform="translate(0 6)"/>
     <path d="M10 58 L110 16 L58 78 Z" fill="url(#g-white)" filter="url(#spray)"/>
     <path d="M110 16 L82 102 L58 78 Z" fill="url(#g-sky)" filter="url(#spray)"/>
     <path d="M58 78 L54 102 L70 90 Z" fill="url(#g-navy)" filter="url(#spray)"/>
