@@ -40,26 +40,53 @@ function stagesBlock(stages) {
   </div>`;
 }
 
-// «Задача и итог» — лист-спецификация: строка = подпись с иконкой слева, текст справа
-const row = (label, iconName, content) => `
-  <div class="reveal grid gap-3 border-b border-line py-7 md:grid-cols-[12rem_1fr] md:gap-10">
-    <h3 class="flex items-center gap-2.5 font-display text-lg font-medium tracking-tight">${icon(iconName, 'h-5 w-5 text-ink/70')}${label}</h3>
-    <div>${content}</div>
-  </div>`;
+// «Задача и итог»: проблема → цель, затем роль и что сделала, в конце — тёмная панель результатов
+const badge = (name, cls = 'bg-[#f7f0fd] text-ink') =>
+  `<span class="grid h-9 w-9 shrink-0 place-items-center rounded-full ${cls}">${icon(name, 'h-[18px] w-[18px]')}</span>`;
 
-function summaryRow(s) {
-  const list = s.list
-    ? `<ul class="mt-4 grid gap-x-8 gap-y-2 sm:grid-cols-2">${s.list.map((li) => `<li class="flex gap-2.5 text-[15px] leading-snug text-ink/75">${icon('check', 'mt-0.5 h-4 w-4 text-ink/50')}<span>${li}</span></li>`).join('')}</ul>`
-    : '';
-  return row(s.label, s.icon, `<p class="prose-case text-[17px] leading-[1.65] text-ink/75">${s.html}</p>${list}`);
+const labelHead = (s, badgeCls) =>
+  `<div class="flex items-center gap-3">${badge(s.icon, badgeCls)}<h3 class="font-display text-lg font-medium tracking-tight">${s.label}</h3></div>`;
+
+function problemGoal(problem, goal) {
+  if (!problem || !goal) return '';
+  return `
+  <div class="reveal relative grid overflow-hidden rounded-3xl border border-black/5 bg-white shadow-card md:grid-cols-2">
+    <div class="p-7 sm:p-10">
+      ${labelHead(problem, 'bg-black/5 text-ink')}
+      <p class="prose-case mt-6 font-display text-[1.25rem] leading-snug tracking-tight text-ink/75 sm:text-[1.375rem]">${problem.html}</p>
+    </div>
+    <div class="border-t border-black/5 bg-[#f7f0fd] p-7 sm:p-10 md:border-l md:border-t-0">
+      ${labelHead(goal, 'bg-white text-ink')}
+      <p class="prose-case mt-6 font-display text-[1.25rem] leading-snug tracking-tight text-ink sm:text-[1.375rem]">${goal.html}</p>
+    </div>
+    <span class="absolute left-1/2 top-1/2 hidden h-11 w-11 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full border border-black/10 bg-white shadow-sm md:grid">${icon('arrow-r', 'h-5 w-5')}</span>
+  </div>`;
 }
 
-function resultsRow(c) {
+function detailRow(s) {
+  const list = s.list
+    ? `<ul class="mt-5 grid gap-2.5 sm:grid-cols-2">${s.list.map((li) =>
+        `<li class="flex items-start gap-3 rounded-2xl border border-black/5 bg-white px-4 py-3.5 text-[15px] leading-snug text-ink/80"><span class="grid h-6 w-6 shrink-0 place-items-center rounded-full bg-[#f7f0fd] text-ink">${icon('check', 'h-3.5 w-3.5')}</span><span>${li}</span></li>`).join('')}</ul>`
+    : '';
+  return `
+  <div class="reveal grid gap-4 border-b border-line py-8 md:grid-cols-[13rem_1fr] md:gap-10">
+    <div class="self-start">${labelHead(s)}</div>
+    <div><p class="prose-case max-w-[62ch] text-[17px] leading-[1.65] text-ink/80">${s.html}</p>${list}</div>
+  </div>`;
+}
+
+function resultsPanel(c) {
   if (!c.results) return '';
+  const cols = { 1: '', 2: 'md:grid-cols-2', 3: 'md:grid-cols-3' }[Math.min(c.results.length, 3)];
   const items = c.results.map((r) =>
-    `<li class="flex gap-3 text-[17px] leading-[1.6] text-ink/75 [&_b]:font-medium [&_b]:text-ink">${icon('check', 'mt-1 h-5 w-5 text-ink')}<span>${r}</span></li>`).join('');
-  const note = c.resultsNote ? `<p class="mt-5 text-sm leading-relaxed text-ink/60">* ${c.resultsNote}</p>` : '';
-  return row('Результаты', 'star', `<ul class="space-y-3">${items}</ul>${note}`);
+    `<li class="border-t border-white/15 pt-5"><p class="font-display text-lg leading-snug tracking-tight text-white/65 sm:text-xl [&_b]:font-medium [&_b]:text-white">${r}</p></li>`).join('');
+  const note = c.resultsNote ? `<p class="mt-8 text-sm leading-relaxed text-white/60">* ${c.resultsNote}</p>` : '';
+  return `
+  <div class="reveal mt-10 rounded-3xl bg-ink p-7 text-white shadow-xl sm:p-10">
+    <div class="flex items-center gap-3">${badge('star', 'bg-white/10 text-white')}<h3 class="font-display text-xl font-medium tracking-tight">Результаты</h3></div>
+    <ul class="mt-8 grid gap-x-8 gap-y-6 ${cols}">${items}</ul>
+    ${note}
+  </div>`;
 }
 
 function caseCard(id) {
@@ -95,15 +122,20 @@ function render(id) {
     <div class="overflow-hidden rounded-3xl border border-black/5 shadow-card" style="background:${c.coverBg}; view-transition-name: cover-${id}">${picture(c.cover, { alt: c.title, eager: true })}</div>
   </div>`;
 
+  const problem = c.summary.find((x) => x.label === 'Проблема');
+  const goal = c.summary.find((x) => x.label === 'Задача' || x.label === 'Цель');
+  const details = c.summary.filter((x) => x !== problem && x !== goal);
+
   const summary = `
   <section class="cross relative border-t border-line px-4 py-20 sm:px-8 sm:py-28">
     <div class="reveal text-center">
       <span data-doodle="glasses" class="doodle-slot mb-5 h-20 w-20 sm:h-24 sm:w-24"></span>
       ${h2('Задача и итог')}
     </div>
-    <div class="mx-auto mt-12 max-w-4xl border-t border-line">
-      ${c.summary.map(summaryRow).join('')}
-      ${resultsRow(c)}
+    <div class="mx-auto mt-12 max-w-5xl">
+      ${problemGoal(problem, goal)}
+      ${details.length ? `<div class="mt-6 border-t border-line">${details.map(detailRow).join('')}</div>` : ''}
+      ${resultsPanel(c)}
     </div>
   </section>`;
 
