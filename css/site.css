@@ -40,6 +40,13 @@ html.js:not(.motion-ready) [data-split] { animation: failsafe-show 0s 2s forward
 .split-done .w > .wi { animation: word-up .9s var(--ease-out) both; animation-delay: var(--d, 0ms); }
 @keyframes word-up { from { transform: translateY(105%); } to { transform: none; } }
 
+/* Аватар в заголовке */
+.split-done .avatar-pop { animation: avatar-pop 1s var(--ease-out) backwards; animation-delay: var(--d, 0ms); }
+@keyframes avatar-pop {
+  from { transform: scale(.2) rotate(-60deg); opacity: 0; }
+  to { transform: scale(1) rotate(-6deg); opacity: 1; }
+}
+
 /* ---------- Кнопки и ссылки ---------- */
 .press { transition: scale .3s var(--ease-out), box-shadow .3s var(--ease-out), background-color .2s; }
 .press:active { scale: .97; transition-duration: .1s; }
@@ -96,21 +103,16 @@ html.js:not(.motion-ready) .doodle .tone, html.js:not(.motion-ready) .doodle .tx
 .doodle-slot:hover .doodle { animation: wiggle .6s var(--ease-out); }
 @keyframes wiggle { 25% { transform: rotate(-7deg); } 60% { transform: rotate(5deg); } 100% { transform: none; } }
 
-/* ---------- Персонаж на первом экране ---------- */
-.hero-char img { transform-origin: 40% 90%; transition: transform 1s var(--ease-out); }
-html.js .reveal:not(.in) .hero-char img { transform: translateY(28px) rotate(-6deg) scale(.9); }
-.hero-char:hover img { transform: rotate(-3deg) scale(1.02); transition-duration: .5s; }
-
 /* ---------- Меньше движения ---------- */
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   html.js .reveal { transform: none; transition: opacity .3s; }
   .split-done .w > .wi { animation: none; }
+  .split-done .avatar-pop { animation: none; transform: rotate(-6deg); }
   #menu li, #nav.open #menu li { transform: none; }
   .stage-dot { transition-delay: 0ms; }
   .doodle .ink { transition: none; }
   html.js .reveal:not(.in) .doodle .ink { stroke-dashoffset: 0; }
   .doodle-slot:hover .doodle { animation: none; }
-  html.js .reveal:not(.in) .hero-char img, .hero-char:hover img { transform: none; }
   ::view-transition-group(*), ::view-transition-old(*), ::view-transition-new(*) { animation: none !important; }
 }
