@@ -120,3 +120,9 @@ html.js:not(.motion-ready) .doodle .tone, html.js:not(.motion-ready) .doodle .tx
   .doodle-slot:hover .doodle { animation: none; }
   ::view-transition-group(*), ::view-transition-old(*), ::view-transition-new(*) { animation: none !important; }
 }
+
+/* ---------- Типографика ---------- */
+/* Geologica: лёгкая «острота» штриха — эхо печатного растра в иллюстрациях */
+.font-display { font-variation-settings: "SHRP" 60; }
+h1, h2, h3, h4 { text-wrap: balance; }
+.prose-case b { font-weight: 500; color: var(--ink); }

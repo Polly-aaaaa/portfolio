@@ -3,13 +3,10 @@
 const ARROW = (color = 'currentColor', w = 'w-8') =>
   `<span class="flex items-center"><span class="arrow-line block h-px ${w}" style="background:${color}"></span><svg width="8" height="10" viewBox="0 0 8 10" class="-ml-1"><path d="M1 1l5 4-5 4" fill="none" stroke="${color}" stroke-width="1.2"/></svg></span>`;
 
-const TAG_COLORS = {
-  'B2E': 'bg-violet-100 text-violet-700', 'B2C': 'bg-sky-100 text-sky-700',
-  'Web': 'bg-orange-100 text-orange-700', 'PWA': 'bg-pink-100 text-pink-700',
-  'Social Media': 'bg-blue-100 text-blue-700',
-};
-const tag = (t) => `<span class="rounded-md px-2 py-0.5 ${TAG_COLORS[t] || 'bg-emerald-100 text-emerald-700'}">${t}</span>`;
-const tags = (list) => `<div class="flex flex-wrap gap-1.5 font-mono text-[11px] uppercase tracking-wide">${list.map(tag).join('')}</div>`;
+const icon = (name, cls = 'h-5 w-5') => `<span data-icon="${name}" class="inline-block shrink-0 ${cls}"></span>`;
+
+// Сроки и теги — одной тихой строкой, без цветных чипов
+const meta = (c) => [c.period, ...c.tags].filter(Boolean).join(' · ');
 
 function picture(key, { alt = '', cls = '', zoom = true, eager = false } = {}) {
   const [w, h] = DIMS[key] || [1600, 1000];
@@ -20,15 +17,15 @@ function picture(key, { alt = '', cls = '', zoom = true, eager = false } = {}) {
 function figure(key, caption = '', { narrow = false } = {}) {
   return `<figure class="reveal ${narrow ? 'mx-auto max-w-xl' : ''}">
     <div class="overflow-hidden rounded-2xl border border-black/5 bg-white shadow-card">${picture(key, { alt: caption })}</div>
-    ${caption ? `<figcaption class="mt-3 text-center font-mono text-[11px] uppercase tracking-[0.18em] text-muted">${caption}</figcaption>` : ''}
+    ${caption ? `<figcaption class="mt-3 text-center text-sm text-ink/60">${caption}</figcaption>` : ''}
   </figure>`;
 }
 
 function renderBlock(b) {
-  if (b.h) return `<h3 class="reveal mx-auto max-w-2xl pt-6 font-display text-2xl font-medium tracking-tight sm:text-[1.75rem]">${b.h}</h3>`;
-  if (b.p) return `<p class="reveal prose-case mx-auto max-w-2xl text-[16px] leading-[1.7] text-ink/70">${b.p}</p>`;
-  if (b.label) return `<div class="reveal mx-auto flex max-w-2xl items-center gap-3 pt-2"><span class="rounded-full ${b.label === 'Было' ? 'bg-black/5 text-muted' : 'bg-ink text-white'} px-3 py-1 font-mono text-[11px] uppercase tracking-[0.18em]">${b.label}</span><span class="h-px flex-1 bg-line"></span></div>`;
-  if (b.ul) return `<ul class="reveal prose-case mx-auto max-w-2xl space-y-2.5 text-[16px] leading-[1.6] text-ink/70">${b.ul.map((li) => `<li class="flex gap-3"><span class="mt-[0.6em] h-1.5 w-1.5 shrink-0 rounded-full bg-ink/30"></span><span>${li}</span></li>`).join('')}</ul>`;
+  if (b.h) return `<h3 class="reveal mx-auto max-w-2xl pt-8 font-display text-2xl font-medium tracking-tight sm:text-[1.75rem]">${b.h}</h3>`;
+  if (b.p) return `<p class="reveal prose-case mx-auto max-w-2xl text-[17px] leading-[1.7] text-ink/75">${b.p}</p>`;
+  if (b.label) return `<div class="reveal mx-auto flex max-w-2xl items-center gap-3 pt-2"><span class="rounded-full ${b.label === 'Было' ? 'bg-black/5 text-ink/70' : 'bg-ink text-white'} px-3 py-1 text-sm font-medium">${b.label}</span><span class="h-px flex-1 bg-line"></span></div>`;
+  if (b.ul) return `<ul class="reveal prose-case mx-auto max-w-2xl space-y-2.5 text-[17px] leading-[1.6] text-ink/75">${b.ul.map((li) => `<li class="flex gap-3"><span class="mt-[0.65em] h-1.5 w-1.5 shrink-0 rounded-full bg-ink/40"></span><span>${li}</span></li>`).join('')}</ul>`;
   if (b.img) return `<div class="py-2">${figure(b.img, b.caption, { narrow: b.narrow })}</div>`;
   if (b.pair) return `<div class="grid gap-4 py-2 sm:grid-cols-2">${b.pair.map((k, i) => figure(k, b.captions?.[i] || '')).join('')}</div>`;
   return '';
@@ -36,56 +33,47 @@ function renderBlock(b) {
 
 function stagesBlock(stages) {
   return `<div class="reveal stages mx-auto max-w-2xl">
-    <p class="font-mono text-[11px] uppercase tracking-[0.18em] text-muted">⚡️ Этапы</p>
-    <ol class="mt-4 flex flex-wrap gap-2">${stages.map((s, i) =>
-      `<li class="flex items-center gap-2 rounded-full border border-black/5 bg-white py-1.5 pl-1.5 pr-3.5 text-sm shadow-sm"><span class="stage-dot grid h-6 w-6 place-items-center rounded-full bg-ink font-mono text-[10px] text-white">${String(i + 1).padStart(2, '0')}</span>${s}</li>`).join('')}
+    <h3 class="text-sm font-medium text-ink/60">Этапы</h3>
+    <ol class="mt-3 flex flex-wrap gap-2">${stages.map((s, i) =>
+      `<li class="flex items-center gap-2 rounded-full border border-black/5 bg-white py-1.5 pl-1.5 pr-3.5 text-sm shadow-sm"><span class="stage-dot grid h-6 w-6 place-items-center rounded-full bg-ink text-[11px] font-medium tabular-nums text-white">${i + 1}</span>${s}</li>`).join('')}
     </ol>
   </div>`;
 }
 
-function summaryCard(s, wide) {
-  return `<div class="reveal rounded-3xl border border-black/5 bg-white p-7 shadow-card ${wide ? 'md:col-span-2' : ''}">
-    <p class="font-mono text-[11px] uppercase tracking-[0.18em] text-muted"><span class="mr-1.5 text-base not-italic">${s.icon}</span>${s.label}</p>
-    <p class="prose-case mt-4 text-[16px] leading-[1.65] text-ink/80">${s.html}</p>
-    ${s.list ? `<ul class="mt-4 grid gap-2 sm:grid-cols-2">${s.list.map((li) => `<li class="rounded-xl bg-paper px-4 py-3 text-sm leading-snug text-ink/80">${li}</li>`).join('')}</ul>` : ''}
+// «Задача и итог» — лист-спецификация: строка = подпись с иконкой слева, текст справа
+const row = (label, iconName, content) => `
+  <div class="reveal grid gap-3 border-b border-line py-7 md:grid-cols-[12rem_1fr] md:gap-10">
+    <h3 class="flex items-center gap-2.5 font-display text-lg font-medium tracking-tight">${icon(iconName, 'h-5 w-5 text-ink/70')}${label}</h3>
+    <div>${content}</div>
   </div>`;
+
+function summaryRow(s) {
+  const list = s.list
+    ? `<ul class="mt-4 grid gap-x-8 gap-y-2 sm:grid-cols-2">${s.list.map((li) => `<li class="flex gap-2.5 text-[15px] leading-snug text-ink/75">${icon('check', 'mt-0.5 h-4 w-4 text-ink/50')}<span>${li}</span></li>`).join('')}</ul>`
+    : '';
+  return row(s.label, s.icon, `<p class="prose-case text-[17px] leading-[1.65] text-ink/75">${s.html}</p>${list}`);
 }
 
-function resultsCard(c) {
+function resultsRow(c) {
   if (!c.results) return '';
-  return `<div class="reveal relative overflow-hidden rounded-3xl bg-ink p-7 text-white shadow-xl sm:p-9 ${c.metric ? 'md:col-span-1' : 'md:col-span-2'}">
-    <div class="pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full bg-gradient-to-br from-violet-500/40 to-sky-400/20 blur-3xl"></div>
-    <p class="relative font-mono text-[11px] uppercase tracking-[0.18em] text-white/50"><span class="mr-1.5 text-base">🏅</span>Результаты</p>
-    <ul class="relative mt-5 space-y-4">${c.results.map((r) => `<li class="flex gap-3 text-[16px] leading-[1.6] text-white/70 [&_b]:font-medium [&_b]:text-white"><span class="mt-[0.55em] h-1.5 w-1.5 shrink-0 rounded-full bg-emerald-400"></span><span>${r}</span></li>`).join('')}</ul>
-    ${c.resultsNote ? `<p class="relative mt-6 border-t border-white/10 pt-4 text-sm leading-relaxed text-white/45">* ${c.resultsNote}</p>` : ''}
-  </div>`;
+  const items = c.results.map((r) =>
+    `<li class="flex gap-3 text-[17px] leading-[1.6] text-ink/75 [&_b]:font-medium [&_b]:text-ink">${icon('check', 'mt-1 h-5 w-5 text-ink')}<span>${r}</span></li>`).join('');
+  const note = c.resultsNote ? `<p class="mt-5 text-sm leading-relaxed text-ink/60">* ${c.resultsNote}</p>` : '';
+  return row('Результаты', 'star', `<ul class="space-y-3">${items}</ul>${note}`);
 }
 
-function metricCard(m) {
-  if (!m) return '';
-  const [, prefix, num, suffix] = m.value.match(/^(\D*)(\d+)(.*)$/);
-  return `<div class="reveal flex flex-col justify-between rounded-3xl border border-black/5 bg-white p-7 shadow-card sm:p-9">
-    <p class="font-mono text-[11px] uppercase tracking-[0.18em] text-muted">Главная метрика</p>
-    <div class="mt-8">
-      <p class="font-display text-6xl font-medium tracking-[-0.05em] sm:text-7xl" data-count="${num}" data-prefix="${prefix}" data-suffix="${suffix}">${m.value}</p>
-      <p class="mt-3 max-w-xs text-[15px] leading-relaxed text-muted">${m.text}</p>
-    </div>
-  </div>`;
-}
-
-function caseCard(id, label) {
+function caseCard(id) {
   const c = CASES[id];
   return `<a href="case.html?id=${id}" class="reveal group press flex flex-col overflow-hidden rounded-2xl border border-black/5 bg-white shadow-card transition-all duration-300 hover:scale-[1.02] hover:shadow-xl">
     <div class="overflow-hidden" style="background:${c.coverBg}; view-transition-name: cover-${id}">${picture(c.cover, { alt: c.title, zoom: false, cls: 'aspect-[5/4] object-cover transition-transform duration-700 group-hover:scale-105' })}</div>
-    <div class="flex items-start justify-between gap-4 p-5">
-      <div>
-        <p class="font-mono text-[11px] uppercase tracking-[0.18em] text-muted">${label || c.kicker || 'Проект'}</p>
-        <h4 class="mt-1.5 font-display text-lg font-medium leading-snug tracking-tight">${c.title}</h4>
-      </div>
-      <span class="mt-1 grid h-9 w-9 shrink-0 place-items-center rounded-full bg-ink text-white transition-transform duration-300 group-hover:rotate-45">↗</span>
+    <div class="flex items-center justify-between gap-4 p-5">
+      <h4 class="font-display text-lg font-medium leading-snug tracking-tight">${c.title}</h4>
+      <span class="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-ink text-white transition-transform duration-300 group-hover:rotate-45">${icon('arrow-ur', 'h-4 w-4')}</span>
     </div>
   </a>`;
 }
+
+const h2 = (html, extra = '') => `<h2 class="${extra} font-display text-[2rem] font-medium tracking-[-0.04em] sm:text-5xl">${html}</h2>`;
 
 function render(id) {
   const c = CASES[id];
@@ -93,19 +81,15 @@ function render(id) {
   document.title = `${c.title} — Полина Артамонова`;
 
   const backLink = (href, text) =>
-    `<a href="${href}" class="group inline-flex items-center gap-2 text-sm text-muted transition-colors hover:text-ink"><span class="nudge-left inline-block">←</span>${text}</a>`;
+    `<a href="${href}" class="group inline-flex items-center gap-2 text-sm text-ink/60 transition-colors hover:text-ink"><span class="nudge-left inline-block">${icon('arrow-l', 'h-4 w-4')}</span>${text}</a>`;
   const back = parent ? backLink(`case.html?id=${c.parent}`, parent.title) : backLink('index.html#work', 'Все проекты');
-
-  const badge = c.kicker || c.period;
 
   const hero = `
   <section class="relative px-4 pb-16 pt-36 text-center sm:px-8 sm:pb-20 sm:pt-44">
-    <div class="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[520px] bg-[radial-gradient(60%_60%_at_50%_30%,#ffffff_0%,#fafafa_70%)]"></div>
     <div class="reveal">${back}</div>
-    ${badge ? `<div class="reveal mt-6 inline-flex items-center gap-2 rounded-lg bg-ink px-3 py-1.5 text-[13px] font-medium text-white shadow-lg">${badge}${c.kicker && parent ? `<span class="rounded-full border border-white/70 px-1.5 text-[10px] leading-4">${parent.title}</span>` : ''}</div>` : ''}
-    <h1 data-split class="mx-auto mt-6 max-w-3xl font-display text-[2.5rem] font-medium leading-[1.05] tracking-[-0.04em] sm:text-6xl">${c.title}</h1>
-    ${c.lead ? `<p style="--stagger:480ms" class="reveal prose-case mx-auto mt-6 max-w-xl text-[15px] leading-relaxed text-muted sm:text-base">${c.lead}</p>` : ''}
-    <div style="--stagger:600ms" class="reveal mt-6 flex justify-center">${tags(c.tags)}</div>
+    <h1 data-split class="mx-auto mt-8 max-w-3xl font-display text-[2.5rem] font-medium leading-[1.05] tracking-[-0.04em] sm:text-6xl">${c.title}</h1>
+    ${c.lead ? `<p style="--stagger:480ms" class="reveal prose-case mx-auto mt-6 max-w-xl text-[15px] leading-relaxed text-ink/70 sm:text-base">${c.lead}</p>` : ''}
+    <p style="--stagger:600ms" class="reveal mt-5 text-sm text-ink/60">${meta(c)}</p>
   </section>
   <div class="px-4 pb-20 sm:px-8 sm:pb-28">
     <div class="overflow-hidden rounded-3xl border border-black/5 shadow-card" style="background:${c.coverBg}; view-transition-name: cover-${id}">${picture(c.cover, { alt: c.title, eager: true })}</div>
@@ -115,13 +99,11 @@ function render(id) {
   <section class="cross relative border-t border-line px-4 py-20 sm:px-8 sm:py-28">
     <div class="reveal text-center">
       <span data-doodle="glasses" class="doodle-slot mb-5 h-20 w-20 sm:h-24 sm:w-24"></span>
-      <p class="font-mono text-[11px] uppercase tracking-[0.2em] text-muted">Коротко о проекте</p>
-      <h2 class="mt-3 font-display text-[2rem] font-medium tracking-[-0.04em] sm:text-5xl">Задача и итог</h2>
+      ${h2('Задача и итог')}
     </div>
-    <div data-stagger class="mt-12 grid gap-4 md:grid-cols-2">
-      ${c.summary.map((s, i) => summaryCard(s, s.list || (c.summary.length % 2 === 1 && i === c.summary.length - 1))).join('')}
-      ${resultsCard(c)}
-      ${metricCard(c.metric)}
+    <div class="mx-auto mt-12 max-w-4xl border-t border-line">
+      ${c.summary.map(summaryRow).join('')}
+      ${resultsRow(c)}
     </div>
   </section>`;
 
@@ -131,18 +113,14 @@ function render(id) {
   const usePencil = () => { const p = pencil; pencil = ''; return p; };
   const sections = c.sections.map((s) => {
     if (s.title) fn++;
-    const head = s.title ? `
-      <div class="reveal mb-10 text-center">
-        ${usePencil()}
-        <p class="font-mono text-[11px] uppercase tracking-[0.2em] text-muted">${multi ? `✏️ Функционал № ${fn}` : '✏️ Функционал'}</p>
-        <h2 class="mt-3 font-display text-[2rem] font-medium tracking-[-0.04em] sm:text-5xl">${s.title}</h2>
-      </div>` : (s.stages ? `
-      <div class="reveal mb-10 text-center">
-        ${usePencil()}
-        <p class="font-mono text-[11px] uppercase tracking-[0.2em] text-muted">Процесс</p>
-        <h2 class="mt-3 font-display text-[2rem] font-medium tracking-[-0.04em] sm:text-5xl">Как шла работа</h2>
-      </div>` : '');
-    const note = s.note ? `<div class="reveal mx-auto flex max-w-2xl gap-3 rounded-2xl border border-amber-200 bg-amber-50 px-5 py-4 text-sm leading-relaxed text-amber-900"><span>🔒</span><span>${s.note}</span></div>` : '';
+    // номер нужен только когда частей несколько — порядок здесь несёт смысл
+    const num = multi ? `<span class="tabular-nums text-ink/30">${fn}.</span> ` : '';
+    const head = s.title
+      ? `<div class="reveal mb-10 text-center">${usePencil()}${h2(num + s.title)}</div>`
+      : (s.stages ? `<div class="reveal mb-10 text-center">${usePencil()}${h2('Как шла работа')}</div>` : '');
+    const note = s.note
+      ? `<div class="reveal mx-auto flex max-w-2xl items-start gap-3 rounded-2xl bg-[#f7f0fd] px-5 py-4 text-[15px] leading-relaxed text-ink/80">${icon('lock', 'mt-0.5 h-5 w-5 text-ink')}<span>${s.note}</span></div>`
+      : '';
     return `
     <section class="cross relative border-t border-line px-4 py-20 sm:px-8 sm:py-28">
       ${head}
@@ -171,9 +149,8 @@ function render(id) {
       </div>
       <div>
         <span data-doodle="plane" class="doodle-slot mb-4 h-16 w-16"></span>
-        <p class="font-mono text-[11px] uppercase tracking-[0.2em] text-muted">Следующий ${nc.kicker ? 'кейс' : 'проект'}</p>
-        <h2 class="mt-3 font-display text-[2rem] font-medium leading-[1.1] tracking-[-0.04em] sm:text-5xl">${nc.title}</h2>
-        <div class="mt-5 flex items-center gap-3 font-display text-[15px] font-medium">Смотреть ${ARROW('#0a0a0a', 'w-12')}</div>
+        ${h2(nc.title, 'leading-[1.1]')}
+        <div class="mt-5 flex items-center gap-3 font-display text-[15px] font-medium">${nc.parent ? 'Следующий кейс' : 'Следующий проект'} ${ARROW('#0a0a0a', 'w-12')}</div>
       </div>
     </a>
   </section>`;
