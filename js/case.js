@@ -4,7 +4,7 @@
 const icon = (name, cls = 'h-5 w-5') => `<span data-icon="${name}" class="inline-block shrink-0 ${cls}"></span>`;
 
 // теги — плашками разного цвета
-const PILL = { B2E: 'pill-blue', B2C: 'pill-yellow', 'Social Media': 'pill-pink' };
+const PILL = { B2E: 'pill-blue', B2C: 'pill-marker', 'Social Media': 'pill-red' };
 const pills = (list) => list.map((t, i) => `<span class="pill ${PILL[t] || 'pill-white'}${i === 0 ? ' !ml-0' : ''}">${t}</span>`).join('');
 
 // небольшой разброс углов, чтобы отпечатки лежали «живо», но стабильно
@@ -27,8 +27,8 @@ function figure(key, caption = '', { narrow = false } = {}) {
 function renderBlock(b) {
   if (b.h) return `<h3 class="reveal mx-auto max-w-2xl pt-8 text-[1.75rem] font-extrabold leading-tight tracking-tight sm:text-[2rem]">${b.h}</h3>`;
   if (b.p) return `<p class="reveal prose-case mx-auto max-w-2xl text-[18px] leading-[1.65] text-ink/85">${b.p}</p>`;
-  if (b.label) return `<div class="reveal mx-auto max-w-2xl pt-2"><span class="pill ${b.label === 'Было' ? 'pill-white' : 'pill-yellow'} !ml-0 !text-[13px]">${b.label}</span></div>`;
-  if (b.ul) return `<ul class="reveal prose-case mx-auto max-w-2xl space-y-2.5 text-[18px] leading-[1.6] text-ink/85">${b.ul.map((li) => `<li class="flex gap-3"><span class="mt-[.55em] h-2 w-2 shrink-0 rounded-full bg-pink"></span><span>${li}</span></li>`).join('')}</ul>`;
+  if (b.label) return `<div class="reveal mx-auto max-w-2xl pt-2"><span class="pill ${b.label === 'Было' ? 'pill-white' : 'pill-marker'} !ml-0 !text-[13px]">${b.label}</span></div>`;
+  if (b.ul) return `<ul class="reveal prose-case mx-auto max-w-2xl space-y-2.5 text-[18px] leading-[1.6] text-ink/85">${b.ul.map((li) => `<li class="flex gap-3"><span class="mt-[.55em] h-2 w-2 shrink-0 rounded-full bg-red"></span><span>${li}</span></li>`).join('')}</ul>`;
   if (b.img) return `<div class="py-4">${figure(b.img, b.caption, { narrow: b.narrow })}</div>`;
   if (b.pair) return `<div class="grid gap-8 py-4 sm:grid-cols-2">${b.pair.map((k, i) => figure(k, b.captions?.[i] || '')).join('')}</div>`;
   return '';
@@ -53,7 +53,7 @@ function problemGoal(problem, goal) {
       <p class="hand text-[2.1rem] leading-[32px]">${problem.label}</p>
       <p class="prose-case mt-0 text-[17px] leading-[32px]">${problem.html}</p>
     </div>
-    <div class="reveal note note-yellow" style="--r:1.5deg;--stagger:120ms">
+    <div class="reveal note note-marker" style="--r:1.5deg;--stagger:120ms">
       <span class="tape" style="--tr:4deg"></span>
       <p class="hand text-[2.1rem] leading-none">${goal.label}</p>
       <p class="prose-case mt-4 text-[1.2rem] font-medium leading-[1.45]">${goal.html}</p>
@@ -76,7 +76,7 @@ function detailRow(s) {
 function resultsBlock(c) {
   if (!c.results) return '';
   const items = c.results.map((r) =>
-    `<li class="reveal border-t-[1.5px] border-ink pt-5 text-[1.3rem] leading-[1.45] sm:text-[1.55rem] [&_b]:bg-[linear-gradient(transparent_55%,#fff25d_55%)] [&_b]:font-semibold">${r}</li>`).join('');
+    `<li class="reveal border-t-[1.5px] border-ink pt-5 text-[1.3rem] leading-[1.45] sm:text-[1.55rem] [&_b]:bg-[linear-gradient(transparent_55%,#c7f45a_55%)] [&_b]:font-semibold">${r}</li>`).join('');
   const note = c.resultsNote ? `<p class="mono mt-8 text-[12px] leading-relaxed text-ink/70">* ${c.resultsNote}</p>` : '';
   return `
   <div class="mt-16">
@@ -114,7 +114,7 @@ function render(id) {
   <section class="pb-14 pt-32 sm:pb-20 sm:pt-40">
     <div class="reveal">${back}</div>
     <div class="relative mt-14 max-w-5xl">
-      ${sticker ? `<span class="drop sticker pill ${c.kicker ? 'pill-pink' : 'pill-blue'} absolute -left-1 -top-8 !text-[12px] sm:-top-7 sm:!text-[13px]" style="--r:-8deg;--d:250ms">${sticker}</span>` : ''}
+      ${sticker ? `<span class="drop sticker pill ${c.kicker ? 'pill-red' : 'pill-blue'} absolute -left-1 -top-8 !text-[12px] sm:-top-7 sm:!text-[13px]" style="--r:-8deg;--d:250ms">${sticker}</span>` : ''}
       <h1 data-split class="display text-[1.95rem] sm:text-[4.5rem] lg:text-[6rem]">${c.title}</h1>
     </div>
     ${c.lead ? `<p style="--stagger:450ms" class="reveal prose-case mt-8 max-w-3xl text-[1.2rem] leading-[1.5] sm:text-[1.45rem]">${c.lead}</p>` : ''}
@@ -151,7 +151,7 @@ function render(id) {
       ? `<div class="reveal mb-12">${h2(num + s.title)}</div>`
       : (s.stages ? `<div class="reveal mb-12">${h2('Как шла работа')}</div>` : '');
     const note = s.note
-      ? `<div class="reveal note note-pink mx-auto max-w-md" style="--r:-2deg"><span class="tape" style="--tr:5deg"></span><p class="hand text-[1.6rem] leading-[1.1]">${s.note}</p></div>`
+      ? `<div class="reveal note note-red mx-auto max-w-md" style="--r:-2deg"><span class="tape" style="--tr:5deg"></span><p class="hand text-[1.6rem] leading-[1.1]">${s.note}</p></div>`
       : '';
     return `
     <section class="border-t-[1.5px] border-ink py-16 sm:py-24">
@@ -181,7 +181,7 @@ function render(id) {
         <div class="overflow-hidden" style="background:${nc.coverBg};${nextVT}">${picture(nc.cover, { alt: nc.title, zoom: false, cls: 'aspect-[5/3] object-cover' })}</div>
       </div>
       <div>
-        <span class="pill pill-yellow !ml-0 !text-[12px]">${nc.parent ? 'Следующий кейс' : 'Следующий проект'}</span>
+        <span class="pill pill-marker !ml-0 !text-[12px]">${nc.parent ? 'Следующий кейс' : 'Следующий проект'}</span>
         <h2 class="display mt-5 text-[1.7rem] sm:text-[3.6rem]"><span class="link-u">${nc.title}</span></h2>
       </div>
     </a>

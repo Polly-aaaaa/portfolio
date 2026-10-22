@@ -18,12 +18,12 @@
       theme: {
         extend: {
           fontFamily: { sans: ['Onest', 'sans-serif'] },
-          colors: { ink: '#262722', paper: '#f7f7f4', line: '#dcdcd4', pink: '#ff98c7', blue: '#146ef5', yellow: '#fff25d' },
+          colors: { ink: '#23261f', paper: '#fbfaf5', line: '#dcdcd4', red: '#d02a25', blue: '#2346c8', marker: '#c7f45a', redtint: '#ffdcd9' },
         },
       },
     };
   </script>
-  <link rel="stylesheet" href="css/site.css?v=20261022213016" />
+  <link rel="stylesheet" href="css/site.css?v=20261022213843" />
 </head>
 <body class="font-sans text-ink">
 
@@ -40,10 +40,10 @@
       <div id="menu" class="grid grid-rows-[0fr] transition-all duration-300">
         <div class="overflow-hidden">
           <ul class="mono flex flex-col gap-1 px-3 pb-3 text-[13px]">
-            <li><a href="#work" class="block rounded-md px-2 py-2 transition-colors hover:bg-yellow">Проекты</a></li>
-            <li><a href="#process" class="block rounded-md px-2 py-2 transition-colors hover:bg-pink">Как я работаю</a></li>
-            <li><a href="#results" class="block rounded-md px-2 py-2 transition-colors hover:bg-yellow">Результаты</a></li>
-            <li><a href="#contact" class="block rounded-md px-2 py-2 transition-colors hover:bg-pink">Контакты</a></li>
+            <li><a href="#work" class="block rounded-md px-2 py-2 transition-colors hover:bg-marker">Проекты</a></li>
+            <li><a href="#process" class="block rounded-md px-2 py-2 transition-colors hover:bg-redtint">Как я работаю</a></li>
+            <li><a href="#results" class="block rounded-md px-2 py-2 transition-colors hover:bg-marker">Результаты</a></li>
+            <li><a href="#contact" class="block rounded-md px-2 py-2 transition-colors hover:bg-redtint">Контакты</a></li>
           </ul>
         </div>
       </div>
@@ -61,7 +61,7 @@
         <figcaption class="hand mt-2 text-center text-2xl leading-none">это я :)</figcaption>
       </figure>
       <!-- стикер -->
-      <div class="drop note note-yellow absolute bottom-8 right-24 hidden w-48 lg:block" style="--r:-5deg;--d:750ms">
+      <div class="drop note note-marker absolute bottom-8 right-24 hidden w-48 lg:block" style="--r:-5deg;--d:750ms">
         <p class="hand text-[1.7rem] leading-[1.05]">2 года в UI/UX,<br />B2E и B2C</p>
       </div>
 
@@ -79,12 +79,12 @@
       </figure>
 
       <p class="reveal mt-10 max-w-3xl text-[1.3rem] leading-[1.45] sm:text-[1.65rem]" style="--stagger:500ms">
-        UI/UX-дизайнер с опытом <span class="pill pill-pink">2 года</span>. Проектирую интерфейсы для <span class="pill pill-blue">B2E</span> и <span class="pill pill-yellow">B2C</span> продуктов, участвую во всём цикле разработки — от интервью до ревью вёрстки — и защищаю решения перед командой. Живу и работаю в Санкт-Петербурге.
+        UI/UX-дизайнер с опытом <span class="pill pill-red">2 года</span>. Проектирую интерфейсы для <span class="pill pill-blue">B2E</span> и <span class="pill pill-marker">B2C</span> продуктов, участвую во всём цикле разработки — от интервью до ревью вёрстки — и защищаю решения перед командой. Живу и работаю в Санкт-Петербурге.
       </p>
 
       <div class="reveal mt-10 flex flex-wrap items-center gap-3" style="--stagger:620ms">
         <a href="https://t.me/p_p_polly" target="_blank" rel="noopener" class="btn bg-blue text-white">Написать в Телеграм</a>
-        <a href="https://drive.google.com/file/d/1vTA9CH9CJkSyZ6TN2uQzDy6aibkoubeJ/view" target="_blank" rel="noopener" class="btn bg-yellow">Резюме</a>
+        <a href="https://drive.google.com/file/d/1vTA9CH9CJkSyZ6TN2uQzDy6aibkoubeJ/view" target="_blank" rel="noopener" class="btn bg-marker">Резюме</a>
       </div>
 
       <a href="#work" class="reveal group mt-20 flex flex-col items-center gap-4 text-center" style="--stagger:750ms">
@@ -111,7 +111,7 @@
           </div>
           <h3 class="mt-6 text-2xl font-bold tracking-tight"><span class="link-u">Корпоративный сервис</span></h3>
           <p class="mt-2 max-w-md text-[16px] leading-relaxed text-ink/75">Внутренний сервис для HR и сотрудников: ревью 360°, опросы, адаптация, учёт отпусков и удалёнок.</p>
-          <p class="mt-3 text-[20px] leading-[1.9]"><span class="pill pill-blue !ml-0">B2E</span><span class="pill pill-white">Web</span><span class="pill pill-pink">2 кейса внутри</span><span class="pill pill-white">2024–2025</span></p>
+          <p class="mt-3 text-[20px] leading-[1.9]"><span class="pill pill-blue !ml-0">B2E</span><span class="pill pill-white">Web</span><span class="pill pill-red">2 кейса внутри</span><span class="pill pill-white">2024–2025</span></p>
         </a>
 
         <a href="case.html?id=support" class="reveal group block md:mt-24">
@@ -121,7 +121,7 @@
           </div>
           <h3 class="mt-6 text-2xl font-bold tracking-tight"><span class="link-u">Сервис технической поддержки</span></h3>
           <p class="mt-2 max-w-md text-[16px] leading-relaxed text-ink/75">Управление клиентскими запросами: панель сотрудника поддержки с готовыми ответами и клиентская часть.</p>
-          <p class="mt-3 text-[20px] leading-[1.9]"><span class="pill pill-yellow !ml-0">B2C</span><span class="pill pill-white">Web</span><span class="pill pill-white">PWA</span><span class="pill pill-white">2025</span></p>
+          <p class="mt-3 text-[20px] leading-[1.9]"><span class="pill pill-marker !ml-0">B2C</span><span class="pill pill-white">Web</span><span class="pill pill-white">PWA</span><span class="pill pill-white">2025</span></p>
         </a>
 
         <a href="case.html?id=docs" class="reveal group block">
@@ -131,7 +131,7 @@
           </div>
           <h3 class="mt-6 text-2xl font-bold tracking-tight"><span class="link-u">Сервис для работы с документами</span></h3>
           <p class="mt-2 max-w-md text-[16px] leading-relaxed text-ink/75">Интегрированный сервис для создания типовых документов с минимумом ошибок: панель администратора и клиентская часть.</p>
-          <p class="mt-3 text-[20px] leading-[1.9]"><span class="pill pill-yellow !ml-0">B2C</span><span class="pill pill-white">Web</span><span class="pill pill-white">2024–2025</span></p>
+          <p class="mt-3 text-[20px] leading-[1.9]"><span class="pill pill-marker !ml-0">B2C</span><span class="pill pill-white">Web</span><span class="pill pill-white">2024–2025</span></p>
         </a>
 
         <a href="case.html?id=biz" class="reveal group block md:mt-24">
@@ -141,7 +141,7 @@
           </div>
           <h3 class="mt-6 text-2xl font-bold tracking-tight"><span class="link-u">Сервис для предпринимателей</span></h3>
           <p class="mt-2 max-w-md text-[16px] leading-relaxed text-ink/75">Сообщество предпринимателей для общения, обучения и поддержки. Проектировала раздел «Профиль».</p>
-          <p class="mt-3 text-[20px] leading-[1.9]"><span class="pill pill-pink !ml-0">Social Media</span><span class="pill pill-yellow">B2C</span><span class="pill pill-white">Web</span><span class="pill pill-white">PWA</span><span class="pill pill-white">2025</span></p>
+          <p class="mt-3 text-[20px] leading-[1.9]"><span class="pill pill-red !ml-0">Social Media</span><span class="pill pill-marker">B2C</span><span class="pill pill-white">Web</span><span class="pill pill-white">PWA</span><span class="pill pill-white">2025</span></p>
         </a>
       </div>
     </section>
@@ -152,7 +152,7 @@
 
       <div class="mt-12 grid gap-12 lg:grid-cols-[1.4fr_1fr] lg:gap-16">
         <p class="reveal text-[1.3rem] leading-[1.45] sm:text-[1.65rem]">
-          Отвечаю за <span class="pill pill-yellow">весь дизайн-цикл</span> — от первых исследований до релиза. Сама провожу интервью с пользователями, тестирую интерактивные прототипы и защищаю решения перед командой. На двух проектах была <span class="pill pill-pink">единственным дизайнером</span>.
+          Отвечаю за <span class="pill pill-marker">весь дизайн-цикл</span> — от первых исследований до релиза. Сама провожу интервью с пользователями, тестирую интерактивные прототипы и защищаю решения перед командой. На двух проектах была <span class="pill pill-red">единственным дизайнером</span>.
         </p>
         <div class="reveal note note-lined self-start" style="--r:2deg;--stagger:150ms">
           <span class="tape" style="--tr:-8deg"></span>
@@ -167,12 +167,12 @@
       </div>
 
       <ol data-stagger class="mt-20 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
-        <li class="reveal note note-yellow" style="--r:-2deg">
+        <li class="reveal note note-marker" style="--r:-2deg">
           <span class="mono text-[12px]">01</span>
           <h3 class="hand mt-1 text-[2rem] leading-none">Анализ и интервью</h3>
           <p class="mt-3 text-[15px] leading-relaxed">Разбираю текущий сервис, общаюсь с сотрудниками и HR, нахожу узкие места.</p>
         </li>
-        <li class="reveal note note-pink" style="--r:1.5deg">
+        <li class="reveal note note-red" style="--r:1.5deg">
           <span class="mono text-[12px]">02</span>
           <h3 class="hand mt-1 text-[2rem] leading-none">Прототипирование</h3>
           <p class="mt-3 text-[15px] leading-relaxed">Собираю интерактивные прототипы и проверяю их на пользователях.</p>
@@ -206,15 +206,15 @@
       </div>
 
       <ul data-stagger class="mx-auto mt-20 max-w-3xl space-y-5 text-[1.2rem] leading-[1.5] sm:text-[1.45rem]">
-        <li class="reveal"><a href="case.html?id=corp" class="group">Корпоративный сервис стал <span class="pill pill-yellow">основным внутренним</span> сервисом компании</a></li>
-        <li class="reveal"><a href="case.html?id=review" class="group">Компания <span class="pill pill-pink">отказалась от сторонних решений</span> для оценки персонала</a></li>
+        <li class="reveal"><a href="case.html?id=corp" class="group">Корпоративный сервис стал <span class="pill pill-marker">основным внутренним</span> сервисом компании</a></li>
+        <li class="reveal"><a href="case.html?id=review" class="group">Компания <span class="pill pill-red">отказалась от сторонних решений</span> для оценки персонала</a></li>
         <li class="reveal"><a href="case.html?id=support" class="group">Закрытие обращения в техподдержке стало <span class="pill pill-blue">короче</span></a></li>
       </ul>
     </section>
 
     <!-- ===== CTA ===== -->
     <section id="contact" class="relative py-24 sm:py-32">
-      <div class="reveal note note-pink absolute right-2 top-10 hidden w-56 md:block" style="--r:5deg">
+      <div class="reveal note note-red absolute right-2 top-10 hidden w-56 md:block" style="--r:5deg">
         <span class="tape" style="--tr:6deg"></span>
         <p class="hand text-[1.6rem] leading-[1.05]">Часть проектов под NDA — покажу макеты на созвоне</p>
       </div>
@@ -222,8 +222,8 @@
       <p class="reveal mt-6 max-w-md text-[17px] leading-relaxed text-ink/75 md:hidden">Часть проектов под NDA — подробные макеты могу показать на личном созвоне.</p>
       <div class="reveal mt-10 flex flex-wrap items-center gap-3">
         <a href="https://t.me/p_p_polly" target="_blank" rel="noopener" class="btn bg-blue text-white">Телеграм</a>
-        <a href="mailto:psineleva@bk.ru" class="btn bg-pink">psineleva@bk.ru</a>
-        <a href="https://drive.google.com/file/d/1vTA9CH9CJkSyZ6TN2uQzDy6aibkoubeJ/view" target="_blank" rel="noopener" class="btn bg-yellow">Резюме</a>
+        <a href="mailto:psineleva@bk.ru" class="btn bg-red text-white">psineleva@bk.ru</a>
+        <a href="https://drive.google.com/file/d/1vTA9CH9CJkSyZ6TN2uQzDy6aibkoubeJ/view" target="_blank" rel="noopener" class="btn bg-marker">Резюме</a>
       </div>
     </section>
 
@@ -238,7 +238,7 @@
     </footer>
   </main>
 
-  <script src="js/doodles.js?v=20261022213016"></script>
-  <script src="js/site.js?v=20261022213016"></script>
+  <script src="js/doodles.js?v=20261022213843"></script>
+  <script src="js/site.js?v=20261022213843"></script>
 </body>
 </html>

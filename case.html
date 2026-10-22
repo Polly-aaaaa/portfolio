@@ -18,12 +18,12 @@
       theme: {
         extend: {
           fontFamily: { sans: ['Onest', 'sans-serif'] },
-          colors: { ink: '#262722', paper: '#f7f7f4', line: '#dcdcd4', pink: '#ff98c7', blue: '#146ef5', yellow: '#fff25d' },
+          colors: { ink: '#23261f', paper: '#fbfaf5', line: '#dcdcd4', red: '#d02a25', blue: '#2346c8', marker: '#c7f45a', redtint: '#ffdcd9' },
         },
       },
     };
   </script>
-  <link rel="stylesheet" href="css/site.css?v=20261022213016" />
+  <link rel="stylesheet" href="css/site.css?v=20261022213843" />
 </head>
 <body class="font-sans text-ink">
   <div class="read-progress" aria-hidden="true"></div>
@@ -41,9 +41,9 @@
       <div id="menu" class="grid grid-rows-[0fr] transition-all duration-300">
         <div class="overflow-hidden">
           <ul class="mono flex flex-col gap-1 px-3 pb-3 text-[13px]">
-            <li><a href="index.html" class="block rounded-md px-2 py-2 transition-colors hover:bg-yellow">Главная</a></li>
-            <li><a href="index.html#work" class="block rounded-md px-2 py-2 transition-colors hover:bg-pink">Все проекты</a></li>
-            <li><a href="#contact" class="block rounded-md px-2 py-2 transition-colors hover:bg-yellow">Контакты</a></li>
+            <li><a href="index.html" class="block rounded-md px-2 py-2 transition-colors hover:bg-marker">Главная</a></li>
+            <li><a href="index.html#work" class="block rounded-md px-2 py-2 transition-colors hover:bg-redtint">Все проекты</a></li>
+            <li><a href="#contact" class="block rounded-md px-2 py-2 transition-colors hover:bg-marker">Контакты</a></li>
           </ul>
         </div>
       </div>
@@ -55,7 +55,7 @@
 
     <!-- ===== CTA ===== -->
     <section id="contact" class="relative py-24 sm:py-32">
-      <div class="reveal note note-pink absolute right-2 top-10 hidden w-56 md:block" style="--r:5deg">
+      <div class="reveal note note-red absolute right-2 top-10 hidden w-56 md:block" style="--r:5deg">
         <span class="tape" style="--tr:6deg"></span>
         <p class="hand text-[1.6rem] leading-[1.05]">Часть проектов под NDA — покажу макеты на созвоне</p>
       </div>
@@ -63,8 +63,8 @@
       <p class="reveal mt-6 max-w-md text-[17px] leading-relaxed text-ink/75 md:hidden">Часть проектов под NDA — подробные макеты могу показать на личном созвоне.</p>
       <div class="reveal mt-10 flex flex-wrap items-center gap-3">
         <a href="https://t.me/p_p_polly" target="_blank" rel="noopener" class="btn bg-blue text-white">Телеграм</a>
-        <a href="mailto:psineleva@bk.ru" class="btn bg-pink">psineleva@bk.ru</a>
-        <a href="https://drive.google.com/file/d/1vTA9CH9CJkSyZ6TN2uQzDy6aibkoubeJ/view" target="_blank" rel="noopener" class="btn bg-yellow">Резюме</a>
+        <a href="mailto:psineleva@bk.ru" class="btn bg-red text-white">psineleva@bk.ru</a>
+        <a href="https://drive.google.com/file/d/1vTA9CH9CJkSyZ6TN2uQzDy6aibkoubeJ/view" target="_blank" rel="noopener" class="btn bg-marker">Резюме</a>
       </div>
     </section>
 
@@ -81,12 +81,12 @@
 
   <!-- Увеличение картинок -->
   <div id="lightbox" class="hidden-lb fixed inset-0 z-[60] flex cursor-zoom-out items-center justify-center bg-ink/85 p-4 sm:p-10" role="dialog" aria-modal="true" aria-label="Изображение">
-    <button id="lightboxClose" aria-label="Закрыть" class="mono absolute right-4 top-4 rounded-full bg-yellow px-4 py-2 text-[12px] text-ink">Закрыть</button>
+    <button id="lightboxClose" aria-label="Закрыть" class="mono absolute right-4 top-4 rounded-full bg-marker px-4 py-2 text-[12px] text-ink">Закрыть</button>
   </div>
 
-  <script src="js/cases.js?v=20261022213016"></script>
-  <script src="js/case.js?v=20261022213016"></script>
-  <script src="js/doodles.js?v=20261022213016"></script>
-  <script src="js/site.js?v=20261022213016"></script>
+  <script src="js/cases.js?v=20261022213843"></script>
+  <script src="js/case.js?v=20261022213843"></script>
+  <script src="js/doodles.js?v=20261022213843"></script>
+  <script src="js/site.js?v=20261022213843"></script>
 </body>
 </html>
