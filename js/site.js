@@ -115,8 +115,9 @@ const toTop = document.createElement('a');
 toTop.href = '#top';
 toTop.className = 'to-top';
 toTop.setAttribute('aria-label', 'Наверх');
-toTop.innerHTML = `<svg width="28" height="28" viewBox="0 0 28 28" aria-hidden="true">
-  <path d="M14.2 23.5 C 13.8 18, 14.3 11.5, 14 5.5"/><path d="M7.5 11.5 C 10 9.2, 12 7.2, 14 5.2 C 16.2 7.3, 18.3 9.4, 20.6 11.4"/></svg>`;
+toTop.innerHTML = `<svg width="60" height="60" viewBox="0 0 64 64" aria-hidden="true">
+  <path d="M33 5 C 15 4, 5 17, 6 33 C 7 50, 20 60, 34 59 C 50 58, 60 45, 58 29 C 56 15, 46 6, 30 7"/>
+  <path d="M32 47 C 32 37, 33 27, 32 18"/><path d="M42 27 C 38 23, 35 20, 32 17 C 29 21, 26 24, 22 28"/></svg>`;
 document.body.append(toTop);
 const onScrollTop = () => toTop.classList.toggle('show', scrollY > innerHeight * 0.9);
 addEventListener('scroll', onScrollTop, { passive: true });
