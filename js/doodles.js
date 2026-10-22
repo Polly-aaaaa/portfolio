@@ -1,122 +1,120 @@
-// Иллюстрации-айдентика в стиле портрета: толстый чёрный контур, растр точками, сиреневая заливка.
-// Вставляются в <span data-doodle="имя"> как inline SVG, чтобы линии можно было «прорисовать».
-// Классы: .ink — контур (рисуется), .tone — растр/заливка (проявляется), .txt — надписи.
+// Иллюстрации в манере аэрографа: мягкие силуэты без контура, «распылённый» край и зерно,
+// голубое свечение снизу, белые блики сверху, огоньки вокруг.
+// Вставляются в <span data-doodle="имя"> как inline SVG.
+// Классы: .breathe — огоньки и блики, которые медленно «дышат».
 
-const INK = '#1f1f21';
-const LILAC = '#e7dbfb';
+const INK = '#1f3d63';
 
 const DEFS = `<defs>
-  <pattern id="ht" width="4.4" height="4.4" patternUnits="userSpaceOnUse" patternTransform="rotate(20)">
-    <circle cx="2.2" cy="2.2" r=".95" fill="${INK}" stroke="none"/>
-  </pattern>
-  <pattern id="ht-dense" width="3.4" height="3.4" patternUnits="userSpaceOnUse" patternTransform="rotate(20)">
-    <circle cx="1.7" cy="1.7" r="1.15" fill="${INK}" stroke="none"/>
-  </pattern>
+  <linearGradient id="g-white" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset=".6" stop-color="#f3f9fd"/><stop offset="1" stop-color="#cfe3f2"/></linearGradient>
+  <linearGradient id="g-navy" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#5a86b6"/><stop offset=".55" stop-color="${INK}"/><stop offset="1" stop-color="#162d4a"/></linearGradient>
+  <linearGradient id="g-sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e3f0f9"/><stop offset="1" stop-color="#8fb8d6"/></linearGradient>
+  <linearGradient id="g-peach" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fde6d9"/><stop offset="1" stop-color="#f39472"/></linearGradient>
+  <radialGradient id="g-sun" cx=".4" cy=".35" r=".7"><stop offset="0" stop-color="#fff7d6"/><stop offset=".55" stop-color="#fbd38f"/><stop offset="1" stop-color="#f5a27f"/></radialGradient>
+  <filter id="spray" x="-40%" y="-40%" width="180%" height="180%">
+    <feGaussianBlur in="SourceGraphic" stdDeviation="1.6" result="b"/>
+    <feTurbulence type="fractalNoise" baseFrequency="1.4" numOctaves="2" seed="4" result="n"/>
+    <feDisplacementMap in="b" in2="n" scale="7" xChannelSelector="R" yChannelSelector="G" result="d"/>
+    <feTurbulence type="fractalNoise" baseFrequency="2.3" numOctaves="1" seed="9" result="g"/>
+    <feColorMatrix in="g" values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 -3 1.45" result="speck"/>
+    <feComposite in="speck" in2="d" operator="in" result="s"/>
+    <feMerge><feMergeNode in="d"/><feMergeNode in="s"/></feMerge>
+  </filter>
+  <filter id="haze" x="-60%" y="-60%" width="220%" height="220%">
+    <feGaussianBlur stdDeviation="7"/>
+  </filter>
+  <filter id="soft" x="-60%" y="-60%" width="220%" height="220%">
+    <feGaussianBlur stdDeviation="3"/>
+  </filter>
 </defs>`;
 
-const P = (d, k = 0, extra = '') => `<path class="ink" pathLength="1" style="--k:${k}" d="${d}" ${extra}/>`;
+// огонёк: размытый кружок, который дышит
+const orb = (cx, cy, r, color, delay = 0) =>
+  `<circle class="breathe" style="--b:${delay}s" cx="${cx}" cy="${cy}" r="${r}" fill="${color}" filter="url(#soft)"/>`;
+
+// облако из трёх кругов и прямоугольника — как в уроке
+const CLOUD = (x = 0, y = 0, s = 1) => `
+  <g transform="translate(${x} ${y}) scale(${s})">
+    <circle cx="38" cy="66" r="20"/><circle cx="60" cy="52" r="25"/><circle cx="83" cy="66" r="19"/>
+    <rect x="38" y="62" width="45" height="24" rx="4"/>
+  </g>`;
 
 const DOODLES = {
-  // Знак: кудрявая голова в очках с трубочкой бабл-ти
-  mark: `
-    <path class="tone" fill="#fff" d="M32 70 Q30 100 60 104 Q90 100 88 70 Q86 50 60 48 Q34 50 32 70 Z"/>
-    ${P('M32 70 Q30 100 60 104 Q90 100 88 70', 0)}
-    <path class="tone" fill="url(#ht-dense)" d="M24 74 Q8 58 22 44 Q16 24 38 22 Q44 6 62 12 Q80 4 88 20 Q108 22 102 42 Q116 56 98 72 Q96 60 90 56 Q86 66 76 60 Q70 66 62 58 Q54 66 46 58 Q40 66 32 58 Q28 66 24 74 Z"/>
-    ${P('M24 74 Q8 58 22 44 Q16 24 38 22 Q44 6 62 12 Q80 4 88 20 Q108 22 102 42 Q116 56 98 72 Q96 60 90 56 Q86 66 76 60 Q70 66 62 58 Q54 66 46 58 Q40 66 32 58 Q28 66 24 74 Z', 1)}
-    ${P('M36 72 H56 V84 Q56 88 52 88 H40 Q36 88 36 84 Z', 2)}
-    ${P('M64 72 H84 V84 Q84 88 80 88 H68 Q64 88 64 84 Z', 3)}
-    ${P('M56 76 Q60 72 64 76', 4)}
-    <circle class="tone" cx="51" cy="80" r="3" fill="${INK}" stroke="none"/>
-    <circle class="tone" cx="79" cy="80" r="3" fill="${INK}" stroke="none"/>
-    ${P('M61 86 Q57 91 61 93', 5, 'stroke-width="2.6"')}
-    ${P('M60 96 Q65 98 60 101', 5)}
-    ${P('M58 99 L34 109', 6)}
-    <path class="tone" fill="url(#ht-dense)" d="M36 103 L14 112 L19 122 L40 113 Z"/>
-    ${P('M36 103 L14 112 Q13 119 19 122 L40 113 Q42 106 36 103 Z', 7)}`,
+  // Знак: мягкое облако с голубым свечением снизу и бликами сверху
+  cloud: `
+    <g fill="#8fbfe0" opacity=".7" filter="url(#haze)" transform="translate(0 7)">${CLOUD()}</g>
+    <g fill="url(#g-white)" filter="url(#spray)">${CLOUD()}</g>
+    <ellipse cx="62" cy="78" rx="24" ry="9" fill="#a9cbe0" opacity=".55" filter="url(#soft)"/>
+    <ellipse class="breathe" cx="52" cy="46" rx="11" ry="7" fill="#fff" filter="url(#soft)"/>
+    <ellipse cx="78" cy="60" rx="7" ry="5" fill="#fff" opacity=".9" filter="url(#soft)"/>`,
 
-  // Облачко реплики «привет!»
+  // Облачко «привет!»
   hello: `
-    <path class="tone" fill="url(#ht)" transform="translate(5 5)" d="M14 30 Q14 18 26 18 H96 Q108 18 108 30 V60 Q108 72 96 72 H48 L30 92 L34 72 H26 Q14 72 14 60 Z"/>
-    <path class="tone" fill="#fff" d="M14 30 Q14 18 26 18 H96 Q108 18 108 30 V60 Q108 72 96 72 H48 L30 92 L34 72 H26 Q14 72 14 60 Z"/>
-    ${P('M14 30 Q14 18 26 18 H96 Q108 18 108 30 V60 Q108 72 96 72 H48 L30 92 L34 72 H26 Q14 72 14 60 Z', 0)}
-    <text class="txt" x="61" y="52" text-anchor="middle" font-family="Geologica, Onest, sans-serif" font-size="21" font-weight="600" fill="${INK}" stroke="none" letter-spacing="-.5">привет!</text>`,
+    <g fill="#8fbfe0" opacity=".65" filter="url(#haze)" transform="translate(-6 4) scale(1.12)">${CLOUD()}</g>
+    <g fill="url(#g-white)" filter="url(#spray)" transform="translate(-6 -2) scale(1.12)">${CLOUD()}</g>
+    <ellipse class="breathe" cx="54" cy="44" rx="13" ry="7" fill="#fff" filter="url(#soft)"/>
+    <text x="62" y="80" text-anchor="middle" font-family="Geologica, Onest, sans-serif" font-size="17" font-weight="500" fill="${INK}" letter-spacing="-.3">привет!</text>
+    ${orb(104, 26, 3.2, '#fbd38f', .4)}${orb(16, 34, 2.4, '#f5a27f', 1.6)}`,
 
   // Стикеры и курсор — проекты
   notes: `
-    <g transform="rotate(9 70 46)">
-      <rect class="tone" x="44" y="16" width="56" height="56" rx="4" fill="url(#ht)"/>
-      <rect class="ink" pathLength="1" style="--k:0" x="44" y="16" width="56" height="56" rx="4"/>
+    <g transform="rotate(9 70 46)"><rect x="46" y="18" width="54" height="54" rx="10" fill="url(#g-peach)" filter="url(#spray)"/></g>
+    <rect x="26" y="40" width="58" height="58" rx="12" fill="#8fbfe0" opacity=".55" filter="url(#haze)" transform="rotate(-7 50 60) translate(0 6)"/>
+    <g transform="rotate(-7 50 60)">
+      <rect x="22" y="32" width="58" height="58" rx="12" fill="url(#g-white)" filter="url(#spray)"/>
+      <g fill="${INK}" opacity=".35" filter="url(#soft)"><rect x="33" y="50" width="34" height="4" rx="2"/><rect x="33" y="61" width="28" height="4" rx="2"/><rect x="33" y="72" width="20" height="4" rx="2"/></g>
     </g>
-    <g transform="rotate(-7 50 58)">
-      <rect class="tone" x="20" y="30" width="58" height="58" rx="4" fill="#fff"/>
-      <rect class="ink" pathLength="1" style="--k:1" x="20" y="30" width="58" height="58" rx="4"/>
-      ${P('M31 48 H66', 2)}${P('M31 59 H60', 3)}${P('M31 70 H52', 4)}
-    </g>
-    <path class="tone" fill="${LILAC}" d="M80 68 L80 104 L89 95 L96 110 L103 107 L96 92 L108 92 Z"/>
-    ${P('M80 68 L80 104 L89 95 L96 110 L103 107 L96 92 L108 92 Z', 5)}`,
+    <path d="M80 70 L80 104 L89 95 L96 110 L103 107 L96 92 L108 92 Z" fill="url(#g-navy)" filter="url(#spray)"/>
+    ${orb(108, 22, 2.6, '#fbd38f', .8)}`,
 
-  // Карандаш и росчерк — процесс
+  // Карандаш — процесс
   pencil: `
-    <g transform="rotate(-38 60 56)">
-      <rect class="tone" x="26" y="46" width="58" height="20" fill="${LILAC}"/>
-      <rect class="tone" x="84" y="46" width="10" height="20" fill="url(#ht)"/>
-      ${P('M26 46 H94 V66 H26', 0)}
-      ${P('M84 46 V66', 1)}
-      ${P('M94 46 H100 Q106 46 106 52 V60 Q106 66 100 66 H94', 2)}
-      <path class="tone" fill="#fff" d="M26 46 L8 56 L26 66 Z"/>
-      ${P('M26 46 L8 56 L26 66', 3)}
-      <path class="tone" fill="${INK}" d="M13.5 53 L8 56 L13.5 59 Z"/>
-      ${P('M28 56 H82', 4, 'stroke-width="2"')}
+    <g transform="rotate(-38 60 58)">
+      <rect x="22" y="62" width="84" height="20" rx="10" fill="#8fbfe0" opacity=".6" filter="url(#haze)"/>
+      <rect x="26" y="48" width="74" height="20" rx="10" fill="url(#g-sky)" filter="url(#spray)"/>
+      <path d="M28 48 L8 58 L28 68 Z" fill="url(#g-peach)" filter="url(#spray)"/>
+      <ellipse cx="12" cy="58" rx="5" ry="4" fill="#f5a27f" filter="url(#soft)"/>
+      <ellipse class="breathe" cx="60" cy="52" rx="20" ry="2.6" fill="#fff" filter="url(#soft)"/>
     </g>
-    ${P('M10 104 Q20 94 30 104 T50 104 T70 104 T90 104', 5)}`,
+    ${orb(20, 96, 3, '#f5a27f', .3)}${orb(98, 98, 2.2, '#a9cbe0', 1.2)}`,
 
-  // Очки — исследование, «присмотреться»
+  // Очки — тёмная мягкая масса со светящимися стёклами, как глаза у кота
   glasses: `
-    <path class="tone" fill="${LILAC}" d="M12 46 Q12 38 20 38 H50 Q56 38 56 46 V62 Q56 74 44 74 H24 Q12 74 12 62 Z"/>
-    <path class="tone" fill="${LILAC}" d="M64 46 Q64 38 70 38 H100 Q108 38 108 46 V62 Q108 74 96 74 H76 Q64 74 64 62 Z"/>
-    <path class="tone" fill="url(#ht)" d="M12 64 H56 Q55 74 44 74 H24 Q13 74 12 64 Z M64 64 H108 Q107 74 96 74 H76 Q65 74 64 64 Z"/>
-    ${P('M12 46 Q12 38 20 38 H50 Q56 38 56 46 V62 Q56 74 44 74 H24 Q12 74 12 62 Z', 0)}
-    ${P('M64 46 Q64 38 70 38 H100 Q108 38 108 46 V62 Q108 74 96 74 H76 Q64 74 64 62 Z', 1)}
-    ${P('M56 48 Q60 42 64 48', 2)}
-    ${P('M12 44 L4 38', 3)}${P('M108 44 L116 38', 3)}
-    ${P('M22 50 L32 44', 4, 'stroke-width="2.4"')}${P('M74 50 L84 44', 4, 'stroke-width="2.4"')}
-    ${P('M38 24 Q42 16 48 20', 5, 'stroke-width="2.4"')}${P('M72 20 Q78 16 82 24', 5, 'stroke-width="2.4"')}`,
+    <g fill="url(#g-navy)" filter="url(#spray)">
+      <rect x="10" y="38" width="46" height="36" rx="14"/><rect x="64" y="38" width="46" height="36" rx="14"/>
+      <rect x="50" y="46" width="20" height="8" rx="4"/>
+    </g>
+    <ellipse class="breathe" style="--b:.2s" cx="33" cy="56" rx="11" ry="9" fill="#fff" filter="url(#soft)"/>
+    <ellipse class="breathe" style="--b:.9s" cx="87" cy="56" rx="11" ry="9" fill="#fff" filter="url(#soft)"/>
+    ${orb(60, 20, 2.6, '#fbd38f', .5)}`,
 
   // Звезда — результаты
   star: `
-    <path class="tone" fill="${LILAC}" d="M60 20 L71.2 46.6 L99.9 49 L78.1 67.9 L84.7 96 L60 81 L35.3 96 L41.9 67.9 L20.1 49 L48.8 46.6 Z"/>
-    <path class="tone" fill="url(#ht)" d="M60 81 L35.3 96 L41.9 67.9 L60 62 L78.1 67.9 L84.7 96 Z"/>
-    ${P('M60 20 L71.2 46.6 L99.9 49 L78.1 67.9 L84.7 96 L60 81 L35.3 96 L41.9 67.9 L20.1 49 L48.8 46.6 Z', 0)}
-    ${P('M104 16 V30 M97 23 H111', 1)}
-    ${P('M16 90 V100 M11 95 H21', 2)}
-    ${P('M100 98 l6 4', 3)}`,
+    <path d="M60 20 L71.2 46.6 L99.9 49 L78.1 67.9 L84.7 96 L60 81 L35.3 96 L41.9 67.9 L20.1 49 L48.8 46.6 Z" fill="#f5a27f" opacity=".55" filter="url(#haze)" transform="translate(0 6)"/>
+    <path d="M60 20 L71.2 46.6 L99.9 49 L78.1 67.9 L84.7 96 L60 81 L35.3 96 L41.9 67.9 L20.1 49 L48.8 46.6 Z" fill="url(#g-sun)" filter="url(#spray)"/>
+    <ellipse class="breathe" cx="56" cy="50" rx="10" ry="8" fill="#fff" filter="url(#soft)"/>
+    ${orb(104, 22, 3, '#a9cbe0', .2)}${orb(16, 92, 2.4, '#fbd38f', 1.4)}`,
 
-  // Бабл-ти — «давайте обсудим за чаем»
+  // Бабл-ти — «обсудим»
   tea: `
-    <path class="tone" fill="${LILAC}" d="M33.5 62 Q46 58 60 62 T86.5 62 L83 104 Q60 109 37 104 Z"/>
-    <path class="tone" fill="#fff" d="M60 38 L72 6 L80 9 L69 40 Z"/>
-    ${P('M60 38 L72 6 L80 9 L69 40', 0)}
-    <path class="tone" fill="url(#ht)" d="M26 39 Q60 34 94 39 L92 47 Q60 44 28 47 Z"/>
-    ${P('M26 39 Q60 34 94 39 L92 47 Q60 44 28 47 Z', 1)}
-    ${P('M30 47 L37 104 Q60 109 83 104 L90 47', 2)}
-    ${P('M33.5 62 Q46 58 60 62 T86.5 62', 3)}
-    ${[[46, 95], [58, 98], [71, 95], [52, 85], [65, 87], [77, 86]].map(([x, y], i) =>
-      `<circle class="tone" cx="${x}" cy="${y}" r="4.6" fill="url(#ht-dense)"/><circle class="ink" pathLength="1" style="--k:${4 + i * 0.3}" cx="${x}" cy="${y}" r="4.6"/>`).join('')}
-    ${P('M98 24 l7 -5', 6)}${P('M100 34 l8 1', 6)}`,
+    <path d="M30 50 L37 104 Q60 110 83 104 L90 50 Z" fill="#8fbfe0" opacity=".6" filter="url(#haze)" transform="translate(0 6)"/>
+    <path d="M62 44 L73 8 L80 10 L70 46 Z" fill="url(#g-navy)" filter="url(#spray)"/>
+    <path d="M30 46 L37 104 Q60 110 83 104 L90 46 Z" fill="url(#g-white)" filter="url(#spray)"/>
+    <path d="M33.5 66 Q60 60 86.5 66 L83 104 Q60 110 37 104 Z" fill="url(#g-peach)" filter="url(#spray)"/>
+    <g fill="${INK}" filter="url(#soft)">${[[47, 94], [59, 98], [71, 94], [53, 86], [66, 87]].map(([x, y]) => `<circle cx="${x}" cy="${y}" r="4.6"/>`).join('')}</g>
+    <ellipse class="breathe" cx="46" cy="58" rx="4" ry="12" fill="#fff" filter="url(#soft)"/>`,
 
   // Бумажный самолётик — дальше
   plane: `
-    <path class="tone" fill="#fff" d="M10 58 L110 16 L82 102 L58 78 Z"/>
-    <path class="tone" fill="url(#ht)" d="M58 78 L54 102 L70 90 Z"/>
-    ${P('M10 58 L110 16 L82 102 L58 78 Z', 0)}
-    ${P('M110 16 L58 78', 1)}
-    ${P('M58 78 L54 102 L70 90', 2)}
-    ${[[8, 106], [19, 103], [27, 96], [32, 87]].map(([x, y]) => `<circle class="tone" cx="${x}" cy="${y}" r="2.4" fill="${INK}" stroke="none"/>`).join('')}`,
+    <path d="M10 58 L110 16 L82 102 L58 78 Z" fill="#8fbfe0" opacity=".55" filter="url(#haze)" transform="translate(0 6)"/>
+    <path d="M10 58 L110 16 L58 78 Z" fill="url(#g-white)" filter="url(#spray)"/>
+    <path d="M110 16 L82 102 L58 78 Z" fill="url(#g-sky)" filter="url(#spray)"/>
+    <path d="M58 78 L54 102 L70 90 Z" fill="url(#g-navy)" filter="url(#spray)"/>
+    ${orb(30, 92, 3, '#a9cbe0', 0)}${orb(18, 100, 2.4, '#a9cbe0', .6)}${orb(8, 106, 1.8, '#f5a27f', 1.2)}`,
 };
 
 function doodleSVG(name, label = '') {
-  return `<svg viewBox="0 0 120 120" class="doodle" role="${label ? 'img' : 'presentation'}" ${label ? `aria-label="${label}"` : 'aria-hidden="true"'}
-    fill="none" stroke="${INK}" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round">${DEFS}${DOODLES[name]}</svg>`;
+  return `<svg viewBox="0 0 120 120" class="doodle" role="${label ? 'img' : 'presentation'}" ${label ? `aria-label="${label}"` : 'aria-hidden="true"'}>${DEFS}${DOODLES[name]}</svg>`;
 }
 
 // Маленькие иконки тем же пером: контур 2.2, скруглённые концы, цвет — от текста.

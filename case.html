@@ -10,7 +10,7 @@
   <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Geologica:wght,SHRP@400..600,0..100&family=Onest:wght@400..600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Geologica:wght@400..600&family=Onest:wght@400..600&display=swap" rel="stylesheet" />
   <script>document.documentElement.classList.add('js')</script>
   <script src="https://cdn.tailwindcss.com/3.4.17"></script>
   <script>
@@ -21,7 +21,7 @@
             display: ['Geologica', 'Onest', 'sans-serif'],
             sans: ['Onest', 'sans-serif'],
           },
-          colors: { paper: '#fafafa', ink: '#0a0a0a', muted: '#6b6b6b', line: '#e9e9e9', lilac: { 50: '#f7f0fd', 200: '#e7dbfb', 300: '#c9b3f5' } },
+          colors: { paper: '#f6f2ea', ink: '#1f3d63', muted: '#5b6573', line: '#e4ddd0', mist: { 50: '#f0f7fc', 200: '#d9eaf6', 300: '#a9cbe0' }, peach: { 200: '#fcdccb', DEFAULT: '#f5a27f' } },
           boxShadow: {
             pill: '0 18px 40px -12px rgba(0,0,0,.45), inset 0 1px 0 rgba(255,255,255,.18)',
             card: '0 1px 2px rgba(0,0,0,.04), 0 12px 32px -12px rgba(0,0,0,.12)',
@@ -37,10 +37,10 @@
 
   <!-- ===== Nav ===== -->
   <header class="fixed inset-x-0 top-4 z-50 flex justify-center px-4">
-    <nav id="nav" class="ink-box w-full max-w-[22rem] rounded-2xl bg-white transition-all duration-300">
+    <nav id="nav" class="puff w-full max-w-[22rem] rounded-2xl transition-all duration-300">
       <div class="flex items-center justify-between px-4 py-3">
         <a href="index.html" aria-label="На главную" class="doodle-slot">
-          <img src="assets/identity-sm.webp" width="160" height="144" alt="Полина Артамонова" class="doodle block h-10 w-auto" />
+          <span data-doodle="cloud" data-label="Полина Артамонова" class="block h-11 w-11"></span>
         </a>
         <button id="menuBtn" aria-label="Меню" aria-expanded="false" class="flex h-8 w-8 flex-col items-center justify-center gap-[5px]">
           <span class="block h-[2.5px] w-5 rounded bg-ink transition-transform duration-300"></span>
@@ -50,9 +50,9 @@
       <div id="menu" class="grid grid-rows-[0fr] transition-all duration-300">
         <div class="overflow-hidden">
           <ul class="flex flex-col gap-1 px-4 pb-4 font-display text-lg">
-            <li><a href="index.html" class="block rounded-lg px-2 py-1.5 transition-colors hover:bg-lilac-200">Главная</a></li>
-            <li><a href="index.html#work" class="block rounded-lg px-2 py-1.5 transition-colors hover:bg-lilac-200">Все проекты</a></li>
-            <li><a href="#contact" class="block rounded-lg px-2 py-1.5 transition-colors hover:bg-lilac-200">Контакты</a></li>
+            <li><a href="index.html" class="block rounded-lg px-2 py-1.5 transition-colors hover:bg-mist-200">Главная</a></li>
+            <li><a href="index.html#work" class="block rounded-lg px-2 py-1.5 transition-colors hover:bg-mist-200">Все проекты</a></li>
+            <li><a href="#contact" class="block rounded-lg px-2 py-1.5 transition-colors hover:bg-mist-200">Контакты</a></li>
           </ul>
         </div>
       </div>
@@ -66,18 +66,18 @@
     <section id="contact" class="cross relative border-t border-line px-4 py-24 text-center sm:px-8 sm:py-32">
       <div class="reveal mx-auto max-w-2xl">
         <div class="relative mx-auto w-fit">
-          <img src="assets/avatar.jpg" alt="" class="h-20 w-20 rounded-full bg-lilac-200 object-cover object-[50%_35%] ring-2 ring-ink" />
+          <img src="assets/avatar.jpg" alt="" class="h-20 w-20 rounded-full bg-mist-200 object-cover object-[50%_35%] ring-4 ring-white shadow-[0_10px_24px_-10px_rgba(57,112,166,.6)]" />
           <span data-doodle="tea" class="doodle-slot absolute -bottom-3 -right-12 h-16 w-16 rotate-12"></span>
         </div>
         <h2 class="mt-8 font-display text-[2rem] font-medium leading-[1.05] tracking-[-0.04em] sm:text-6xl">Давайте обсудим<br />ваш продукт</h2>
         <p class="mx-auto mt-5 max-w-md text-[15px] leading-relaxed text-muted">Часть проектов под NDA — подробные макеты могу показать на личном созвоне.</p>
         <div class="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
           <a href="https://t.me/p_p_polly" target="_blank" rel="noopener"
-             class="group ink-box ink-btn inline-flex items-center gap-5 rounded-full bg-ink px-6 py-3.5 font-display text-[15px] font-medium tracking-tight text-white">
+             class="group puff puff-btn puff-ink inline-flex items-center gap-5 rounded-full px-6 py-3.5 font-display text-[15px] font-medium tracking-tight text-white">
             Телеграм
           </a>
           <a href="mailto:psineleva@bk.ru"
-             class="ink-box ink-btn inline-flex items-center gap-2 rounded-full bg-lilac-200 px-6 py-3.5 font-display text-[15px] font-medium tracking-tight text-ink hover:bg-lilac-300">
+             class="puff puff-btn inline-flex items-center gap-2 rounded-full px-6 py-3.5 font-display text-[15px] font-medium tracking-tight text-ink">
             psineleva@bk.ru
           </a>
         </div>
@@ -87,7 +87,7 @@
     <!-- ===== Footer ===== -->
     <footer class="cross relative border-t border-line px-4 sm:px-8">
       <div class="flex flex-col items-center justify-between gap-4 py-8 text-sm text-muted sm:flex-row">
-        <p class="flex items-center gap-2"><span class="doodle-slot"><img src="assets/identity-sm.webp" width="160" height="144" alt="" class="doodle block h-8 w-auto" /></span>© 2026 Полина Артамонова · Санкт-Петербург</p>
+        <p class="flex items-center gap-2"><span data-doodle="cloud" class="doodle-slot h-9 w-9"></span>© 2026 Полина Артамонова · Санкт-Петербург</p>
         <div class="flex gap-5">
           <a href="https://t.me/p_p_polly" target="_blank" rel="noopener" class="link-u transition-colors hover:text-ink">Телеграм</a>
           <a href="mailto:psineleva@bk.ru" class="link-u transition-colors hover:text-ink">Почта</a>
@@ -100,7 +100,7 @@
 
   <!-- Увеличение картинок -->
   <div id="lightbox" class="hidden-lb fixed inset-0 z-[60] flex cursor-zoom-out items-center justify-center bg-black/80 p-4 backdrop-blur-sm sm:p-10" role="dialog" aria-modal="true" aria-label="Изображение">
-    <button id="lightboxClose" aria-label="Закрыть" class="absolute right-4 top-4 grid h-10 w-10 place-items-center rounded-full border-2 border-ink bg-lilac-200 text-ink"><span data-icon="close" class="block h-5 w-5"></span></button>
+    <button id="lightboxClose" aria-label="Закрыть" class="absolute right-4 top-4 grid h-10 w-10 place-items-center rounded-full soft-edge bg-mist-200 text-ink"><span data-icon="close" class="block h-5 w-5"></span></button>
   </div>
 
   <script src="js/cases.js"></script>

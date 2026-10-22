@@ -10,7 +10,7 @@
   <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Geologica:wght,SHRP@400..600,0..100&family=Onest:wght@400..600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Geologica:wght@400..600&family=Onest:wght@400..600&display=swap" rel="stylesheet" />
   <script>document.documentElement.classList.add('js')</script>
   <script src="https://cdn.tailwindcss.com/3.4.17"></script>
   <script>
@@ -21,7 +21,7 @@
             display: ['Geologica', 'Onest', 'sans-serif'],
             sans: ['Onest', 'sans-serif'],
           },
-          colors: { paper: '#fafafa', ink: '#0a0a0a', muted: '#6b6b6b', line: '#e9e9e9', lilac: { 50: '#f7f0fd', 200: '#e7dbfb', 300: '#c9b3f5' } },
+          colors: { paper: '#f6f2ea', ink: '#1f3d63', muted: '#5b6573', line: '#e4ddd0', mist: { 50: '#f0f7fc', 200: '#d9eaf6', 300: '#a9cbe0' }, peach: { 200: '#fcdccb', DEFAULT: '#f5a27f' } },
           boxShadow: {
             pill: '0 18px 40px -12px rgba(0,0,0,.45), inset 0 1px 0 rgba(255,255,255,.18)',
             card: '0 1px 2px rgba(0,0,0,.04), 0 12px 32px -12px rgba(0,0,0,.12)',
@@ -36,10 +36,10 @@
 
   <!-- ===== Nav ===== -->
   <header class="fixed inset-x-0 top-4 z-50 flex justify-center px-4">
-    <nav id="nav" class="ink-box w-full max-w-[22rem] rounded-2xl bg-white transition-all duration-300">
+    <nav id="nav" class="puff w-full max-w-[22rem] rounded-2xl transition-all duration-300">
       <div class="flex items-center justify-between px-4 py-3">
         <a href="#top" aria-label="Наверх" class="doodle-slot">
-          <img src="assets/identity-sm.webp" width="160" height="144" alt="Полина Артамонова" class="doodle block h-10 w-auto" />
+          <span data-doodle="cloud" data-label="Полина Артамонова" class="block h-11 w-11"></span>
         </a>
         <button id="menuBtn" aria-label="Меню" aria-expanded="false" class="flex h-8 w-8 flex-col items-center justify-center gap-[5px]">
           <span class="block h-[2.5px] w-5 rounded bg-ink transition-transform duration-300"></span>
@@ -49,10 +49,10 @@
       <div id="menu" class="grid grid-rows-[0fr] transition-all duration-300">
         <div class="overflow-hidden">
           <ul class="flex flex-col gap-1 px-4 pb-4 font-display text-lg">
-            <li><a href="#work" class="block rounded-lg px-2 py-1.5 transition-colors hover:bg-lilac-200">Проекты</a></li>
-            <li><a href="#process" class="block rounded-lg px-2 py-1.5 transition-colors hover:bg-lilac-200">Как я работаю</a></li>
-            <li><a href="#results" class="block rounded-lg px-2 py-1.5 transition-colors hover:bg-lilac-200">Результаты</a></li>
-            <li><a href="#contact" class="block rounded-lg px-2 py-1.5 transition-colors hover:bg-lilac-200">Контакты</a></li>
+            <li><a href="#work" class="block rounded-lg px-2 py-1.5 transition-colors hover:bg-mist-200">Проекты</a></li>
+            <li><a href="#process" class="block rounded-lg px-2 py-1.5 transition-colors hover:bg-mist-200">Как я работаю</a></li>
+            <li><a href="#results" class="block rounded-lg px-2 py-1.5 transition-colors hover:bg-mist-200">Результаты</a></li>
+            <li><a href="#contact" class="block rounded-lg px-2 py-1.5 transition-colors hover:bg-mist-200">Контакты</a></li>
           </ul>
         </div>
       </div>
@@ -63,29 +63,36 @@
   <div id="top" class="mx-auto max-w-[1120px] border-x border-line">
 
     <!-- ===== Hero ===== -->
-    <section class="relative px-4 pb-24 pt-36 text-center sm:px-8 sm:pb-32 sm:pt-44">
-      <div class="reveal mb-6"><span data-doodle="hello" class="doodle-slot block mx-auto h-20 w-20 -rotate-6 sm:h-24 sm:w-24"></span></div>
+    <section class="relative isolate px-4 pb-24 pt-36 text-center sm:px-8 sm:pb-32 sm:pt-44">
+      <div aria-hidden="true" class="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
+        <span class="haze" style="width:26rem;height:18rem;left:50%;top:6%;transform:translateX(-85%);background:#cfe3f2;opacity:.85"></span>
+        <span class="haze" style="width:22rem;height:16rem;left:50%;top:26%;transform:translateX(0%);background:#fcdccb;opacity:.8"></span>
+        <span class="orb" style="width:10px;height:10px;left:13%;top:34%;background:#fbd38f"></span>
+        <span class="orb" style="width:12px;height:12px;right:15%;top:24%;background:#f5a27f;animation-delay:1.2s"></span>
+        <span class="orb" style="width:7px;height:7px;right:24%;top:66%;background:#a9cbe0;animation-delay:.6s"></span>
+      </div>
+      <div class="reveal mb-6"><span data-doodle="hello" class="doodle-slot block mx-auto h-24 w-24 -rotate-6 sm:h-32 sm:w-32"></span></div>
 
       <h1 data-split class="mx-auto max-w-4xl font-display text-[2.75rem] font-medium leading-[1.05] tracking-[-0.04em] sm:text-6xl md:text-7xl">
         Полина
-        <span class="avatar-pop mx-1 inline-block h-[0.9em] w-[0.9em] -rotate-6 overflow-hidden rounded-full align-[-0.12em] ring-2 ring-ink transition-transform duration-300 hover:rotate-6 hover:scale-110">
+        <span class="avatar-pop mx-1 inline-block h-[0.9em] w-[0.9em] -rotate-6 overflow-hidden rounded-full align-[-0.12em] ring-4 ring-white shadow-[0_10px_24px_-10px_rgba(57,112,166,.6)] transition-transform duration-300 hover:rotate-6 hover:scale-110">
           <img src="assets/avatar.jpg" alt="Полина Артамонова" class="h-full w-full object-cover object-[50%_35%]" />
         </span>
         Артамонова,<br class="hidden sm:block" />
-        <span class="text-ink/40">дизайн интерфейсов.</span>
+        <span class="text-ink/55">дизайн интерфейсов.</span>
       </h1>
 
-      <p style="--stagger:520ms" class="reveal mx-auto mt-6 max-w-md text-[15px] leading-relaxed text-ink/70 sm:text-base">
+      <p style="--stagger:520ms" class="reveal mx-auto mt-6 max-w-md text-[15px] leading-relaxed text-ink/80 sm:text-base">
         UI/UX-дизайнер с опытом 2 года. Проектирую интерфейсы для B2E и B2C продуктов, участвую во всём цикле разработки и представляю решения команде. Санкт-Петербург.
       </p>
 
       <div style="--stagger:640ms" class="reveal mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
         <a href="https://t.me/p_p_polly" target="_blank" rel="noopener"
-           class="group ink-box ink-btn inline-flex items-center gap-5 rounded-full bg-ink px-6 py-3.5 font-display text-[15px] font-medium tracking-tight text-white">
+           class="group puff puff-btn puff-ink inline-flex items-center gap-5 rounded-full px-6 py-3.5 font-display text-[15px] font-medium tracking-tight text-white">
           Написать в Телеграм
         </a>
         <a href="https://drive.google.com/file/d/1vTA9CH9CJkSyZ6TN2uQzDy6aibkoubeJ/view" target="_blank" rel="noopener"
-           class="group ink-box ink-btn inline-flex items-center gap-2 rounded-full bg-lilac-200 px-6 py-3.5 font-display text-[15px] font-medium tracking-tight text-ink hover:bg-lilac-300">
+           class="group puff puff-btn inline-flex items-center gap-2 rounded-full px-6 py-3.5 font-display text-[15px] font-medium tracking-tight text-ink">
           Резюме
         </a>
       </div>
@@ -96,49 +103,49 @@
       <div class="reveal text-center">
         <span data-doodle="notes" class="doodle-slot mb-5 h-20 w-20 sm:h-24 sm:w-24"></span>
         <h2 class="font-display text-[2rem] font-medium tracking-[-0.04em] sm:text-5xl">Проекты</h2>
-        <p class="mt-3 text-[15px] text-ink/60">Некоторые детали не раскрываются в связи с NDA.</p>
+        <p class="mt-3 text-[15px] text-ink/75">Некоторые детали не раскрываются в связи с NDA.</p>
       </div>
 
       <div data-stagger class="mt-14 grid gap-x-8 gap-y-14 md:grid-cols-2">
         <a href="case.html?id=corp" class="reveal group block">
-          <div class="ink-box ink-lift ink-lg rounded-2xl bg-[#eef3ff]">
+          <div class="puff puff-lift puff-lg rounded-2xl bg-[#eef3ff]">
             <div style="view-transition-name: cover-corp" class="overflow-hidden rounded-[14px]"><img src="assets/corp.webp" width="2000" height="1200" alt="Корпоративный HR-сервис — главная страница" loading="lazy" class="aspect-[5/3] w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]" /></div>
           </div>
           <div class="mt-5 flex items-center gap-3">
             <h3 class="font-display text-xl font-medium tracking-tight">Корпоративный сервис</h3>
           </div>
           <p class="mt-1.5 max-w-md text-[15px] leading-relaxed text-muted">Внутренний сервис для HR и сотрудников: ревью 360°, опросы, адаптация, учёт отпусков и удалёнок.</p>
-          <p class="mt-3 text-sm text-ink/60">B2E · Web · 2 кейса внутри · 2024–2025</p>
+          <p class="mt-3 text-sm text-ink/75">B2E · Web · 2 кейса внутри · 2024–2025</p>
         </a>
         <a href="case.html?id=support" class="reveal group block md:mt-24">
-          <div class="ink-box ink-lift ink-lg rounded-2xl bg-[#ffb800]">
+          <div class="puff puff-lift puff-lg rounded-2xl bg-[#ffb800]">
             <div style="view-transition-name: cover-support" class="overflow-hidden rounded-[14px]"><img src="assets/support.webp" width="2000" height="1200" alt="Сервис технической поддержки — панель сотрудника и мобильный клиент" loading="lazy" class="aspect-[5/3] w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]" /></div>
           </div>
           <div class="mt-5 flex items-center gap-3">
             <h3 class="font-display text-xl font-medium tracking-tight">Сервис технической поддержки</h3>
           </div>
           <p class="mt-1.5 max-w-md text-[15px] leading-relaxed text-muted">Управление клиентскими запросами: панель сотрудника поддержки с готовыми ответами и клиентская часть.</p>
-          <p class="mt-3 text-sm text-ink/60">B2C · Web · PWA · 2025</p>
+          <p class="mt-3 text-sm text-ink/75">B2C · Web · PWA · 2025</p>
         </a>
         <a href="case.html?id=docs" class="reveal group block">
-          <div class="ink-box ink-lift ink-lg rounded-2xl bg-[#f3efff]">
+          <div class="puff puff-lift puff-lg rounded-2xl bg-[#f3efff]">
             <div style="view-transition-name: cover-docs" class="overflow-hidden rounded-[14px]"><img src="assets/docs.webp" width="2000" height="1200" alt="Сервис для работы с документами — кабинет администратора" loading="lazy" class="aspect-[5/3] w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]" /></div>
           </div>
           <div class="mt-5 flex items-center gap-3">
             <h3 class="font-display text-xl font-medium tracking-tight">Сервис для работы с документами</h3>
           </div>
           <p class="mt-1.5 max-w-md text-[15px] leading-relaxed text-muted">Интегрированный сервис для создания типовых документов с минимумом ошибок: панель администратора и клиентская часть.</p>
-          <p class="mt-3 text-sm text-ink/60">B2C · Web · 2024–2025</p>
+          <p class="mt-3 text-sm text-ink/75">B2C · Web · 2024–2025</p>
         </a>
         <a href="case.html?id=biz" class="reveal group block md:mt-24">
-          <div class="ink-box ink-lift ink-lg rounded-2xl bg-[#0b3d86]">
+          <div class="puff puff-lift puff-lg rounded-2xl bg-[#0b3d86]">
             <div style="view-transition-name: cover-biz" class="overflow-hidden rounded-[14px]"><img src="assets/biz.webp" width="2000" height="1200" alt="Сервис для предпринимателей — макеты под NDA" loading="lazy" class="aspect-[5/3] w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]" /></div>
           </div>
           <div class="mt-5 flex items-center gap-3">
             <h3 class="font-display text-xl font-medium tracking-tight">Сервис для предпринимателей</h3>
           </div>
           <p class="mt-1.5 max-w-md text-[15px] leading-relaxed text-muted">Сообщество предпринимателей для общения, обучения и поддержки. Проектировала раздел «Профиль».</p>
-          <p class="mt-3 text-sm text-ink/60">Social Media · B2C · Web · PWA · 2025</p>
+          <p class="mt-3 text-sm text-ink/75">Social Media · B2C · Web · PWA · 2025</p>
         </a>
       </div>
     </section>
@@ -153,39 +160,39 @@
       <div class="mt-16 grid gap-12 md:grid-cols-[1.5fr_1fr] md:gap-20">
         <div class="reveal">
           <p class="font-display text-[1.5rem] leading-snug tracking-tight sm:text-[2rem]">Отвечаю за весь дизайн-цикл — от первых исследований до релиза, в B2E и B2C продуктах.</p>
-          <p class="mt-6 max-w-xl text-base leading-relaxed text-ink/70">Сама провожу интервью с пользователями, тестирую интерактивные прототипы и защищаю решения перед командой. На двух проектах была единственным дизайнером.</p>
+          <p class="mt-6 max-w-xl text-base leading-relaxed text-ink/80">Сама провожу интервью с пользователями, тестирую интерактивные прототипы и защищаю решения перед командой. На двух проектах была единственным дизайнером.</p>
         </div>
         <div class="reveal" style="--stagger:120ms">
-          <h3 class="text-sm font-medium text-ink/60">С кем работаю</h3>
+          <h3 class="text-sm font-medium text-ink/75">С кем работаю</h3>
           <ul class="mt-3 divide-y divide-line border-y border-line text-base">
-            <li class="flex items-center gap-3 py-3"><span class="h-2.5 w-2.5 shrink-0 rounded-full border-2 border-ink bg-lilac-200"></span>Проджект-менеджер и заказчик</li>
-            <li class="flex items-center gap-3 py-3"><span class="h-2.5 w-2.5 shrink-0 rounded-full border-2 border-ink bg-lilac-200"></span>Тим-лид</li>
-            <li class="flex items-center gap-3 py-3"><span class="h-2.5 w-2.5 shrink-0 rounded-full border-2 border-ink bg-lilac-200"></span>Тестировщик</li>
-            <li class="flex items-center gap-3 py-3"><span class="h-2.5 w-2.5 shrink-0 rounded-full border-2 border-ink bg-lilac-200"></span>Разработчики</li>
+            <li class="flex items-center gap-3 py-3"><span class="h-2.5 w-2.5 shrink-0 rounded-full soft-edge bg-mist-200"></span>Проджект-менеджер и заказчик</li>
+            <li class="flex items-center gap-3 py-3"><span class="h-2.5 w-2.5 shrink-0 rounded-full soft-edge bg-mist-200"></span>Тим-лид</li>
+            <li class="flex items-center gap-3 py-3"><span class="h-2.5 w-2.5 shrink-0 rounded-full soft-edge bg-mist-200"></span>Тестировщик</li>
+            <li class="flex items-center gap-3 py-3"><span class="h-2.5 w-2.5 shrink-0 rounded-full soft-edge bg-mist-200"></span>Разработчики</li>
           </ul>
         </div>
       </div>
 
       <ol data-stagger class="mt-20 grid gap-x-8 gap-y-12 sm:grid-cols-2 lg:grid-cols-4">
-        <li class="reveal border-t-2 border-ink pt-5">
-          <span class="grid h-9 w-9 place-items-center rounded-full border-2 border-ink bg-lilac-200 font-display text-sm font-medium tabular-nums">01</span>
+        <li class="reveal border-t border-mist-300 pt-5">
+          <span class="grid h-9 w-9 place-items-center rounded-full soft-edge bg-mist-200 font-display text-sm font-medium tabular-nums">01</span>
           <h3 class="mt-2 font-display text-xl font-medium tracking-tight">Анализ и интервью</h3>
-          <p class="mt-2 text-[15px] leading-relaxed text-ink/70">Разбираю текущий сервис, общаюсь с сотрудниками и HR, нахожу узкие места.</p>
+          <p class="mt-2 text-[15px] leading-relaxed text-ink/80">Разбираю текущий сервис, общаюсь с сотрудниками и HR, нахожу узкие места.</p>
         </li>
-        <li class="reveal border-t-2 border-ink pt-5">
-          <span class="grid h-9 w-9 place-items-center rounded-full border-2 border-ink bg-lilac-200 font-display text-sm font-medium tabular-nums">02</span>
+        <li class="reveal border-t border-mist-300 pt-5">
+          <span class="grid h-9 w-9 place-items-center rounded-full soft-edge bg-mist-200 font-display text-sm font-medium tabular-nums">02</span>
           <h3 class="mt-2 font-display text-xl font-medium tracking-tight">Прототипирование</h3>
-          <p class="mt-2 text-[15px] leading-relaxed text-ink/70">Собираю интерактивные прототипы и проверяю их на пользователях.</p>
+          <p class="mt-2 text-[15px] leading-relaxed text-ink/80">Собираю интерактивные прототипы и проверяю их на пользователях.</p>
         </li>
-        <li class="reveal border-t-2 border-ink pt-5">
-          <span class="grid h-9 w-9 place-items-center rounded-full border-2 border-ink bg-lilac-200 font-display text-sm font-medium tabular-nums">03</span>
+        <li class="reveal border-t border-mist-300 pt-5">
+          <span class="grid h-9 w-9 place-items-center rounded-full soft-edge bg-mist-200 font-display text-sm font-medium tabular-nums">03</span>
           <h3 class="mt-2 font-display text-xl font-medium tracking-tight">Доработка</h3>
-          <p class="mt-2 text-[15px] leading-relaxed text-ink/70">Вношу правки по обратной связи и презентую решения команде.</p>
+          <p class="mt-2 text-[15px] leading-relaxed text-ink/80">Вношу правки по обратной связи и презентую решения команде.</p>
         </li>
-        <li class="reveal border-t-2 border-ink pt-5">
-          <span class="grid h-9 w-9 place-items-center rounded-full border-2 border-ink bg-lilac-200 font-display text-sm font-medium tabular-nums">04</span>
+        <li class="reveal border-t border-mist-300 pt-5">
+          <span class="grid h-9 w-9 place-items-center rounded-full soft-edge bg-mist-200 font-display text-sm font-medium tabular-nums">04</span>
           <h3 class="mt-2 font-display text-xl font-medium tracking-tight">Ревью вёрстки</h3>
-          <p class="mt-2 text-[15px] leading-relaxed text-ink/70">Довожу продукт до релиза и слежу, чтобы реализация совпала с макетом.</p>
+          <p class="mt-2 text-[15px] leading-relaxed text-ink/80">Довожу продукт до релиза и слежу, чтобы реализация совпала с макетом.</p>
         </li>
       </ol>
     </section>
@@ -199,33 +206,33 @@
 
       <ul data-stagger class="mt-14 border-t border-line">
         <li class="reveal border-b border-line">
-          <a href="case.html?id=vacation" class="group -mx-4 grid gap-3 rounded-2xl px-4 py-7 transition-colors hover:bg-lilac-50 sm:grid-cols-[1fr_auto] sm:items-center sm:gap-12">
-            <p class="font-display text-[1.375rem] leading-snug tracking-tight text-ink/60 sm:text-[1.75rem] [&_b]:font-medium [&_b]:text-ink"><b><span data-count="30" data-prefix="До " data-suffix="%">До 30%</span> времени HR</b> экономит сбор отпусков и удалёнок в одном месте</p>
-            <span class="flex items-center gap-3 text-sm text-ink/60 transition-colors group-hover:text-ink">Сбор отпусков и удалёнок<span class="grid h-8 w-8 shrink-0 place-items-center rounded-full border-2 border-ink bg-lilac-200 text-ink transition-colors group-hover:bg-lilac-300"><span data-icon="arrow-r" class="h-4 w-4"></span></span></span>
+          <a href="case.html?id=vacation" class="group -mx-4 grid gap-3 rounded-2xl px-4 py-7 transition-colors hover:bg-mist-50 sm:grid-cols-[1fr_auto] sm:items-center sm:gap-12">
+            <p class="font-display text-[1.375rem] leading-snug tracking-tight text-ink/75 sm:text-[1.75rem] [&_b]:font-medium [&_b]:text-ink"><b><span data-count="30" data-prefix="До " data-suffix="%">До 30%</span> времени HR</b> экономит сбор отпусков и удалёнок в одном месте</p>
+            <span class="flex items-center gap-3 text-sm text-ink/75 transition-colors group-hover:text-ink">Сбор отпусков и удалёнок<span class="grid h-8 w-8 shrink-0 place-items-center rounded-full soft-edge bg-mist-200 text-ink transition-colors group-hover:bg-mist-300"><span data-icon="arrow-r" class="h-4 w-4"></span></span></span>
           </a>
         </li>
         <li class="reveal border-b border-line">
-          <a href="case.html?id=review" class="group -mx-4 grid gap-3 rounded-2xl px-4 py-7 transition-colors hover:bg-lilac-50 sm:grid-cols-[1fr_auto] sm:items-center sm:gap-12">
-            <p class="font-display text-[1.375rem] leading-snug tracking-tight text-ink/60 sm:text-[1.75rem] [&_b]:font-medium [&_b]:text-ink"><b><span data-count="15" data-suffix="%">15%</span> сотрудников</b> по итогам ревью 360° получили повышение грейда</p>
-            <span class="flex items-center gap-3 text-sm text-ink/60 transition-colors group-hover:text-ink">Ревью 360°<span class="grid h-8 w-8 shrink-0 place-items-center rounded-full border-2 border-ink bg-lilac-200 text-ink transition-colors group-hover:bg-lilac-300"><span data-icon="arrow-r" class="h-4 w-4"></span></span></span>
+          <a href="case.html?id=review" class="group -mx-4 grid gap-3 rounded-2xl px-4 py-7 transition-colors hover:bg-mist-50 sm:grid-cols-[1fr_auto] sm:items-center sm:gap-12">
+            <p class="font-display text-[1.375rem] leading-snug tracking-tight text-ink/75 sm:text-[1.75rem] [&_b]:font-medium [&_b]:text-ink"><b><span data-count="15" data-suffix="%">15%</span> сотрудников</b> по итогам ревью 360° получили повышение грейда</p>
+            <span class="flex items-center gap-3 text-sm text-ink/75 transition-colors group-hover:text-ink">Ревью 360°<span class="grid h-8 w-8 shrink-0 place-items-center rounded-full soft-edge bg-mist-200 text-ink transition-colors group-hover:bg-mist-300"><span data-icon="arrow-r" class="h-4 w-4"></span></span></span>
           </a>
         </li>
         <li class="reveal border-b border-line">
-          <a href="case.html?id=corp" class="group -mx-4 grid gap-3 rounded-2xl px-4 py-7 transition-colors hover:bg-lilac-50 sm:grid-cols-[1fr_auto] sm:items-center sm:gap-12">
-            <p class="font-display text-[1.375rem] leading-snug tracking-tight text-ink/60 sm:text-[1.75rem] [&_b]:font-medium [&_b]:text-ink">Корпоративный сервис стал <b>основным внутренним сервисом</b> компании</p>
-            <span class="flex items-center gap-3 text-sm text-ink/60 transition-colors group-hover:text-ink">Корпоративный сервис<span class="grid h-8 w-8 shrink-0 place-items-center rounded-full border-2 border-ink bg-lilac-200 text-ink transition-colors group-hover:bg-lilac-300"><span data-icon="arrow-r" class="h-4 w-4"></span></span></span>
+          <a href="case.html?id=corp" class="group -mx-4 grid gap-3 rounded-2xl px-4 py-7 transition-colors hover:bg-mist-50 sm:grid-cols-[1fr_auto] sm:items-center sm:gap-12">
+            <p class="font-display text-[1.375rem] leading-snug tracking-tight text-ink/75 sm:text-[1.75rem] [&_b]:font-medium [&_b]:text-ink">Корпоративный сервис стал <b>основным внутренним сервисом</b> компании</p>
+            <span class="flex items-center gap-3 text-sm text-ink/75 transition-colors group-hover:text-ink">Корпоративный сервис<span class="grid h-8 w-8 shrink-0 place-items-center rounded-full soft-edge bg-mist-200 text-ink transition-colors group-hover:bg-mist-300"><span data-icon="arrow-r" class="h-4 w-4"></span></span></span>
           </a>
         </li>
         <li class="reveal border-b border-line">
-          <a href="case.html?id=review" class="group -mx-4 grid gap-3 rounded-2xl px-4 py-7 transition-colors hover:bg-lilac-50 sm:grid-cols-[1fr_auto] sm:items-center sm:gap-12">
-            <p class="font-display text-[1.375rem] leading-snug tracking-tight text-ink/60 sm:text-[1.75rem] [&_b]:font-medium [&_b]:text-ink">Компания <b>отказалась от сторонних решений</b> для оценки персонала и получила более репрезентативные данные</p>
-            <span class="flex items-center gap-3 text-sm text-ink/60 transition-colors group-hover:text-ink">Ревью 360°<span class="grid h-8 w-8 shrink-0 place-items-center rounded-full border-2 border-ink bg-lilac-200 text-ink transition-colors group-hover:bg-lilac-300"><span data-icon="arrow-r" class="h-4 w-4"></span></span></span>
+          <a href="case.html?id=review" class="group -mx-4 grid gap-3 rounded-2xl px-4 py-7 transition-colors hover:bg-mist-50 sm:grid-cols-[1fr_auto] sm:items-center sm:gap-12">
+            <p class="font-display text-[1.375rem] leading-snug tracking-tight text-ink/75 sm:text-[1.75rem] [&_b]:font-medium [&_b]:text-ink">Компания <b>отказалась от сторонних решений</b> для оценки персонала и получила более репрезентативные данные</p>
+            <span class="flex items-center gap-3 text-sm text-ink/75 transition-colors group-hover:text-ink">Ревью 360°<span class="grid h-8 w-8 shrink-0 place-items-center rounded-full soft-edge bg-mist-200 text-ink transition-colors group-hover:bg-mist-300"><span data-icon="arrow-r" class="h-4 w-4"></span></span></span>
           </a>
         </li>
         <li class="reveal border-b border-line">
-          <a href="case.html?id=support" class="group -mx-4 grid gap-3 rounded-2xl px-4 py-7 transition-colors hover:bg-lilac-50 sm:grid-cols-[1fr_auto] sm:items-center sm:gap-12">
-            <p class="font-display text-[1.375rem] leading-snug tracking-tight text-ink/60 sm:text-[1.75rem] [&_b]:font-medium [&_b]:text-ink">Закрытие обращения в техподдержке стало <b>короче</b> — сотрудники обрабатывают запросы быстрее</p>
-            <span class="flex items-center gap-3 text-sm text-ink/60 transition-colors group-hover:text-ink">Сервис техподдержки<span class="grid h-8 w-8 shrink-0 place-items-center rounded-full border-2 border-ink bg-lilac-200 text-ink transition-colors group-hover:bg-lilac-300"><span data-icon="arrow-r" class="h-4 w-4"></span></span></span>
+          <a href="case.html?id=support" class="group -mx-4 grid gap-3 rounded-2xl px-4 py-7 transition-colors hover:bg-mist-50 sm:grid-cols-[1fr_auto] sm:items-center sm:gap-12">
+            <p class="font-display text-[1.375rem] leading-snug tracking-tight text-ink/75 sm:text-[1.75rem] [&_b]:font-medium [&_b]:text-ink">Закрытие обращения в техподдержке стало <b>короче</b> — сотрудники обрабатывают запросы быстрее</p>
+            <span class="flex items-center gap-3 text-sm text-ink/75 transition-colors group-hover:text-ink">Сервис техподдержки<span class="grid h-8 w-8 shrink-0 place-items-center rounded-full soft-edge bg-mist-200 text-ink transition-colors group-hover:bg-mist-300"><span data-icon="arrow-r" class="h-4 w-4"></span></span></span>
           </a>
         </li>
       </ul>
@@ -235,18 +242,18 @@
     <section id="contact" class="cross relative border-t border-line px-4 py-24 text-center sm:px-8 sm:py-32">
       <div class="reveal mx-auto max-w-2xl">
         <div class="relative mx-auto w-fit">
-          <img src="assets/avatar.jpg" alt="" class="h-20 w-20 rounded-full bg-lilac-200 object-cover object-[50%_35%] ring-2 ring-ink" />
+          <img src="assets/avatar.jpg" alt="" class="h-20 w-20 rounded-full bg-mist-200 object-cover object-[50%_35%] ring-4 ring-white shadow-[0_10px_24px_-10px_rgba(57,112,166,.6)]" />
           <span data-doodle="tea" class="doodle-slot absolute -bottom-3 -right-12 h-16 w-16 rotate-12"></span>
         </div>
         <h2 class="mt-8 font-display text-[2rem] font-medium leading-[1.05] tracking-[-0.04em] sm:text-6xl">Давайте обсудим<br />ваш продукт</h2>
         <p class="mx-auto mt-5 max-w-md text-[15px] leading-relaxed text-muted">Часть проектов под NDA — подробные макеты могу показать на личном созвоне.</p>
         <div class="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
           <a href="https://t.me/p_p_polly" target="_blank" rel="noopener"
-             class="group ink-box ink-btn inline-flex items-center gap-5 rounded-full bg-ink px-6 py-3.5 font-display text-[15px] font-medium tracking-tight text-white">
+             class="group puff puff-btn puff-ink inline-flex items-center gap-5 rounded-full px-6 py-3.5 font-display text-[15px] font-medium tracking-tight text-white">
             Телеграм
           </a>
           <a href="mailto:psineleva@bk.ru"
-             class="ink-box ink-btn inline-flex items-center gap-2 rounded-full bg-lilac-200 px-6 py-3.5 font-display text-[15px] font-medium tracking-tight text-ink hover:bg-lilac-300">
+             class="puff puff-btn inline-flex items-center gap-2 rounded-full px-6 py-3.5 font-display text-[15px] font-medium tracking-tight text-ink">
             psineleva@bk.ru
           </a>
         </div>
@@ -256,7 +263,7 @@
     <!-- ===== Footer ===== -->
     <footer class="cross relative border-t border-line px-4 sm:px-8">
       <div class="flex flex-col items-center justify-between gap-4 py-8 text-sm text-muted sm:flex-row">
-        <p class="flex items-center gap-2"><span class="doodle-slot"><img src="assets/identity-sm.webp" width="160" height="144" alt="" class="doodle block h-8 w-auto" /></span>© 2026 Полина Артамонова · Санкт-Петербург</p>
+        <p class="flex items-center gap-2"><span data-doodle="cloud" class="doodle-slot h-9 w-9"></span>© 2026 Полина Артамонова · Санкт-Петербург</p>
         <div class="flex gap-5">
           <a href="https://t.me/p_p_polly" target="_blank" rel="noopener" class="link-u transition-colors hover:text-ink">Телеграм</a>
           <a href="mailto:psineleva@bk.ru" class="link-u transition-colors hover:text-ink">Почта</a>
