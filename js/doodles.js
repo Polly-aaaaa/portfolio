@@ -26,8 +26,13 @@ const DOODLES = {
     ${P('M36 72 H56 V84 Q56 88 52 88 H40 Q36 88 36 84 Z', 2)}
     ${P('M64 72 H84 V84 Q84 88 80 88 H68 Q64 88 64 84 Z', 3)}
     ${P('M56 76 Q60 72 64 76', 4)}
-    ${P('M54 96 Q60 99 66 96', 5)}
-    ${P('M64 97 L92 110', 6, 'stroke-width="5"')}`,
+    <circle class="tone" cx="51" cy="80" r="3" fill="${INK}" stroke="none"/>
+    <circle class="tone" cx="79" cy="80" r="3" fill="${INK}" stroke="none"/>
+    ${P('M61 86 Q57 91 61 93', 5, 'stroke-width="2.6"')}
+    ${P('M60 96 Q65 98 60 101', 5)}
+    ${P('M58 99 L34 109', 6)}
+    <path class="tone" fill="url(#ht-dense)" d="M36 103 L14 112 L19 122 L40 113 Z"/>
+    ${P('M36 103 L14 112 Q13 119 19 122 L40 113 Q42 106 36 103 Z', 7)}`,
 
   // Облачко реплики «привет!»
   hello: `

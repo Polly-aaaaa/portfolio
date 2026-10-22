@@ -103,6 +103,11 @@ html.js:not(.motion-ready) .doodle .tone, html.js:not(.motion-ready) .doodle .tx
 .doodle-slot:hover .doodle { animation: wiggle .6s var(--ease-out); }
 @keyframes wiggle { 25% { transform: rotate(-7deg); } 60% { transform: rotate(5deg); } 100% { transform: none; } }
 
+/* ---------- Персонаж на первом экране ---------- */
+.hero-char img { transform-origin: 40% 90%; transition: transform 1s var(--ease-out); }
+html.js .reveal:not(.in) .hero-char img { transform: translateY(28px) rotate(-6deg) scale(.9); }
+.hero-char:hover img { transform: rotate(-3deg) scale(1.02); transition-duration: .5s; }
+
 /* ---------- Меньше движения ---------- */
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
@@ -114,5 +119,6 @@ html.js:not(.motion-ready) .doodle .tone, html.js:not(.motion-ready) .doodle .tx
   .doodle .ink { transition: none; }
   html.js .reveal:not(.in) .doodle .ink { stroke-dashoffset: 0; }
   .doodle-slot:hover .doodle { animation: none; }
+  html.js .reveal:not(.in) .hero-char img, .hero-char:hover img { transform: none; }
   ::view-transition-group(*), ::view-transition-old(*), ::view-transition-new(*) { animation: none !important; }
 }
