@@ -10,37 +10,28 @@
   <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Geologica:wght@400..600&family=Onest:wght@400..600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Onest:wght@400..900&family=IBM+Plex+Mono:wght@500&family=Caveat:wght@500..700&display=swap" rel="stylesheet" />
   <script>document.documentElement.classList.add('js')</script>
   <script src="https://cdn.tailwindcss.com/3.4.17"></script>
   <script>
     tailwind.config = {
       theme: {
         extend: {
-          fontFamily: {
-            display: ['Geologica', 'Onest', 'sans-serif'],
-            sans: ['Onest', 'sans-serif'],
-          },
-          colors: { paper: '#f6f2ea', ink: '#1f3d63', muted: '#5b6573', line: '#e4ddd0', mist: { 50: '#f0f7fc', 200: '#d9eaf6', 300: '#a9cbe0' }, peach: { 200: '#fcdccb', DEFAULT: '#f5a27f' } },
-          boxShadow: {
-            pill: '0 18px 40px -12px rgba(0,0,0,.45), inset 0 1px 0 rgba(255,255,255,.18)',
-            card: '0 1px 2px rgba(0,0,0,.04), 0 12px 32px -12px rgba(0,0,0,.12)',
-          },
+          fontFamily: { sans: ['Onest', 'sans-serif'] },
+          colors: { ink: '#262722', paper: '#f7f7f4', line: '#dcdcd4', pink: '#ff98c7', blue: '#146ef5', yellow: '#fff25d' },
         },
       },
     };
   </script>
-  <link rel="stylesheet" href="css/site.css?v=20261022211441" />
+  <link rel="stylesheet" href="css/site.css?v=20261022213016" />
 </head>
 <body class="font-sans text-ink">
 
   <!-- ===== Nav ===== -->
   <header class="fixed inset-x-0 top-4 z-50 flex justify-center px-4">
-    <nav id="nav" class="puff w-full max-w-[22rem] rounded-2xl transition-all duration-300">
-      <div class="flex items-center justify-between px-4 py-3">
-        <a href="#top" aria-label="Наверх" class="doodle-slot">
-          <span data-doodle="cloud" data-label="Полина Артамонова" class="block h-11 w-11"></span>
-        </a>
+    <nav id="nav" class="w-full max-w-[22rem] rounded-xl border-[1.5px] border-ink bg-white">
+      <div class="flex items-center justify-between py-2.5 pl-3 pr-2">
+        <a href="#top" class="pill pill-blue !m-0 !text-[11px]">П. Артамонова</a>
         <button id="menuBtn" aria-label="Меню" aria-expanded="false" class="flex h-8 w-8 flex-col items-center justify-center gap-[5px]">
           <span class="block h-[2.5px] w-5 rounded bg-ink transition-transform duration-300"></span>
           <span class="block h-[2.5px] w-5 rounded bg-ink transition-transform duration-300"></span>
@@ -48,232 +39,206 @@
       </div>
       <div id="menu" class="grid grid-rows-[0fr] transition-all duration-300">
         <div class="overflow-hidden">
-          <ul class="flex flex-col gap-1 px-4 pb-4 font-display text-lg">
-            <li><a href="#work" class="block rounded-lg px-2 py-1.5 transition-colors hover:bg-mist-200">Проекты</a></li>
-            <li><a href="#process" class="block rounded-lg px-2 py-1.5 transition-colors hover:bg-mist-200">Как я работаю</a></li>
-            <li><a href="#results" class="block rounded-lg px-2 py-1.5 transition-colors hover:bg-mist-200">Результаты</a></li>
-            <li><a href="#contact" class="block rounded-lg px-2 py-1.5 transition-colors hover:bg-mist-200">Контакты</a></li>
+          <ul class="mono flex flex-col gap-1 px-3 pb-3 text-[13px]">
+            <li><a href="#work" class="block rounded-md px-2 py-2 transition-colors hover:bg-yellow">Проекты</a></li>
+            <li><a href="#process" class="block rounded-md px-2 py-2 transition-colors hover:bg-pink">Как я работаю</a></li>
+            <li><a href="#results" class="block rounded-md px-2 py-2 transition-colors hover:bg-yellow">Результаты</a></li>
+            <li><a href="#contact" class="block rounded-md px-2 py-2 transition-colors hover:bg-pink">Контакты</a></li>
           </ul>
         </div>
       </div>
     </nav>
   </header>
 
-  <!-- Рамка-колонка с вертикальными линиями -->
-  <div id="top" class="mx-auto max-w-[1120px] border-x border-line">
+  <main id="top" class="mx-auto max-w-[1200px] px-4 sm:px-8">
 
-    <!-- ===== Hero ===== -->
-    <section class="relative isolate px-4 pb-24 pt-36 text-center sm:px-8 sm:pb-32 sm:pt-44">
-      <div aria-hidden="true" class="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
-        <span class="haze" style="width:26rem;height:18rem;left:50%;top:6%;transform:translateX(-85%);background:#cfe3f2;opacity:0.38"></span>
-        <span class="haze" style="width:22rem;height:16rem;left:50%;top:26%;transform:translateX(0%);background:#fcdccb;opacity:0.36"></span>
-        <span class="orb" style="width:10px;height:10px;left:13%;top:34%;background:#fbd38f"></span>
-        <span class="orb" style="width:12px;height:12px;right:15%;top:24%;background:#f5a27f;animation-delay:1.2s"></span>
-        <span class="orb" style="width:7px;height:7px;right:24%;top:66%;background:#a9cbe0;animation-delay:.6s"></span>
+    <!-- ===== Hero: коллаж ===== -->
+    <section class="relative pb-20 pt-32 sm:pb-28 sm:pt-40">
+      <!-- фото-отпечаток на скотче -->
+      <figure class="drop print absolute right-0 top-28 hidden w-44 lg:block xl:w-52" style="--r:6deg;--d:500ms">
+        <span class="tape" style="--tr:-6deg"></span>
+        <img src="assets/avatar.jpg" width="512" height="768" alt="Полина Артамонова" class="aspect-[4/5] w-full object-cover object-[50%_30%]" />
+        <figcaption class="hand mt-2 text-center text-2xl leading-none">это я :)</figcaption>
+      </figure>
+      <!-- стикер -->
+      <div class="drop note note-yellow absolute bottom-8 right-24 hidden w-48 lg:block" style="--r:-5deg;--d:750ms">
+        <p class="hand text-[1.7rem] leading-[1.05]">2 года в UI/UX,<br />B2E и B2C</p>
       </div>
-      <div class="reveal mb-6"><span data-doodle="hello" class="doodle-slot block mx-auto h-24 w-24 -rotate-6 sm:h-32 sm:w-32"></span></div>
 
-      <h1 data-split class="mx-auto max-w-4xl font-display text-[2.75rem] font-medium leading-[1.05] tracking-[-0.04em] sm:text-6xl md:text-7xl">
-        Полина
-        <span class="avatar-pop mx-1 inline-block h-[0.9em] w-[0.9em] -rotate-6 overflow-hidden rounded-full align-[-0.12em] ring-4 ring-white shadow-[0_10px_24px_-10px_rgba(57,112,166,.6)] transition-transform duration-300 hover:rotate-6 hover:scale-110">
-          <img src="assets/avatar.jpg" alt="Полина Артамонова" class="h-full w-full object-cover object-[50%_35%]" />
-        </span>
-        Артамонова,<br class="hidden sm:block" />
-        <span class="text-ink/55">дизайн интерфейсов.</span>
-      </h1>
+      <div class="relative max-w-4xl">
+        <span class="drop sticker pill pill-blue absolute -left-1 -top-7 !text-[12px] sm:-left-6 sm:-top-6 sm:!text-[14px]" style="--r:-12deg;--d:300ms">UI/UX</span>
+        <h1 data-split class="display text-[3.1rem] sm:text-[6rem] lg:text-[7rem] xl:text-[8.5rem]">Полина Артамонова</h1>
+      </div>
+      <p class="display reveal mt-4 text-[1.9rem] text-ink/45 sm:text-[3.4rem]" style="--stagger:350ms">дизайн интерфейсов.</p>
 
-      <p style="--stagger:520ms" class="reveal mx-auto mt-6 max-w-md text-[15px] leading-relaxed text-ink/80 sm:text-base">
-        UI/UX-дизайнер с опытом 2 года. Проектирую интерфейсы для B2E и B2C продуктов, участвую во всём цикле разработки и представляю решения команде. Санкт-Петербург.
+      <!-- фото на телефоне — в потоке -->
+      <figure class="reveal print mx-auto mt-10 w-48 lg:hidden" style="--r:4deg">
+        <span class="tape"></span>
+        <img src="assets/avatar.jpg" width="512" height="768" alt="Полина Артамонова" class="aspect-[4/5] w-full object-cover object-[50%_30%]" />
+        <figcaption class="hand mt-2 text-center text-2xl leading-none">это я :)</figcaption>
+      </figure>
+
+      <p class="reveal mt-10 max-w-3xl text-[1.3rem] leading-[1.45] sm:text-[1.65rem]" style="--stagger:500ms">
+        UI/UX-дизайнер с опытом <span class="pill pill-pink">2 года</span>. Проектирую интерфейсы для <span class="pill pill-blue">B2E</span> и <span class="pill pill-yellow">B2C</span> продуктов, участвую во всём цикле разработки — от интервью до ревью вёрстки — и защищаю решения перед командой. Живу и работаю в Санкт-Петербурге.
       </p>
 
-      <div style="--stagger:640ms" class="reveal mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
-        <a href="https://t.me/p_p_polly" target="_blank" rel="noopener"
-           class="group puff puff-btn puff-ink inline-flex items-center gap-5 rounded-full px-6 py-3.5 font-display text-[15px] font-medium tracking-tight text-white">
-          Написать в Телеграм
-        </a>
-        <a href="https://drive.google.com/file/d/1vTA9CH9CJkSyZ6TN2uQzDy6aibkoubeJ/view" target="_blank" rel="noopener"
-           class="group puff puff-btn inline-flex items-center gap-2 rounded-full px-6 py-3.5 font-display text-[15px] font-medium tracking-tight text-ink">
-          Резюме
-        </a>
+      <div class="reveal mt-10 flex flex-wrap items-center gap-3" style="--stagger:620ms">
+        <a href="https://t.me/p_p_polly" target="_blank" rel="noopener" class="btn bg-blue text-white">Написать в Телеграм</a>
+        <a href="https://drive.google.com/file/d/1vTA9CH9CJkSyZ6TN2uQzDy6aibkoubeJ/view" target="_blank" rel="noopener" class="btn bg-yellow">Резюме</a>
       </div>
+
+      <a href="#work" class="reveal group mt-20 flex flex-col items-center gap-4 text-center" style="--stagger:750ms">
+        <span class="mono text-[13px]">Листайте к проектам</span>
+        <svg class="scribble h-16 w-16 transition-transform duration-500 group-hover:translate-y-1" viewBox="0 0 64 64" aria-hidden="true">
+          <path d="M33 5 C 15 4, 5 17, 6 33 C 7 50, 20 60, 34 59 C 50 58, 60 45, 58 29 C 56 15, 46 6, 30 7"/>
+          <path d="M32 17 C 32 27, 31 37, 32 46"/><path d="M22 37 C 26 41, 29 44, 32 47 C 35 43, 38 40, 42 36"/>
+        </svg>
+      </a>
     </section>
 
     <!-- ===== Projects ===== -->
-    <section id="work" class="cross relative border-t border-line px-4 py-24 sm:px-8 sm:py-32">
-      <div class="reveal text-center">
-        <span data-doodle="notes" class="doodle-slot mb-5 h-20 w-20 sm:h-24 sm:w-24"></span>
-        <h2 class="font-display text-[2rem] font-medium tracking-[-0.04em] sm:text-5xl">Проекты</h2>
-        <p class="mt-3 text-[15px] text-ink/75">Некоторые детали не раскрываются в связи с NDA.</p>
+    <section id="work" class="py-20 sm:py-28">
+      <div class="reveal flex flex-wrap items-end justify-between gap-4">
+        <h2 class="display text-[3rem] sm:text-[5.5rem]">Проекты</h2>
+        <p class="mono pb-2 text-[12px] text-ink/70">Некоторые детали — под NDA</p>
       </div>
 
-      <div data-stagger class="mt-14 grid gap-x-8 gap-y-14 md:grid-cols-2">
+      <div data-stagger class="mt-14 grid gap-x-12 gap-y-16 md:grid-cols-2">
         <a href="case.html?id=corp" class="reveal group block">
-          <div class="puff puff-lift puff-lg rounded-2xl bg-[#eef3ff]">
-            <div style="view-transition-name: cover-corp" class="overflow-hidden rounded-[14px]"><img src="assets/corp.webp" width="2000" height="1200" alt="Корпоративный HR-сервис — главная страница" loading="lazy" class="aspect-[5/3] w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]" /></div>
+          <div class="print" style="--r:-1.6deg">
+            <span class="tape" style="--tr:3deg"></span>
+            <div style="view-transition-name: cover-corp" class="overflow-hidden bg-[#eef3ff]"><img src="assets/corp.webp" width="2000" height="1200" alt="Корпоративный HR-сервис — главная страница" loading="lazy" class="aspect-[5/3] w-full object-cover" /></div>
           </div>
-          <div class="mt-5 flex items-center gap-3">
-            <h3 class="font-display text-xl font-medium tracking-tight">Корпоративный сервис</h3>
-          </div>
-          <p class="mt-1.5 max-w-md text-[15px] leading-relaxed text-muted">Внутренний сервис для HR и сотрудников: ревью 360°, опросы, адаптация, учёт отпусков и удалёнок.</p>
-          <p class="mt-3 text-sm text-ink/75">B2E · Web · 2 кейса внутри · 2024–2025</p>
+          <h3 class="mt-6 text-2xl font-bold tracking-tight"><span class="link-u">Корпоративный сервис</span></h3>
+          <p class="mt-2 max-w-md text-[16px] leading-relaxed text-ink/75">Внутренний сервис для HR и сотрудников: ревью 360°, опросы, адаптация, учёт отпусков и удалёнок.</p>
+          <p class="mt-3 text-[20px] leading-[1.9]"><span class="pill pill-blue !ml-0">B2E</span><span class="pill pill-white">Web</span><span class="pill pill-pink">2 кейса внутри</span><span class="pill pill-white">2024–2025</span></p>
         </a>
+
         <a href="case.html?id=support" class="reveal group block md:mt-24">
-          <div class="puff puff-lift puff-lg rounded-2xl bg-[#ffb800]">
-            <div style="view-transition-name: cover-support" class="overflow-hidden rounded-[14px]"><img src="assets/support.webp" width="2000" height="1200" alt="Сервис технической поддержки — панель сотрудника и мобильный клиент" loading="lazy" class="aspect-[5/3] w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]" /></div>
+          <div class="print" style="--r:1.4deg">
+            <span class="tape" style="--tr:-5deg"></span>
+            <div style="view-transition-name: cover-support" class="overflow-hidden bg-[#ffb800]"><img src="assets/support.webp" width="2000" height="1200" alt="Сервис технической поддержки — панель сотрудника и мобильный клиент" loading="lazy" class="aspect-[5/3] w-full object-cover" /></div>
           </div>
-          <div class="mt-5 flex items-center gap-3">
-            <h3 class="font-display text-xl font-medium tracking-tight">Сервис технической поддержки</h3>
-          </div>
-          <p class="mt-1.5 max-w-md text-[15px] leading-relaxed text-muted">Управление клиентскими запросами: панель сотрудника поддержки с готовыми ответами и клиентская часть.</p>
-          <p class="mt-3 text-sm text-ink/75">B2C · Web · PWA · 2025</p>
+          <h3 class="mt-6 text-2xl font-bold tracking-tight"><span class="link-u">Сервис технической поддержки</span></h3>
+          <p class="mt-2 max-w-md text-[16px] leading-relaxed text-ink/75">Управление клиентскими запросами: панель сотрудника поддержки с готовыми ответами и клиентская часть.</p>
+          <p class="mt-3 text-[20px] leading-[1.9]"><span class="pill pill-yellow !ml-0">B2C</span><span class="pill pill-white">Web</span><span class="pill pill-white">PWA</span><span class="pill pill-white">2025</span></p>
         </a>
+
         <a href="case.html?id=docs" class="reveal group block">
-          <div class="puff puff-lift puff-lg rounded-2xl bg-[#f3efff]">
-            <div style="view-transition-name: cover-docs" class="overflow-hidden rounded-[14px]"><img src="assets/docs.webp" width="2000" height="1200" alt="Сервис для работы с документами — кабинет администратора" loading="lazy" class="aspect-[5/3] w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]" /></div>
+          <div class="print" style="--r:1.2deg">
+            <span class="tape" style="--tr:4deg"></span>
+            <div style="view-transition-name: cover-docs" class="overflow-hidden bg-[#f3efff]"><img src="assets/docs.webp" width="2000" height="1200" alt="Сервис для работы с документами — кабинет администратора" loading="lazy" class="aspect-[5/3] w-full object-cover" /></div>
           </div>
-          <div class="mt-5 flex items-center gap-3">
-            <h3 class="font-display text-xl font-medium tracking-tight">Сервис для работы с документами</h3>
-          </div>
-          <p class="mt-1.5 max-w-md text-[15px] leading-relaxed text-muted">Интегрированный сервис для создания типовых документов с минимумом ошибок: панель администратора и клиентская часть.</p>
-          <p class="mt-3 text-sm text-ink/75">B2C · Web · 2024–2025</p>
+          <h3 class="mt-6 text-2xl font-bold tracking-tight"><span class="link-u">Сервис для работы с документами</span></h3>
+          <p class="mt-2 max-w-md text-[16px] leading-relaxed text-ink/75">Интегрированный сервис для создания типовых документов с минимумом ошибок: панель администратора и клиентская часть.</p>
+          <p class="mt-3 text-[20px] leading-[1.9]"><span class="pill pill-yellow !ml-0">B2C</span><span class="pill pill-white">Web</span><span class="pill pill-white">2024–2025</span></p>
         </a>
+
         <a href="case.html?id=biz" class="reveal group block md:mt-24">
-          <div class="puff puff-lift puff-lg rounded-2xl bg-[#0b3d86]">
-            <div style="view-transition-name: cover-biz" class="overflow-hidden rounded-[14px]"><img src="assets/biz.webp" width="2000" height="1200" alt="Сервис для предпринимателей — макеты под NDA" loading="lazy" class="aspect-[5/3] w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]" /></div>
+          <div class="print" style="--r:-1.8deg">
+            <span class="tape" style="--tr:-3deg"></span>
+            <div style="view-transition-name: cover-biz" class="overflow-hidden bg-[#0b3d86]"><img src="assets/biz.webp" width="2000" height="1200" alt="Сервис для предпринимателей — макеты под NDA" loading="lazy" class="aspect-[5/3] w-full object-cover" /></div>
           </div>
-          <div class="mt-5 flex items-center gap-3">
-            <h3 class="font-display text-xl font-medium tracking-tight">Сервис для предпринимателей</h3>
-          </div>
-          <p class="mt-1.5 max-w-md text-[15px] leading-relaxed text-muted">Сообщество предпринимателей для общения, обучения и поддержки. Проектировала раздел «Профиль».</p>
-          <p class="mt-3 text-sm text-ink/75">Social Media · B2C · Web · PWA · 2025</p>
+          <h3 class="mt-6 text-2xl font-bold tracking-tight"><span class="link-u">Сервис для предпринимателей</span></h3>
+          <p class="mt-2 max-w-md text-[16px] leading-relaxed text-ink/75">Сообщество предпринимателей для общения, обучения и поддержки. Проектировала раздел «Профиль».</p>
+          <p class="mt-3 text-[20px] leading-[1.9]"><span class="pill pill-pink !ml-0">Social Media</span><span class="pill pill-yellow">B2C</span><span class="pill pill-white">Web</span><span class="pill pill-white">PWA</span><span class="pill pill-white">2025</span></p>
         </a>
       </div>
     </section>
 
     <!-- ===== Process ===== -->
-    <section id="process" class="cross relative border-t border-line px-4 py-24 sm:px-8 sm:py-32">
-      <div class="reveal text-center">
-        <span data-doodle="pencil" class="doodle-slot mb-5 h-20 w-20 sm:h-24 sm:w-24"></span>
-        <h2 class="font-display text-[2rem] font-medium tracking-[-0.04em] sm:text-5xl">Весь цикл — от интервью<br class="hidden sm:block" /> до ревью вёрстки</h2>
-      </div>
+    <section id="process" class="py-20 sm:py-28">
+      <h2 class="reveal display text-[3rem] sm:text-[5.5rem]">Как я работаю</h2>
 
-      <div class="mt-16 grid gap-12 md:grid-cols-[1.5fr_1fr] md:gap-20">
-        <div class="reveal">
-          <p class="font-display text-[1.5rem] leading-snug tracking-tight sm:text-[2rem]">Отвечаю за весь дизайн-цикл — от первых исследований до релиза, в B2E и B2C продуктах.</p>
-          <p class="mt-6 max-w-xl text-base leading-relaxed text-ink/80">Сама провожу интервью с пользователями, тестирую интерактивные прототипы и защищаю решения перед командой. На двух проектах была единственным дизайнером.</p>
-        </div>
-        <div class="reveal" style="--stagger:120ms">
-          <h3 class="text-sm font-medium text-ink/75">С кем работаю</h3>
-          <ul class="mt-3 divide-y divide-line border-y border-line text-base">
-            <li class="flex items-center gap-3 py-3"><span class="h-2.5 w-2.5 shrink-0 rounded-full soft-edge bg-mist-200"></span>Проджект-менеджер и заказчик</li>
-            <li class="flex items-center gap-3 py-3"><span class="h-2.5 w-2.5 shrink-0 rounded-full soft-edge bg-mist-200"></span>Тим-лид</li>
-            <li class="flex items-center gap-3 py-3"><span class="h-2.5 w-2.5 shrink-0 rounded-full soft-edge bg-mist-200"></span>Тестировщик</li>
-            <li class="flex items-center gap-3 py-3"><span class="h-2.5 w-2.5 shrink-0 rounded-full soft-edge bg-mist-200"></span>Разработчики</li>
+      <div class="mt-12 grid gap-12 lg:grid-cols-[1.4fr_1fr] lg:gap-16">
+        <p class="reveal text-[1.3rem] leading-[1.45] sm:text-[1.65rem]">
+          Отвечаю за <span class="pill pill-yellow">весь дизайн-цикл</span> — от первых исследований до релиза. Сама провожу интервью с пользователями, тестирую интерактивные прототипы и защищаю решения перед командой. На двух проектах была <span class="pill pill-pink">единственным дизайнером</span>.
+        </p>
+        <div class="reveal note note-lined self-start" style="--r:2deg;--stagger:150ms">
+          <span class="tape" style="--tr:-8deg"></span>
+          <p class="hand text-[1.9rem] leading-[32px]">С кем работаю:</p>
+          <ul class="hand text-[1.6rem] leading-[32px]">
+            <li>— проджект-менеджер и заказчик</li>
+            <li>— тим-лид</li>
+            <li>— тестировщик</li>
+            <li>— разработчики</li>
           </ul>
         </div>
       </div>
 
-      <ol data-stagger class="mt-20 grid gap-x-8 gap-y-12 sm:grid-cols-2 lg:grid-cols-4">
-        <li class="reveal border-t border-mist-300 pt-5">
-          <span class="grid h-9 w-9 place-items-center rounded-full soft-edge bg-mist-200 font-display text-sm font-medium tabular-nums">01</span>
-          <h3 class="mt-2 font-display text-xl font-medium tracking-tight">Анализ и интервью</h3>
-          <p class="mt-2 text-[15px] leading-relaxed text-ink/80">Разбираю текущий сервис, общаюсь с сотрудниками и HR, нахожу узкие места.</p>
+      <ol data-stagger class="mt-20 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+        <li class="reveal note note-yellow" style="--r:-2deg">
+          <span class="mono text-[12px]">01</span>
+          <h3 class="hand mt-1 text-[2rem] leading-none">Анализ и интервью</h3>
+          <p class="mt-3 text-[15px] leading-relaxed">Разбираю текущий сервис, общаюсь с сотрудниками и HR, нахожу узкие места.</p>
         </li>
-        <li class="reveal border-t border-mist-300 pt-5">
-          <span class="grid h-9 w-9 place-items-center rounded-full soft-edge bg-mist-200 font-display text-sm font-medium tabular-nums">02</span>
-          <h3 class="mt-2 font-display text-xl font-medium tracking-tight">Прототипирование</h3>
-          <p class="mt-2 text-[15px] leading-relaxed text-ink/80">Собираю интерактивные прототипы и проверяю их на пользователях.</p>
+        <li class="reveal note note-pink" style="--r:1.5deg">
+          <span class="mono text-[12px]">02</span>
+          <h3 class="hand mt-1 text-[2rem] leading-none">Прототипирование</h3>
+          <p class="mt-3 text-[15px] leading-relaxed">Собираю интерактивные прототипы и проверяю их на пользователях.</p>
         </li>
-        <li class="reveal border-t border-mist-300 pt-5">
-          <span class="grid h-9 w-9 place-items-center rounded-full soft-edge bg-mist-200 font-display text-sm font-medium tabular-nums">03</span>
-          <h3 class="mt-2 font-display text-xl font-medium tracking-tight">Доработка</h3>
-          <p class="mt-2 text-[15px] leading-relaxed text-ink/80">Вношу правки по обратной связи и презентую решения команде.</p>
+        <li class="reveal note note-blue" style="--r:-1deg">
+          <span class="mono text-[12px]">03</span>
+          <h3 class="hand mt-1 text-[2rem] leading-none">Доработка</h3>
+          <p class="mt-3 text-[15px] leading-relaxed">Вношу правки по обратной связи и презентую решения команде.</p>
         </li>
-        <li class="reveal border-t border-mist-300 pt-5">
-          <span class="grid h-9 w-9 place-items-center rounded-full soft-edge bg-mist-200 font-display text-sm font-medium tabular-nums">04</span>
-          <h3 class="mt-2 font-display text-xl font-medium tracking-tight">Ревью вёрстки</h3>
-          <p class="mt-2 text-[15px] leading-relaxed text-ink/80">Довожу продукт до релиза и слежу, чтобы реализация совпала с макетом.</p>
+        <li class="reveal note bg-white" style="--r:2deg">
+          <span class="mono text-[12px]">04</span>
+          <h3 class="hand mt-1 text-[2rem] leading-none">Ревью вёрстки</h3>
+          <p class="mt-3 text-[15px] leading-relaxed">Довожу продукт до релиза и слежу, чтобы реализация совпала с макетом.</p>
         </li>
       </ol>
     </section>
 
     <!-- ===== Results ===== -->
-    <section id="results" class="cross relative border-t border-line px-4 py-24 sm:px-8 sm:py-32">
-      <div class="reveal text-center">
-        <span data-doodle="star" class="doodle-slot mb-5 h-20 w-20 sm:h-24 sm:w-24"></span>
-        <h2 class="font-display text-[2rem] font-medium tracking-[-0.04em] sm:text-5xl">Что изменилось после</h2>
+    <section id="results" class="py-20 text-center sm:py-28">
+      <h2 class="reveal display text-[3rem] sm:text-[5.5rem]">Что изменилось</h2>
+
+      <div class="mt-16 space-y-16">
+        <a href="case.html?id=vacation" class="reveal group block">
+          <p class="display text-[5rem] sm:text-[9rem]" data-count="30" data-prefix="до " data-suffix="%">до 30%</p>
+          <p class="mono mx-auto mt-4 max-w-xl text-[13px] leading-relaxed sm:text-[15px]"><span class="link-u">времени HR экономит сбор отпусков и удалёнок в одном месте</span></p>
+        </a>
+        <a href="case.html?id=review" class="reveal group block">
+          <p class="display text-[5rem] sm:text-[9rem]" data-count="15" data-suffix="%">15%</p>
+          <p class="mono mx-auto mt-4 max-w-xl text-[13px] leading-relaxed sm:text-[15px]"><span class="link-u">сотрудников получили повышение грейда по итогам ревью 360°</span></p>
+        </a>
       </div>
 
-      <ul data-stagger class="mt-14 border-t border-line">
-        <li class="reveal border-b border-line">
-          <a href="case.html?id=vacation" class="group -mx-4 grid gap-3 rounded-2xl px-4 py-7 transition-colors hover:bg-mist-50 sm:grid-cols-[1fr_auto] sm:items-center sm:gap-12">
-            <p class="font-display text-[1.375rem] leading-snug tracking-tight text-ink/75 sm:text-[1.75rem] [&_b]:font-medium [&_b]:text-ink"><b><span data-count="30" data-prefix="До " data-suffix="%">До 30%</span> времени HR</b> экономит сбор отпусков и удалёнок в одном месте</p>
-            <span class="flex items-center gap-3 text-sm text-ink/75 transition-colors group-hover:text-ink">Сбор отпусков и удалёнок<span class="grid h-8 w-8 shrink-0 place-items-center rounded-full soft-edge bg-mist-200 text-ink transition-colors group-hover:bg-mist-300"><span data-icon="arrow-r" class="h-4 w-4"></span></span></span>
-          </a>
-        </li>
-        <li class="reveal border-b border-line">
-          <a href="case.html?id=review" class="group -mx-4 grid gap-3 rounded-2xl px-4 py-7 transition-colors hover:bg-mist-50 sm:grid-cols-[1fr_auto] sm:items-center sm:gap-12">
-            <p class="font-display text-[1.375rem] leading-snug tracking-tight text-ink/75 sm:text-[1.75rem] [&_b]:font-medium [&_b]:text-ink"><b><span data-count="15" data-suffix="%">15%</span> сотрудников</b> по итогам ревью 360° получили повышение грейда</p>
-            <span class="flex items-center gap-3 text-sm text-ink/75 transition-colors group-hover:text-ink">Ревью 360°<span class="grid h-8 w-8 shrink-0 place-items-center rounded-full soft-edge bg-mist-200 text-ink transition-colors group-hover:bg-mist-300"><span data-icon="arrow-r" class="h-4 w-4"></span></span></span>
-          </a>
-        </li>
-        <li class="reveal border-b border-line">
-          <a href="case.html?id=corp" class="group -mx-4 grid gap-3 rounded-2xl px-4 py-7 transition-colors hover:bg-mist-50 sm:grid-cols-[1fr_auto] sm:items-center sm:gap-12">
-            <p class="font-display text-[1.375rem] leading-snug tracking-tight text-ink/75 sm:text-[1.75rem] [&_b]:font-medium [&_b]:text-ink">Корпоративный сервис стал <b>основным внутренним сервисом</b> компании</p>
-            <span class="flex items-center gap-3 text-sm text-ink/75 transition-colors group-hover:text-ink">Корпоративный сервис<span class="grid h-8 w-8 shrink-0 place-items-center rounded-full soft-edge bg-mist-200 text-ink transition-colors group-hover:bg-mist-300"><span data-icon="arrow-r" class="h-4 w-4"></span></span></span>
-          </a>
-        </li>
-        <li class="reveal border-b border-line">
-          <a href="case.html?id=review" class="group -mx-4 grid gap-3 rounded-2xl px-4 py-7 transition-colors hover:bg-mist-50 sm:grid-cols-[1fr_auto] sm:items-center sm:gap-12">
-            <p class="font-display text-[1.375rem] leading-snug tracking-tight text-ink/75 sm:text-[1.75rem] [&_b]:font-medium [&_b]:text-ink">Компания <b>отказалась от сторонних решений</b> для оценки персонала и получила более репрезентативные данные</p>
-            <span class="flex items-center gap-3 text-sm text-ink/75 transition-colors group-hover:text-ink">Ревью 360°<span class="grid h-8 w-8 shrink-0 place-items-center rounded-full soft-edge bg-mist-200 text-ink transition-colors group-hover:bg-mist-300"><span data-icon="arrow-r" class="h-4 w-4"></span></span></span>
-          </a>
-        </li>
-        <li class="reveal border-b border-line">
-          <a href="case.html?id=support" class="group -mx-4 grid gap-3 rounded-2xl px-4 py-7 transition-colors hover:bg-mist-50 sm:grid-cols-[1fr_auto] sm:items-center sm:gap-12">
-            <p class="font-display text-[1.375rem] leading-snug tracking-tight text-ink/75 sm:text-[1.75rem] [&_b]:font-medium [&_b]:text-ink">Закрытие обращения в техподдержке стало <b>короче</b> — сотрудники обрабатывают запросы быстрее</p>
-            <span class="flex items-center gap-3 text-sm text-ink/75 transition-colors group-hover:text-ink">Сервис техподдержки<span class="grid h-8 w-8 shrink-0 place-items-center rounded-full soft-edge bg-mist-200 text-ink transition-colors group-hover:bg-mist-300"><span data-icon="arrow-r" class="h-4 w-4"></span></span></span>
-          </a>
-        </li>
+      <ul data-stagger class="mx-auto mt-20 max-w-3xl space-y-5 text-[1.2rem] leading-[1.5] sm:text-[1.45rem]">
+        <li class="reveal"><a href="case.html?id=corp" class="group">Корпоративный сервис стал <span class="pill pill-yellow">основным внутренним</span> сервисом компании</a></li>
+        <li class="reveal"><a href="case.html?id=review" class="group">Компания <span class="pill pill-pink">отказалась от сторонних решений</span> для оценки персонала</a></li>
+        <li class="reveal"><a href="case.html?id=support" class="group">Закрытие обращения в техподдержке стало <span class="pill pill-blue">короче</span></a></li>
       </ul>
     </section>
 
     <!-- ===== CTA ===== -->
-    <section id="contact" class="cross relative border-t border-line px-4 py-24 text-center sm:px-8 sm:py-32">
-      <div class="reveal mx-auto max-w-2xl">
-        <div class="relative mx-auto w-fit">
-          <img src="assets/avatar.jpg" alt="" class="h-20 w-20 rounded-full bg-mist-200 object-cover object-[50%_35%] ring-4 ring-white shadow-[0_10px_24px_-10px_rgba(57,112,166,.6)]" />
-          <span data-doodle="tea" class="doodle-slot absolute -bottom-3 -right-12 h-16 w-16 rotate-12"></span>
-        </div>
-        <h2 class="mt-8 font-display text-[2rem] font-medium leading-[1.05] tracking-[-0.04em] sm:text-6xl">Давайте обсудим<br />ваш продукт</h2>
-        <p class="mx-auto mt-5 max-w-md text-[15px] leading-relaxed text-muted">Часть проектов под NDA — подробные макеты могу показать на личном созвоне.</p>
-        <div class="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
-          <a href="https://t.me/p_p_polly" target="_blank" rel="noopener"
-             class="group puff puff-btn puff-ink inline-flex items-center gap-5 rounded-full px-6 py-3.5 font-display text-[15px] font-medium tracking-tight text-white">
-            Телеграм
-          </a>
-          <a href="mailto:psineleva@bk.ru"
-             class="puff puff-btn inline-flex items-center gap-2 rounded-full px-6 py-3.5 font-display text-[15px] font-medium tracking-tight text-ink">
-            psineleva@bk.ru
-          </a>
-        </div>
+    <section id="contact" class="relative py-24 sm:py-32">
+      <div class="reveal note note-pink absolute right-2 top-10 hidden w-56 md:block" style="--r:5deg">
+        <span class="tape" style="--tr:6deg"></span>
+        <p class="hand text-[1.6rem] leading-[1.05]">Часть проектов под NDA — покажу макеты на созвоне</p>
+      </div>
+      <h2 class="reveal display max-w-4xl text-[3rem] sm:text-[6rem]">Давайте обсудим ваш продукт</h2>
+      <p class="reveal mt-6 max-w-md text-[17px] leading-relaxed text-ink/75 md:hidden">Часть проектов под NDA — подробные макеты могу показать на личном созвоне.</p>
+      <div class="reveal mt-10 flex flex-wrap items-center gap-3">
+        <a href="https://t.me/p_p_polly" target="_blank" rel="noopener" class="btn bg-blue text-white">Телеграм</a>
+        <a href="mailto:psineleva@bk.ru" class="btn bg-pink">psineleva@bk.ru</a>
+        <a href="https://drive.google.com/file/d/1vTA9CH9CJkSyZ6TN2uQzDy6aibkoubeJ/view" target="_blank" rel="noopener" class="btn bg-yellow">Резюме</a>
       </div>
     </section>
 
     <!-- ===== Footer ===== -->
-    <footer class="cross relative border-t border-line px-4 sm:px-8">
-      <div class="flex flex-col items-center justify-between gap-4 py-8 text-sm text-muted sm:flex-row">
-        <p class="flex items-center gap-2"><span data-doodle="cloud" class="doodle-slot h-9 w-9"></span>© 2026 Полина Артамонова · Санкт-Петербург</p>
-        <div class="flex gap-5">
-          <a href="https://t.me/p_p_polly" target="_blank" rel="noopener" class="link-u transition-colors hover:text-ink">Телеграм</a>
-          <a href="mailto:psineleva@bk.ru" class="link-u transition-colors hover:text-ink">Почта</a>
-          <a href="https://drive.google.com/file/d/1vTA9CH9CJkSyZ6TN2uQzDy6aibkoubeJ/view" target="_blank" rel="noopener" class="link-u transition-colors hover:text-ink">Резюме</a>
-        </div>
+    <footer class="mono flex flex-col items-center justify-between gap-4 border-t-[1.5px] border-ink py-8 text-[12px] sm:flex-row">
+      <p>© 2026 Полина Артамонова · Санкт-Петербург</p>
+      <div class="flex gap-6">
+        <a href="https://t.me/p_p_polly" target="_blank" rel="noopener" class="link-u">Телеграм</a>
+        <a href="mailto:psineleva@bk.ru" class="link-u">Почта</a>
+        <a href="https://drive.google.com/file/d/1vTA9CH9CJkSyZ6TN2uQzDy6aibkoubeJ/view" target="_blank" rel="noopener" class="link-u">Резюме</a>
       </div>
     </footer>
-  </div>
+  </main>
 
-  <script src="js/doodles.js?v=20261022211441"></script>
-  <script src="js/site.js?v=20261022211441"></script>
+  <script src="js/doodles.js?v=20261022213016"></script>
+  <script src="js/site.js?v=20261022213016"></script>
 </body>
 </html>

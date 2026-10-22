@@ -1,105 +1,104 @@
-// Рендер страницы кейса по ?id=… из данных CASES (js/cases.js)
+// Рендер страницы кейса по ?id=… из данных CASES (js/cases.js). Стиль — скрапбук:
+// огромные заголовки, плашки-маркеры, отпечатки на скотче, записки и стикеры.
 
 const icon = (name, cls = 'h-5 w-5') => `<span data-icon="${name}" class="inline-block shrink-0 ${cls}"></span>`;
 
-// Сроки и теги — одной тихой строкой, без цветных чипов
-const meta = (c) => [c.period, ...c.tags].filter(Boolean).join(' · ');
+// теги — плашками разного цвета
+const PILL = { B2E: 'pill-blue', B2C: 'pill-yellow', 'Social Media': 'pill-pink' };
+const pills = (list) => list.map((t, i) => `<span class="pill ${PILL[t] || 'pill-white'}${i === 0 ? ' !ml-0' : ''}">${t}</span>`).join('');
+
+// небольшой разброс углов, чтобы отпечатки лежали «живо», но стабильно
+const tilt = (i, a = 1.6) => `${(i % 2 ? 1 : -1) * (a - (i % 3) * 0.4)}deg`;
 
 function picture(key, { alt = '', cls = '', zoom = true, eager = false } = {}) {
   const [w, h] = DIMS[key] || [1600, 1000];
   return `<img src="assets/${key}.webp" width="${w}" height="${h}" alt="${alt}" ${eager ? '' : 'loading="lazy"'} decoding="async"
-    class="${zoom ? 'zoomable cursor-zoom-in ' : ''}h-auto w-full ${cls}" />`;
+    class="${zoom ? 'zoomable cursor-zoom-in ' : ''}block h-auto w-full ${cls}" />`;
 }
 
+// скриншоты — ровные отпечатки на скотче, чтобы их было удобно читать
 function figure(key, caption = '', { narrow = false } = {}) {
   return `<figure class="reveal ${narrow ? 'mx-auto max-w-xl' : ''}">
-    <div class="rounded-[20px] soft-edge bg-mist-50 p-1.5 sm:p-2">${picture(key, { alt: caption, cls: 'rounded-[13px]' })}</div>
-    ${caption ? `<figcaption class="mt-3 text-center text-sm text-ink/75">${caption}</figcaption>` : ''}
+    <div class="print"><span class="tape" style="--tr:${caption.length % 2 ? 3 : -3}deg"></span>${picture(key, { alt: caption })}</div>
+    ${caption ? `<figcaption class="hand mt-3 text-center text-[1.6rem] leading-none">${caption}</figcaption>` : ''}
   </figure>`;
 }
 
 function renderBlock(b) {
-  if (b.h) return `<h3 class="reveal mx-auto max-w-2xl pt-8 font-display text-2xl font-medium tracking-tight sm:text-[1.75rem]">${b.h}</h3>`;
-  if (b.p) return `<p class="reveal prose-case mx-auto max-w-2xl text-[17px] leading-[1.7] text-ink/75">${b.p}</p>`;
-  if (b.label) return `<div class="reveal mx-auto flex max-w-2xl items-center gap-3 pt-2"><span class="rounded-full ${b.label === 'Было' ? 'bg-mist-200 text-ink/80' : 'bg-ink text-white'} px-3 py-1 text-sm font-medium">${b.label}</span><span class="h-px flex-1 bg-line"></span></div>`;
-  if (b.ul) return `<ul class="reveal prose-case mx-auto max-w-2xl space-y-2.5 text-[17px] leading-[1.6] text-ink/75">${b.ul.map((li) => `<li class="flex gap-3"><span class="mt-[0.65em] h-1.5 w-1.5 shrink-0 rounded-full bg-ink/40"></span><span>${li}</span></li>`).join('')}</ul>`;
-  if (b.img) return `<div class="py-2">${figure(b.img, b.caption, { narrow: b.narrow })}</div>`;
-  if (b.pair) return `<div class="grid gap-4 py-2 sm:grid-cols-2">${b.pair.map((k, i) => figure(k, b.captions?.[i] || '')).join('')}</div>`;
+  if (b.h) return `<h3 class="reveal mx-auto max-w-2xl pt-8 text-[1.75rem] font-extrabold leading-tight tracking-tight sm:text-[2rem]">${b.h}</h3>`;
+  if (b.p) return `<p class="reveal prose-case mx-auto max-w-2xl text-[18px] leading-[1.65] text-ink/85">${b.p}</p>`;
+  if (b.label) return `<div class="reveal mx-auto max-w-2xl pt-2"><span class="pill ${b.label === 'Было' ? 'pill-white' : 'pill-yellow'} !ml-0 !text-[13px]">${b.label}</span></div>`;
+  if (b.ul) return `<ul class="reveal prose-case mx-auto max-w-2xl space-y-2.5 text-[18px] leading-[1.6] text-ink/85">${b.ul.map((li) => `<li class="flex gap-3"><span class="mt-[.55em] h-2 w-2 shrink-0 rounded-full bg-pink"></span><span>${li}</span></li>`).join('')}</ul>`;
+  if (b.img) return `<div class="py-4">${figure(b.img, b.caption, { narrow: b.narrow })}</div>`;
+  if (b.pair) return `<div class="grid gap-8 py-4 sm:grid-cols-2">${b.pair.map((k, i) => figure(k, b.captions?.[i] || '')).join('')}</div>`;
   return '';
 }
 
 function stagesBlock(stages) {
   return `<div class="reveal stages mx-auto max-w-2xl">
-    <h3 class="text-sm font-medium text-ink/75">Этапы</h3>
+    <p class="mono text-[12px] text-ink/70">Этапы</p>
     <ol class="mt-3 flex flex-wrap gap-2">${stages.map((s, i) =>
-      `<li class="flex items-center gap-2 rounded-full soft-edge bg-white py-1 pl-1 pr-3.5 text-sm"><span class="stage-dot grid h-6 w-6 place-items-center rounded-full bg-ink text-[11px] font-medium tabular-nums text-white">${i + 1}</span>${s}</li>`).join('')}
+      `<li class="flex items-center gap-2 rounded-full border-[1.5px] border-ink bg-white py-1 pl-1 pr-3.5 text-[15px]"><span class="stage-dot mono grid h-6 w-6 place-items-center rounded-full border-[1.5px] border-ink !text-[10px] !tracking-normal">${i + 1}</span>${s}</li>`).join('')}
     </ol>
   </div>`;
 }
 
-// «Задача и итог»: проблема → цель, затем роль и что сделала, в конце — тёмная панель результатов
-const badge = (name, cls = 'soft-edge bg-mist-200 text-ink') =>
-  `<span class="grid h-9 w-9 shrink-0 place-items-center rounded-full ${cls}">${icon(name, 'h-[18px] w-[18px]')}</span>`;
-
-const labelHead = (s, badgeCls) =>
-  `<div class="flex items-center gap-3">${badge(s.icon, badgeCls)}<h3 class="font-display text-lg font-medium tracking-tight">${s.label}</h3></div>`;
-
+// «Задача и итог»: проблема — записка на листке в линейку, задача — жёлтый стикер
 function problemGoal(problem, goal) {
   if (!problem || !goal) return '';
   return `
-  <div class="reveal"><div class="puff puff-lg rounded-3xl bg-white">
-  <div class="relative grid overflow-hidden rounded-[22px] md:grid-cols-2">
-    <div class="p-7 sm:p-10">
-      ${labelHead(problem, 'soft-edge bg-mist-200 text-ink')}
-      <p class="prose-case mt-6 font-display text-[1.25rem] leading-snug tracking-tight text-ink/75 sm:text-[1.375rem]">${problem.html}</p>
+  <div class="grid gap-10 md:grid-cols-2 md:gap-12">
+    <div class="reveal note note-lined" style="--r:-1.5deg">
+      <span class="tape" style="--tr:-5deg"></span>
+      <p class="hand text-[2.1rem] leading-[32px]">${problem.label}</p>
+      <p class="prose-case mt-0 text-[17px] leading-[32px]">${problem.html}</p>
     </div>
-    <div class="border-t border-white bg-[radial-gradient(120%_120%_at_20%_0%,#ffffff_0%,#d9eaf6_75%)] p-7 sm:p-10 md:border-l md:border-t-0">
-      ${labelHead(goal, 'soft-edge bg-white text-ink')}
-      <p class="prose-case mt-6 font-display text-[1.25rem] leading-snug tracking-tight text-ink sm:text-[1.375rem]">${goal.html}</p>
+    <div class="reveal note note-yellow" style="--r:1.5deg;--stagger:120ms">
+      <span class="tape" style="--tr:4deg"></span>
+      <p class="hand text-[2.1rem] leading-none">${goal.label}</p>
+      <p class="prose-case mt-4 text-[1.2rem] font-medium leading-[1.45]">${goal.html}</p>
     </div>
-    <span class="absolute left-1/2 top-1/2 hidden h-11 w-11 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full soft-edge bg-white md:grid">${icon('arrow-r', 'h-5 w-5')}</span>
-  </div></div></div>`;
+  </div>`;
 }
 
 function detailRow(s) {
   const list = s.list
-    ? `<ul class="mt-5 grid gap-2.5 sm:grid-cols-2">${s.list.map((li) =>
-        `<li class="flex items-start gap-3 rounded-2xl soft-edge bg-white px-4 py-3.5 text-[15px] leading-snug text-ink/80"><span class="grid h-6 w-6 shrink-0 place-items-center rounded-full soft-edge bg-mist-200 text-ink">${icon('check', 'h-3.5 w-3.5')}</span><span>${li}</span></li>`).join('')}</ul>`
+    ? `<ul class="mt-5 flex flex-wrap gap-2">${s.list.map((li) => `<li class="rounded-lg border-[1.5px] border-ink bg-white px-3 py-2 text-[15px] leading-snug">${li}</li>`).join('')}</ul>`
     : '';
   return `
-  <div class="reveal grid gap-4 border-b border-line py-8 md:grid-cols-[13rem_1fr] md:gap-10">
-    <div class="self-start">${labelHead(s)}</div>
-    <div><p class="prose-case max-w-[62ch] text-[17px] leading-[1.65] text-ink/80">${s.html}</p>${list}</div>
+  <div class="reveal grid gap-4 border-t-[1.5px] border-ink py-8 md:grid-cols-[13rem_1fr] md:gap-10">
+    <p class="mono pt-1 text-[13px]">${s.label}</p>
+    <div><p class="prose-case max-w-[62ch] text-[18px] leading-[1.6] text-ink/85">${s.html}</p>${list}</div>
   </div>`;
 }
 
-function resultsPanel(c) {
+// Результаты — крупным текстом, главное выделено маркером
+function resultsBlock(c) {
   if (!c.results) return '';
-  const cols = { 1: '', 2: 'md:grid-cols-2', 3: 'md:grid-cols-3' }[Math.min(c.results.length, 3)];
   const items = c.results.map((r) =>
-    `<li class="border-t border-white/15 pt-5"><p class="font-display text-lg leading-snug tracking-tight text-white/65 sm:text-xl [&_b]:font-medium [&_b]:text-white">${r}</p></li>`).join('');
-  const note = c.resultsNote ? `<p class="mt-8 text-sm leading-relaxed text-white/60">* ${c.resultsNote}</p>` : '';
+    `<li class="reveal border-t-[1.5px] border-ink pt-5 text-[1.3rem] leading-[1.45] sm:text-[1.55rem] [&_b]:bg-[linear-gradient(transparent_55%,#fff25d_55%)] [&_b]:font-semibold">${r}</li>`).join('');
+  const note = c.resultsNote ? `<p class="mono mt-8 text-[12px] leading-relaxed text-ink/70">* ${c.resultsNote}</p>` : '';
   return `
-  <div class="reveal mt-10"><div class="night rounded-3xl p-7 sm:p-10">
-    <span aria-hidden="true" class="orb" style="width:10px;height:10px;right:8%;top:14%;background:#fbd38f"></span>
-    <span aria-hidden="true" class="orb" style="width:7px;height:7px;right:20%;top:8%;background:#f5a27f;animation-delay:1.4s"></span>
-    <div class="flex items-center gap-3">${badge('star', 'bg-white/15 text-white')}<h3 class="font-display text-xl font-medium tracking-tight">Результаты</h3></div>
-    <ul class="mt-8 grid gap-x-8 gap-y-6 ${cols}">${items}</ul>
+  <div class="mt-16">
+    <h3 class="reveal display text-[2.6rem] sm:text-[4rem]">Результаты</h3>
+    <ul class="mt-8 space-y-6">${items}</ul>
     ${note}
-  </div></div>`;
+  </div>`;
 }
 
-function caseCard(id) {
+function caseCard(id, i) {
   const c = CASES[id];
-  return `<a href="case.html?id=${id}" class="reveal group block"><div class="puff puff-lift puff-lg rounded-2xl bg-white">
-    <div class="overflow-hidden rounded-t-[14px]" style="background:${c.coverBg}; view-transition-name: cover-${id}">${picture(c.cover, { alt: c.title, zoom: false, cls: 'aspect-[5/4] object-cover transition-transform duration-700 group-hover:scale-105' })}</div>
-    <div class="flex items-center justify-between gap-4 p-5">
-      <h4 class="font-display text-lg font-medium leading-snug tracking-tight">${c.title}</h4>
+  return `<a href="case.html?id=${id}" class="reveal group block">
+    <div class="print" style="--r:${tilt(i)}">
+      <span class="tape" style="--tr:${i % 2 ? 4 : -4}deg"></span>
+      <div class="overflow-hidden" style="background:${c.coverBg}; view-transition-name: cover-${id}">${picture(c.cover, { alt: c.title, zoom: false, cls: 'aspect-[5/4] object-cover' })}</div>
     </div>
-  </div></a>`;
+    <p class="mono mt-6 text-[12px]">${c.kicker || 'Проект'}</p>
+    <h4 class="mt-2 text-[1.4rem] font-bold leading-snug tracking-tight"><span class="link-u">${c.title}</span></h4>
+  </a>`;
 }
 
-const h2 = (html, extra = '') => `<h2 class="${extra} font-display text-[2rem] font-medium tracking-[-0.04em] sm:text-5xl">${html}</h2>`;
+const h2 = (html) => `<h2 class="display text-[2.1rem] sm:text-[4.5rem]">${html}</h2>`;
 
 function render(id) {
   const c = CASES[id];
@@ -107,24 +106,25 @@ function render(id) {
   document.title = `${c.title} — Полина Артамонова`;
 
   const backLink = (href, text) =>
-    `<a href="${href}" class="group inline-flex items-center gap-2 text-sm text-ink/75 transition-colors hover:text-ink"><span class="nudge-left inline-block">${icon('arrow-l', 'h-4 w-4')}</span>${text}</a>`;
+    `<a href="${href}" class="mono group inline-flex items-center gap-2 text-[12px]"><span class="nudge-left inline-block">${icon('arrow-l', 'h-4 w-4')}</span><span class="link-u">${text}</span></a>`;
   const back = parent ? backLink(`case.html?id=${c.parent}`, parent.title) : backLink('index.html#work', 'Все проекты');
+  const sticker = c.kicker || c.period;
 
   const hero = `
-  <section class="relative isolate px-4 pb-16 pt-36 text-center sm:px-8 sm:pb-20 sm:pt-44">
-    <div aria-hidden="true" class="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
-      <span class="haze" style="width:24rem;height:16rem;left:50%;top:8%;transform:translateX(-80%);background:#cfe3f2;opacity:0.36"></span>
-      <span class="haze" style="width:20rem;height:14rem;left:50%;top:24%;transform:translateX(0%);background:#fcdccb;opacity:0.32"></span>
-      <span class="orb" style="width:9px;height:9px;left:16%;top:40%;background:#fbd38f"></span>
-      <span class="orb" style="width:11px;height:11px;right:17%;top:30%;background:#f5a27f;animation-delay:1s"></span>
-    </div>
+  <section class="pb-14 pt-32 sm:pb-20 sm:pt-40">
     <div class="reveal">${back}</div>
-    <h1 data-split class="mx-auto mt-8 max-w-3xl font-display text-[2.5rem] font-medium leading-[1.05] tracking-[-0.04em] sm:text-6xl">${c.title}</h1>
-    ${c.lead ? `<p style="--stagger:480ms" class="reveal prose-case mx-auto mt-6 max-w-xl text-[15px] leading-relaxed text-ink/80 sm:text-base">${c.lead}</p>` : ''}
-    <p style="--stagger:600ms" class="reveal mt-5 text-sm text-ink/75">${meta(c)}</p>
+    <div class="relative mt-14 max-w-5xl">
+      ${sticker ? `<span class="drop sticker pill ${c.kicker ? 'pill-pink' : 'pill-blue'} absolute -left-1 -top-8 !text-[12px] sm:-top-7 sm:!text-[13px]" style="--r:-8deg;--d:250ms">${sticker}</span>` : ''}
+      <h1 data-split class="display text-[1.95rem] sm:text-[4.5rem] lg:text-[6rem]">${c.title}</h1>
+    </div>
+    ${c.lead ? `<p style="--stagger:450ms" class="reveal prose-case mt-8 max-w-3xl text-[1.2rem] leading-[1.5] sm:text-[1.45rem]">${c.lead}</p>` : ''}
+    <p style="--stagger:550ms" class="reveal mt-6 text-[22px] leading-[1.9]">${pills(c.tags)}</p>
   </section>
-  <div class="px-4 pb-20 sm:px-8 sm:pb-28">
-    <div class="puff puff-lg rounded-3xl" style="background:${c.coverBg}"><div class="overflow-hidden rounded-[22px]" style="view-transition-name: cover-${id}">${picture(c.cover, { alt: c.title, eager: true })}</div></div>
+  <div class="pb-20 sm:pb-28">
+    <div class="print" style="--r:-.8deg">
+      <span class="tape" style="--tr:-3deg"></span>
+      <div class="overflow-hidden" style="background:${c.coverBg}; view-transition-name: cover-${id}">${picture(c.cover, { alt: c.title, eager: true })}</div>
+    </div>
   </div>`;
 
   const problem = c.summary.find((x) => x.label === 'Проблема');
@@ -132,36 +132,31 @@ function render(id) {
   const details = c.summary.filter((x) => x !== problem && x !== goal);
 
   const summary = `
-  <section class="cross relative border-t border-line px-4 py-20 sm:px-8 sm:py-28">
-    <div class="reveal text-center">
-      <span data-doodle="glasses" class="doodle-slot mb-5 h-20 w-20 sm:h-24 sm:w-24"></span>
-      ${h2('Задача и итог')}
-    </div>
-    <div class="mx-auto mt-12 max-w-5xl">
+  <section class="py-16 sm:py-24">
+    <div class="reveal">${h2('Задача и итог')}</div>
+    <div class="mt-12">
       ${problemGoal(problem, goal)}
-      ${details.length ? `<div class="mt-6 border-t border-line">${details.map(detailRow).join('')}</div>` : ''}
-      ${resultsPanel(c)}
+      ${details.length ? `<div class="mt-14">${details.map(detailRow).join('')}</div>` : ''}
+      ${resultsBlock(c)}
     </div>
   </section>`;
 
   const multi = c.sections.filter((s) => s.title).length > 1;
   let fn = 0;
-  let pencil = `<span data-doodle="pencil" class="doodle-slot mb-5 h-20 w-20 sm:h-24 sm:w-24"></span>`;
-  const usePencil = () => { const p = pencil; pencil = ''; return p; };
   const sections = c.sections.map((s) => {
     if (s.title) fn++;
     // номер нужен только когда частей несколько — порядок здесь несёт смысл
-    const num = multi ? `<span class="tabular-nums text-ink/45">${fn}.</span> ` : '';
+    const num = multi ? `<span class="text-ink/35">${fn}.</span> ` : '';
     const head = s.title
-      ? `<div class="reveal mb-10 text-center">${usePencil()}${h2(num + s.title)}</div>`
-      : (s.stages ? `<div class="reveal mb-10 text-center">${usePencil()}${h2('Как шла работа')}</div>` : '');
+      ? `<div class="reveal mb-12">${h2(num + s.title)}</div>`
+      : (s.stages ? `<div class="reveal mb-12">${h2('Как шла работа')}</div>` : '');
     const note = s.note
-      ? `<div class="reveal mx-auto flex max-w-2xl items-start gap-3 rounded-2xl soft-edge bg-mist-50 px-5 py-4 text-[15px] leading-relaxed text-ink/80">${icon('lock', 'mt-0.5 h-5 w-5 text-ink')}<span>${s.note}</span></div>`
+      ? `<div class="reveal note note-pink mx-auto max-w-md" style="--r:-2deg"><span class="tape" style="--tr:5deg"></span><p class="hand text-[1.6rem] leading-[1.1]">${s.note}</p></div>`
       : '';
     return `
-    <section class="cross relative border-t border-line px-4 py-20 sm:px-8 sm:py-28">
+    <section class="border-t-[1.5px] border-ink py-16 sm:py-24">
       ${head}
-      <div class="space-y-6">
+      <div class="space-y-7">
         ${note}
         ${s.stages ? stagesBlock(s.stages) : ''}
         ${s.blocks.map(renderBlock).join('\n')}
@@ -170,24 +165,24 @@ function render(id) {
   }).join('');
 
   const subcases = c.subcases ? `
-    <section class="px-4 pb-20 sm:px-8 sm:pb-28">
-      <div data-stagger class="grid gap-6 sm:grid-cols-2">${c.subcases.map((k) => caseCard(k)).join('')}</div>
+    <section class="pb-20 sm:pb-28">
+      <div data-stagger class="grid gap-x-12 gap-y-14 sm:grid-cols-2">${c.subcases.map((k, i) => caseCard(k, i)).join('')}</div>
     </section>` : '';
 
   const next = CASE_ORDER[(CASE_ORDER.indexOf(id) + 1) % CASE_ORDER.length];
   const nc = CASES[next];
   // одно имя перехода на странице может быть только у одного элемента
-  const nextVT = c.subcases?.includes(next) ? '' : `; view-transition-name: cover-${next}`;
+  const nextVT = c.subcases?.includes(next) ? '' : `view-transition-name: cover-${next}`;
   const nextBlock = `
-  <section class="cross relative border-t border-line px-4 py-20 sm:px-8 sm:py-28">
-    <a href="case.html?id=${next}" class="reveal group grid items-center gap-8 md:grid-cols-2">
-      <div class="puff puff-lift puff-lg rounded-2xl" style="background:${nc.coverBg}">
-        <div class="overflow-hidden rounded-[14px]" style="${nextVT.replace('; ', '')}">${picture(nc.cover, { alt: nc.title, zoom: false, cls: 'aspect-[5/3] object-cover transition-transform duration-700 group-hover:scale-[1.03]' })}</div>
+  <section class="border-t-[1.5px] border-ink py-16 sm:py-24">
+    <a href="case.html?id=${next}" class="reveal group grid items-center gap-10 md:grid-cols-2">
+      <div class="print" style="--r:1.5deg">
+        <span class="tape" style="--tr:-4deg"></span>
+        <div class="overflow-hidden" style="background:${nc.coverBg};${nextVT}">${picture(nc.cover, { alt: nc.title, zoom: false, cls: 'aspect-[5/3] object-cover' })}</div>
       </div>
       <div>
-        <span data-doodle="plane" class="doodle-slot mb-4 h-16 w-16"></span>
-        ${h2(nc.title, 'leading-[1.1]')}
-        <div class="link-u mt-5 inline-block font-display text-[15px] font-medium">${nc.parent ? 'Следующий кейс' : 'Следующий проект'}</div>
+        <span class="pill pill-yellow !ml-0 !text-[12px]">${nc.parent ? 'Следующий кейс' : 'Следующий проект'}</span>
+        <h2 class="display mt-5 text-[1.7rem] sm:text-[3.6rem]"><span class="link-u">${nc.title}</span></h2>
       </div>
     </a>
   </section>`;
