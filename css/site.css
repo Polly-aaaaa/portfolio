@@ -29,7 +29,7 @@ html { scrollbar-color: #bdbdb4 transparent; }
 
 /* ---------- Типографика ---------- */
 .display { font-family: Onest, sans-serif; font-weight: 800; text-transform: uppercase; letter-spacing: -0.065em; line-height: .86; overflow-wrap: break-word; }
-.mono { font-family: "IBM Plex Mono", monospace; font-weight: 500; text-transform: uppercase; letter-spacing: .06em; }
+.mono { font-family: Onest, sans-serif; font-weight: 500; letter-spacing: .01em; }
 .hand { font-family: Caveat, cursive; font-weight: 600; letter-spacing: 0; text-transform: none; }
 h1, h2, h3, h4 { text-wrap: balance; }
 .prose-case b { font-weight: 600; color: var(--ink); }
@@ -37,19 +37,19 @@ h1, h2, h3, h4 { text-wrap: balance; }
 /* ---------- Плашки-маркеры (как в тексте у референса) ---------- */
 .pill {
   display: inline-block; vertical-align: .12em; margin: 0 .1em;
-  padding: .32em .7em .28em; border-radius: 5px;
-  font-family: "IBM Plex Mono", monospace; font-weight: 500; text-transform: uppercase;
-  letter-spacing: .06em; font-size: max(12px, .6em); line-height: 1.2; color: var(--ink); white-space: nowrap;
+  padding: .3em .65em; border-radius: 6px;
+  font-family: Onest, sans-serif; font-weight: 600;
+  letter-spacing: 0; font-size: max(13px, .62em); line-height: 1.2; color: var(--ink); white-space: nowrap;
 }
 .pill-red { background: var(--red); color: #fff; }
 .pill-marker { background: var(--marker); }
-.pill-blue { background: var(--blue); color: #fff; border-radius: 999px; }
+.pill-blue { background: var(--blue); color: #fff; }
 .pill-white { background: #fff; box-shadow: inset 0 0 0 1.5px var(--ink); }
 
 /* Кнопки — те же плашки, только крупнее */
 .btn {
   display: inline-flex; align-items: center; gap: .6em; padding: 1em 1.5em; border-radius: 999px;
-  font-family: "IBM Plex Mono", monospace; font-weight: 500; text-transform: uppercase; letter-spacing: .06em; font-size: 14px;
+  font-family: Onest, sans-serif; font-weight: 600; letter-spacing: 0; font-size: 15px;
   transition: transform .35s var(--ease-out), box-shadow .35s var(--ease-out), background-color .2s;
   box-shadow: 0 2px 0 rgba(38,39,34,.9);
 }
@@ -58,6 +58,49 @@ h1, h2, h3, h4 { text-wrap: balance; }
 
 /* Наклейка-бейдж под углом */
 .sticker { display: inline-block; transform: rotate(-12deg); }
+
+/* ---------- Пометки ручкой в тексте ---------- */
+/* обвести красной ручкой */
+.mk-circle { position: relative; white-space: nowrap; padding: 0 .12em; }
+.mk-circle::after {
+  content: ''; position: absolute; inset: -.3em -.4em -.25em -.35em; pointer-events: none;
+  background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 40' preserveAspectRatio='none'><path d='M10 23 C 7 10, 40 3, 70 5 C 95 7, 99 22, 86 31 C 70 40, 22 39, 9 30 C 3 25, 10 13, 32 10' fill='none' stroke='%23d02a25' stroke-width='2.2' stroke-linecap='round' vector-effect='non-scaling-stroke'/></svg>") center / 100% 100% no-repeat;
+}
+/* подчеркнуть волной синей ручкой */
+.mk-wave {
+  background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='22' height='8' viewBox='0 0 22 8'><path d='M0 5 Q 5.5 1 11 5 T 22 5' fill='none' stroke='%232346c8' stroke-width='2' stroke-linecap='round'/></svg>") 0 100% / 22px 8px repeat-x;
+  padding-bottom: .2em; -webkit-box-decoration-break: clone; box-decoration-break: clone;
+}
+/* провести салатовым маркером */
+.mk-hl {
+  background: linear-gradient(100deg, transparent .15em, rgba(199,244,90,.95) .3em, rgba(199,244,90,.85) calc(100% - .3em), transparent calc(100% - .15em)) 0 70% / 100% 60% no-repeat;
+  padding: 0 .1em; -webkit-box-decoration-break: clone; box-decoration-break: clone;
+}
+/* имя в заголовке подчёркнуто волной красной ручкой — рисуется после появления слов */
+.underline-pen { position: relative; display: inline-block; }
+.underline-pen::after {
+  content: ''; position: absolute; left: 0; right: 0; bottom: -.16em; height: .17em; pointer-events: none;
+  background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='60' height='16' viewBox='0 0 60 16'><path d='M1 9 Q 15 2 30 9 T 59 9' fill='none' stroke='%23d02a25' stroke-width='4' stroke-linecap='round'/></svg>") 0 50% / .62em 100% repeat-x;
+  clip-path: inset(0 100% 0 0);
+}
+.split-done .underline-pen::after { animation: pen-draw .7s var(--ease-out) 1s forwards; }
+html:not(.js) .underline-pen::after, html.js:not(.motion-ready) .underline-pen::after { clip-path: none; }
+@keyframes pen-draw { to { clip-path: inset(0 0 0 0); } }
+
+/* ---------- «Оценка на полях»: число красной ручкой в обведённом овале ---------- */
+.grade {
+  position: relative; flex: none; display: grid; place-items: center;
+  width: 10.5rem; height: 6.2rem; transform: rotate(-4deg);
+  font-family: Caveat, cursive; font-weight: 700; font-size: 2.7rem; line-height: 1; color: var(--red); white-space: nowrap;
+}
+.grade::after {
+  content: ''; position: absolute; inset: 0; pointer-events: none;
+  background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 60' preserveAspectRatio='none'><path d='M12 32 C 8 14, 40 4, 66 6 C 92 8, 99 28, 88 42 C 74 58, 24 58, 10 44 C 3 36, 9 20, 34 13' fill='none' stroke='%23d02a25' stroke-width='2.4' stroke-linecap='round' vector-effect='non-scaling-stroke'/></svg>") center / 100% 100% no-repeat;
+}
+@media (min-width: 640px) { .grade { width: 14rem; height: 8rem; font-size: 3.6rem; } }
+
+/* Стрелки ручкой — без круга */
+.pen path { fill: none; stroke: var(--blue); stroke-width: 2.6; stroke-linecap: round; stroke-linejoin: round; }
 
 /* ---------- Коллаж: отпечатки, скотч, стикеры, линованный лист ---------- */
 .print {
@@ -159,6 +202,7 @@ html.js .stages.in .stage-dot { background: var(--blue); color: #fff; }
 /* ---------- Меньше движения ---------- */
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
+  .underline-pen::after { animation: none !important; clip-path: none; }
   html.js .reveal { transform: none; transition: opacity .3s; }
   .split-done .w > .wi, .drop { animation: none; }
   #menu li, #nav.open #menu li { transform: none; }
@@ -167,18 +211,21 @@ html.js .stages.in .stage-dot { background: var(--blue); color: #fff; }
   ::view-transition-group(*), ::view-transition-old(*), ::view-transition-new(*) { animation: none !important; }
 }
 
-/* ---------- Кнопка «наверх»: рисованная стрелка в круге, как «Листайте к проектам» ---------- */
+/* ---------- Кнопка «наверх»: стрелка синей ручкой с подписью ---------- */
 .to-top {
-  position: fixed; right: 18px; bottom: 18px; z-index: 60;
-  width: 64px; height: 64px; border-radius: 999px; display: grid; place-items: center;
-  background: var(--paper); color: var(--ink);
+  position: fixed; right: 16px; bottom: 16px; z-index: 60;
+  display: flex; flex-direction: column; align-items: center; gap: 0;
+  padding: 8px 12px 6px; border-radius: 14px;
+  background: var(--paper); color: var(--blue);
+  box-shadow: 0 8px 20px -12px rgba(0,0,0,.35);
   opacity: 0; pointer-events: none; transform: translateY(14px);
   transition: opacity .3s var(--ease-out), transform .45s var(--ease-out);
 }
 .to-top.show { opacity: 1; pointer-events: auto; transform: none; }
 .to-top:hover { transform: translateY(-4px); }
 .to-top:active { transform: translateY(1px); transition-duration: .08s; }
-.to-top svg path { fill: none; stroke: currentColor; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+.to-top svg path { fill: none; stroke: currentColor; stroke-width: 2.6; stroke-linecap: round; stroke-linejoin: round; }
+.to-top span { font-family: Caveat, cursive; font-weight: 600; font-size: 1.3rem; line-height: 1; }
 /* место под кнопку, чтобы она не закрывала ссылки в подвале */
 body footer.mono { padding-bottom: 96px; }
 @media (min-width: 640px) { body footer.mono { padding-bottom: 32px; padding-right: 84px; } }

@@ -114,7 +114,7 @@ function render(id) {
   <section class="pb-14 pt-32 sm:pb-20 sm:pt-40">
     <div class="reveal">${back}</div>
     <div class="relative mt-14 max-w-5xl">
-      ${sticker ? `<span class="drop sticker pill ${c.kicker ? 'pill-red' : 'pill-blue'} absolute -left-1 -top-8 !text-[12px] sm:-top-7 sm:!text-[13px]" style="--r:-8deg;--d:250ms">${sticker}</span>` : ''}
+      ${sticker ? `<p class="drop hand absolute -top-10 left-0 text-[1.6rem] leading-none text-red" style="--r:-2deg;--d:250ms">${sticker}</p>` : ''}
       <h1 data-split class="display text-[1.95rem] sm:text-[4.5rem] lg:text-[6rem]">${c.title}</h1>
     </div>
     ${c.lead ? `<p style="--stagger:450ms" class="reveal prose-case mt-8 max-w-3xl text-[1.2rem] leading-[1.5] sm:text-[1.45rem]">${c.lead}</p>` : ''}
