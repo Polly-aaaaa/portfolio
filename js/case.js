@@ -4,11 +4,10 @@
 const icon = (name, cls = 'h-5 w-5') => `<span data-icon="${name}" class="inline-block shrink-0 ${cls}"></span>`;
 
 // теги — плашками разного цвета
-const PILL = { B2E: 'pill-blue', B2C: 'pill-marker', 'Social Media': 'pill-red' };
+const PILL = { B2E: 'pill-blue', B2C: 'pill-marker', 'Social Media': 'pill-purple' };
 const pills = (list) => list.map((t, i) => `<span class="pill ${PILL[t] || 'pill-white'}${i === 0 ? ' !ml-0' : ''}">${t}</span>`).join('');
 
 // небольшой разброс углов, чтобы отпечатки лежали «живо», но стабильно
-const tilt = (i, a = 1.6) => `${(i % 2 ? 1 : -1) * (a - (i % 3) * 0.4)}deg`;
 
 function picture(key, { alt = '', cls = '', zoom = true, eager = false } = {}) {
   const [w, h] = DIMS[key] || [1600, 1000];
@@ -19,8 +18,7 @@ function picture(key, { alt = '', cls = '', zoom = true, eager = false } = {}) {
 // скриншоты — ровные отпечатки на скотче, чтобы их было удобно читать
 function figure(key, caption = '', { narrow = false } = {}) {
   return `<figure class="reveal ${narrow ? 'mx-auto max-w-xl' : ''}">
-    <div class="print"><span class="tape" style="--tr:${caption.length % 2 ? 3 : -3}deg"></span>${picture(key, { alt: caption })}</div>
-    ${caption ? `<figcaption class="hand mt-3 text-center text-[1.6rem] leading-none">${caption}</figcaption>` : ''}
+    <div class="print mt-6" data-label="${caption || 'Скриншот'}" data-size="${(DIMS[key] || []).join(' × ')}">${picture(key, { alt: caption })}</div>
   </figure>`;
 }
 
@@ -48,13 +46,11 @@ function problemGoal(problem, goal) {
   if (!problem || !goal) return '';
   return `
   <div class="grid gap-10 md:grid-cols-2 md:gap-12">
-    <div class="reveal note note-lined" style="--r:-1.5deg">
-      <span class="tape" style="--tr:-5deg"></span>
-      <p class="hand text-[2.1rem] leading-[32px]">${problem.label}</p>
-      <p class="prose-case mt-0 text-[17px] leading-[32px]">${problem.html}</p>
+    <div class="reveal note note-lined">
+      <p class="hand text-[2.1rem]">${problem.label}</p>
+      <p class="prose-case mt-3 text-[17px] leading-[1.6]">${problem.html}</p>
     </div>
-    <div class="reveal note note-marker" style="--r:1.5deg;--stagger:120ms">
-      <span class="tape" style="--tr:4deg"></span>
+    <div class="reveal note note-marker" style="--stagger:120ms">
       <p class="hand text-[2.1rem] leading-none">${goal.label}</p>
       <p class="prose-case mt-4 text-[1.2rem] font-medium leading-[1.45]">${goal.html}</p>
     </div>
@@ -76,7 +72,7 @@ function detailRow(s) {
 function resultsBlock(c) {
   if (!c.results) return '';
   const items = c.results.map((r) =>
-    `<li class="reveal border-t-[1.5px] border-ink pt-5 text-[1.3rem] leading-[1.45] sm:text-[1.55rem] [&_b]:bg-[linear-gradient(transparent_55%,#c7f45a_55%)] [&_b]:font-semibold">${r}</li>`).join('');
+    `<li class="reveal border-t-[1.5px] border-ink pt-5 text-[1.3rem] leading-[1.45] sm:text-[1.55rem] [&_b]:bg-[rgba(13,153,255,.2)] [&_b]:font-semibold">${r}</li>`).join('');
   const note = c.resultsNote ? `<p class="mono mt-8 text-[12px] leading-relaxed text-ink/70">* ${c.resultsNote}</p>` : '';
   return `
   <div class="mt-16">
@@ -89,8 +85,7 @@ function resultsBlock(c) {
 function caseCard(id, i) {
   const c = CASES[id];
   return `<a href="case.html?id=${id}" class="reveal group block">
-    <div class="print" style="--r:${tilt(i)}">
-      <span class="tape" style="--tr:${i % 2 ? 4 : -4}deg"></span>
+    <div class="print" data-label="${c.kicker || 'Кейс'}" data-size="${(DIMS[c.cover] || []).join(' × ')}">
       <div class="overflow-hidden" style="background:${c.coverBg}; view-transition-name: cover-${id}">${picture(c.cover, { alt: c.title, zoom: false, cls: 'aspect-[5/4] object-cover' })}</div>
     </div>
     <p class="mono mt-6 text-[12px]">${c.kicker || 'Проект'}</p>
@@ -114,15 +109,14 @@ function render(id) {
   <section class="pb-14 pt-32 sm:pb-20 sm:pt-40">
     <div class="reveal">${back}</div>
     <div class="relative mt-14 max-w-5xl">
-      ${sticker ? `<p class="drop hand absolute -top-10 left-0 text-[1.6rem] leading-none text-red" style="--r:-2deg;--d:250ms">${sticker}</p>` : ''}
+      ${sticker ? `<p class="drop hand absolute -top-10 left-0 text-[1.6rem] leading-none text-purple" style="--d:250ms">${sticker}</p>` : ''}
       <h1 data-split class="display text-[1.95rem] sm:text-[4.5rem] lg:text-[6rem]">${c.title}</h1>
     </div>
     ${c.lead ? `<p style="--stagger:450ms" class="reveal prose-case mt-8 max-w-3xl text-[1.2rem] leading-[1.5] sm:text-[1.45rem]">${c.lead}</p>` : ''}
     <p style="--stagger:550ms" class="reveal mt-6 text-[22px] leading-[1.9]">${pills(c.tags)}</p>
   </section>
   <div class="pb-20 sm:pb-28">
-    <div class="print" style="--r:-.8deg">
-      <span class="tape" style="--tr:-3deg"></span>
+    <div class="print" data-label="Обложка" data-size="${(DIMS[c.cover] || []).join(' × ')}">
       <div class="overflow-hidden" style="background:${c.coverBg}; view-transition-name: cover-${id}">${picture(c.cover, { alt: c.title, eager: true })}</div>
     </div>
   </div>`;
@@ -151,7 +145,7 @@ function render(id) {
       ? `<div class="reveal mb-12">${h2(num + s.title)}</div>`
       : (s.stages ? `<div class="reveal mb-12">${h2('Как шла работа')}</div>` : '');
     const note = s.note
-      ? `<div class="reveal note note-red mx-auto max-w-md" style="--r:-2deg"><span class="tape" style="--tr:5deg"></span><p class="hand text-[1.6rem] leading-[1.1]">${s.note}</p></div>`
+      ? `<div class="reveal note note-red mx-auto max-w-md"><p class="hand text-[1.6rem] leading-[1.1]">${s.note}</p></div>`
       : '';
     return `
     <section class="border-t-[1.5px] border-ink py-16 sm:py-24">
@@ -176,8 +170,7 @@ function render(id) {
   const nextBlock = `
   <section class="border-t-[1.5px] border-ink py-16 sm:py-24">
     <a href="case.html?id=${next}" class="reveal group grid items-center gap-10 md:grid-cols-2">
-      <div class="print" style="--r:1.5deg">
-        <span class="tape" style="--tr:-4deg"></span>
+      <div class="print" data-label="Следующий проект" data-size="${(DIMS[nc.cover] || []).join(' × ')}">
         <div class="overflow-hidden" style="background:${nc.coverBg};${nextVT}">${picture(nc.cover, { alt: nc.title, zoom: false, cls: 'aspect-[5/3] object-cover' })}</div>
       </div>
       <div>

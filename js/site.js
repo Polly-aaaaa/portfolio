@@ -115,8 +115,7 @@ const toTop = document.createElement('a');
 toTop.href = '#top';
 toTop.className = 'to-top';
 toTop.setAttribute('aria-label', 'Наверх');
-toTop.innerHTML = `<svg width="26" height="34" viewBox="0 0 26 34" aria-hidden="true">
-  <path d="M15 32 C 9 24, 9 14, 13 3"/><path d="M5 11 C 8 8, 10.5 5.5, 13 2.5 C 16 5, 18.5 7.5, 21.5 10"/></svg><span>наверх</span>`;
+toTop.innerHTML = `<svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 16 V 4"/><path d="M4.5 9.5 L10 4 L15.5 9.5"/></svg>`;
 document.body.append(toTop);
 const onScrollTop = () => toTop.classList.toggle('show', scrollY > innerHeight * 0.9);
 addEventListener('scroll', onScrollTop, { passive: true });
@@ -125,4 +124,13 @@ toTop.addEventListener('click', (e) => {
   e.preventDefault();
   scrollTo({ top: 0, behavior: reduceMotion ? 'auto' : 'smooth' });
   history.replaceState(null, '', location.pathname + location.search);
+});
+
+// Плашка размера под фреймом — появляется при наведении, как в редакторе
+document.querySelectorAll('.print[data-size]').forEach((frame) => {
+  if (!frame.dataset.size.trim()) return;
+  const badge = document.createElement('span');
+  badge.className = 'size-badge';
+  badge.textContent = frame.dataset.size;
+  frame.append(badge);
 });

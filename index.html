@@ -18,18 +18,18 @@
       theme: {
         extend: {
           fontFamily: { sans: ['Onest', 'sans-serif'] },
-          colors: { ink: '#23261f', paper: '#fbfaf5', line: '#dcdcd4', red: '#d02a25', blue: '#2346c8', marker: '#c7f45a', redtint: '#ffdcd9' },
+          colors: { ink: '#1e1e1e', paper: '#f5f5f5', line: '#e3e3e3', purple: '#7b3fe4', blue: '#0b72d6', marker: '#ffcd29', sel: '#0d99ff' },
         },
       },
     };
   </script>
-  <link rel="stylesheet" href="css/site.css?v=20261022220330" />
+  <link rel="stylesheet" href="css/site.css?v=20261022221421" />
 </head>
 <body class="font-sans text-ink">
 
   <!-- ===== Nav ===== -->
   <header class="fixed inset-x-0 top-4 z-50 flex justify-center px-4">
-    <nav id="nav" class="w-full max-w-[22rem] rounded-xl border-[1.5px] border-ink bg-white">
+    <nav id="nav" class="w-full max-w-[22rem] rounded-xl border border-black/10 bg-white shadow-[0_2px_8px_rgba(0,0,0,.08)]">
       <div class="flex items-center justify-between py-2.5 pl-3 pr-2">
         <a href="#top" class="pill pill-blue !m-0 !text-[11px]">П. Артамонова</a>
         <button id="menuBtn" aria-label="Меню" aria-expanded="false" class="flex h-8 w-8 flex-col items-center justify-center gap-[5px]">
@@ -40,10 +40,10 @@
       <div id="menu" class="grid grid-rows-[0fr] transition-all duration-300">
         <div class="overflow-hidden">
           <ul class="mono flex flex-col gap-1 px-3 pb-3 text-[13px]">
-            <li><a href="#work" class="block rounded-md px-2 py-2 transition-colors hover:bg-marker">Проекты</a></li>
-            <li><a href="#process" class="block rounded-md px-2 py-2 transition-colors hover:bg-redtint">Как я работаю</a></li>
-            <li><a href="#results" class="block rounded-md px-2 py-2 transition-colors hover:bg-marker">Результаты</a></li>
-            <li><a href="#contact" class="block rounded-md px-2 py-2 transition-colors hover:bg-redtint">Контакты</a></li>
+            <li><a href="#work" class="block rounded-md px-2 py-2 transition-colors hover:bg-[#e5f4ff]">Проекты</a></li>
+            <li><a href="#process" class="block rounded-md px-2 py-2 transition-colors hover:bg-[#e5f4ff]">Как я работаю</a></li>
+            <li><a href="#results" class="block rounded-md px-2 py-2 transition-colors hover:bg-[#e5f4ff]">Результаты</a></li>
+            <li><a href="#contact" class="block rounded-md px-2 py-2 transition-colors hover:bg-[#e5f4ff]">Контакты</a></li>
           </ul>
         </div>
       </div>
@@ -54,14 +54,16 @@
 
     <!-- ===== Hero: коллаж ===== -->
     <section class="relative pb-20 pt-32 sm:pb-28 sm:pt-40">
+      <div aria-hidden="true" class="pointer-events-none absolute inset-0 overflow-hidden">
+        <div class="mp" style="--c:#0b72d6;left:58%;top:30%;--dx:60px;--dy:40px;--dur:15s"><svg viewBox="0 0 18 18"><path d="M2 1.5 L2 15 L5.8 11.4 L8.4 16.6 L10.8 15.5 L8.3 10.4 L13.6 10.2 Z"/></svg><span>Полина</span></div>
+        <div class="mp hidden sm:flex" style="--c:#7b3fe4;left:8%;top:76%;--dx:90px;--dy:-30px;--dur:18s;--delay:-4s"><svg viewBox="0 0 18 18"><path d="M2 1.5 L2 15 L5.8 11.4 L8.4 16.6 L10.8 15.5 L8.3 10.4 L13.6 10.2 Z"/></svg><span>Проджект</span></div>
+      </div>
       <!-- фото-отпечаток на скотче -->
-      <figure class="drop print absolute right-0 top-28 hidden w-44 lg:block xl:w-52" style="--r:6deg;--d:500ms">
-        <span class="tape" style="--tr:-6deg"></span>
+      <figure class="drop print absolute right-0 top-32 hidden w-44 lg:block xl:w-52" data-label="Полина.jpg" data-size="512 × 640" style="--d:500ms">
         <img src="assets/avatar.jpg" width="512" height="768" alt="Полина Артамонова" class="aspect-[4/5] w-full object-cover object-[50%_30%]" />
-        <figcaption class="hand mt-2 text-center text-2xl leading-none">это я :)</figcaption>
       </figure>
       <!-- стикер -->
-      <div class="drop note note-marker absolute bottom-8 right-24 hidden w-48 lg:block" style="--r:-5deg;--d:750ms">
+      <div class="drop note note-marker absolute bottom-6 right-28 hidden w-48 lg:block" style="--d:750ms">
         <p class="hand text-[1.7rem] leading-[1.05]">3+ года в UI/UX,<br />B2E и B2C</p>
       </div>
 
@@ -71,10 +73,8 @@
       <p class="display reveal mt-8 text-[1.6rem] text-ink/45 sm:mt-10 sm:text-[2.6rem] lg:max-w-[44rem] lg:text-[3rem] xl:max-w-none" style="--stagger:350ms">Дизайнер интерфейсов</p>
 
       <!-- фото на телефоне — в потоке -->
-      <figure class="reveal print mx-auto mt-10 w-48 lg:hidden" style="--r:4deg">
-        <span class="tape"></span>
+      <figure class="reveal print mx-auto mt-14 w-48 lg:hidden" data-label="Полина.jpg" data-size="512 × 640">
         <img src="assets/avatar.jpg" width="512" height="768" alt="Полина Артамонова" class="aspect-[4/5] w-full object-cover object-[50%_30%]" />
-        <figcaption class="hand mt-2 text-center text-2xl leading-none">это я :)</figcaption>
       </figure>
 
       <p class="reveal mt-10 max-w-3xl text-[1.3rem] leading-[1.45] sm:text-[1.65rem]" style="--stagger:500ms">
@@ -103,18 +103,16 @@
 
       <div data-stagger class="mt-14 grid gap-x-12 gap-y-16 md:grid-cols-2">
         <a href="case.html?id=corp" class="reveal group block">
-          <div class="print" style="--r:-1.6deg">
-            <span class="tape" style="--tr:3deg"></span>
+          <div class="print" data-label="Обложка / HR-сервис" data-size="2000 × 1200">
             <div style="view-transition-name: cover-corp" class="overflow-hidden bg-[#eef3ff]"><img src="assets/corp.webp" width="2000" height="1200" alt="Корпоративный HR-сервис — главная страница" loading="lazy" class="aspect-[5/3] w-full object-cover" /></div>
           </div>
           <h3 class="mt-6 text-2xl font-bold tracking-tight"><span class="link-u">Корпоративный сервис</span></h3>
           <p class="mt-2 max-w-md text-[16px] leading-relaxed text-ink/75">Внутренний сервис для HR и сотрудников: ревью 360°, опросы, адаптация, учёт отпусков и удалёнок.</p>
-          <p class="mt-3 text-[20px] leading-[1.9]"><span class="pill pill-blue !ml-0">B2E</span><span class="pill pill-white">Web</span><span class="pill pill-red">2 кейса внутри</span><span class="pill pill-white">2024–2025</span></p>
+          <p class="mt-3 text-[20px] leading-[1.9]"><span class="pill pill-blue !ml-0">B2E</span><span class="pill pill-white">Web</span><span class="pill pill-purple">2 кейса внутри</span><span class="pill pill-white">2024–2025</span></p>
         </a>
 
         <a href="case.html?id=support" class="reveal group block md:mt-24">
-          <div class="print" style="--r:1.4deg">
-            <span class="tape" style="--tr:-5deg"></span>
+          <div class="print" data-label="Обложка / Техподдержка" data-size="2000 × 1200">
             <div style="view-transition-name: cover-support" class="overflow-hidden bg-[#ffb800]"><img src="assets/support.webp" width="2000" height="1200" alt="Сервис технической поддержки — панель сотрудника и мобильный клиент" loading="lazy" class="aspect-[5/3] w-full object-cover" /></div>
           </div>
           <h3 class="mt-6 text-2xl font-bold tracking-tight"><span class="link-u">Сервис технической поддержки</span></h3>
@@ -123,8 +121,7 @@
         </a>
 
         <a href="case.html?id=docs" class="reveal group block">
-          <div class="print" style="--r:1.2deg">
-            <span class="tape" style="--tr:4deg"></span>
+          <div class="print" data-label="Обложка / Документы" data-size="2000 × 1200">
             <div style="view-transition-name: cover-docs" class="overflow-hidden bg-[#f3efff]"><img src="assets/docs.webp" width="2000" height="1200" alt="Сервис для работы с документами — кабинет администратора" loading="lazy" class="aspect-[5/3] w-full object-cover" /></div>
           </div>
           <h3 class="mt-6 text-2xl font-bold tracking-tight"><span class="link-u">Сервис для работы с документами</span></h3>
@@ -133,27 +130,25 @@
         </a>
 
         <a href="case.html?id=biz" class="reveal group block md:mt-24">
-          <div class="print" style="--r:-1.8deg">
-            <span class="tape" style="--tr:-3deg"></span>
+          <div class="print" data-label="Обложка / Предприниматели" data-size="2000 × 1200">
             <div style="view-transition-name: cover-biz" class="overflow-hidden bg-[#0b3d86]"><img src="assets/biz.webp" width="2000" height="1200" alt="Сервис для предпринимателей — макеты под NDA" loading="lazy" class="aspect-[5/3] w-full object-cover" /></div>
           </div>
           <h3 class="mt-6 text-2xl font-bold tracking-tight"><span class="link-u">Сервис для предпринимателей</span></h3>
           <p class="mt-2 max-w-md text-[16px] leading-relaxed text-ink/75">Сообщество предпринимателей для общения, обучения и поддержки. Проектировала раздел «Профиль».</p>
-          <p class="mt-3 text-[20px] leading-[1.9]"><span class="pill pill-red !ml-0">Social Media</span><span class="pill pill-marker">B2C</span><span class="pill pill-white">Web</span><span class="pill pill-white">PWA</span><span class="pill pill-white">2025</span></p>
+          <p class="mt-3 text-[20px] leading-[1.9]"><span class="pill pill-purple !ml-0">Social Media</span><span class="pill pill-marker">B2C</span><span class="pill pill-white">Web</span><span class="pill pill-white">PWA</span><span class="pill pill-white">2025</span></p>
         </a>
       </div>
     </section>
 
     <!-- ===== Process ===== -->
-    <section id="process" class="py-20 sm:py-28">
+    <section id="process" class="relative py-20 sm:py-28">
       <h2 class="reveal display text-[3rem] sm:text-[5.5rem]">Как я работаю</h2>
 
       <div class="mt-12 grid gap-12 lg:grid-cols-[1.4fr_1fr] lg:gap-16">
         <p class="reveal text-[1.3rem] leading-[1.45] sm:text-[1.65rem]">
           Отвечаю за <span class="mk-hl">весь дизайн-цикл</span> — от первых исследований до релиза. Сама провожу интервью с пользователями, тестирую интерактивные прототипы и защищаю решения перед командой. На двух проектах была <span class="mk-wave">единственным дизайнером</span>.
         </p>
-        <div class="reveal note note-lined self-start" style="--r:2deg;--stagger:150ms">
-          <span class="tape" style="--tr:-8deg"></span>
+        <div class="reveal note note-lined self-start" style="--stagger:150ms">
           <p class="hand text-[1.9rem] leading-[32px]">С кем работаю:</p>
           <ul class="hand text-[1.6rem] leading-[32px]">
             <li>— проджект-менеджер и заказчик</li>
@@ -164,23 +159,28 @@
         </div>
       </div>
 
-      <ol data-stagger class="mt-20 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
-        <li class="reveal note note-marker" style="--r:-2deg">
+      <div aria-hidden="true" class="pointer-events-none absolute inset-x-0 bottom-0 top-1/2 overflow-hidden">
+        <div class="mp" style="--c:#0b7a3e;left:20%;top:12%;--dx:80px;--dy:30px;--dur:17s"><svg viewBox="0 0 18 18"><path d="M2 1.5 L2 15 L5.8 11.4 L8.4 16.6 L10.8 15.5 L8.3 10.4 L13.6 10.2 Z"/></svg><span>Тим-лид</span></div>
+        <div class="mp hidden sm:flex" style="--c:#c9301a;left:62%;top:58%;--dx:-70px;--dy:40px;--dur:14s;--delay:-6s"><svg viewBox="0 0 18 18"><path d="M2 1.5 L2 15 L5.8 11.4 L8.4 16.6 L10.8 15.5 L8.3 10.4 L13.6 10.2 Z"/></svg><span>Тестировщик</span></div>
+        <div class="mp hidden lg:flex" style="--c:#7b3fe4;left:84%;top:20%;--dx:-50px;--dy:60px;--dur:19s;--delay:-2s"><svg viewBox="0 0 18 18"><path d="M2 1.5 L2 15 L5.8 11.4 L8.4 16.6 L10.8 15.5 L8.3 10.4 L13.6 10.2 Z"/></svg><span>Разработчик</span></div>
+      </div>
+      <ol data-stagger class="relative mt-20 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+        <li class="reveal note note-marker">
           <span class="mono text-[12px]">01</span>
-          <h3 class="hand mt-1 text-[2rem] leading-none">Анализ и интервью</h3>
+          <h3 class="hand mt-1 text-[2rem] leading-none">Анализ и интервью</h3><svg class="noodle" viewBox="0 0 40 36" aria-hidden="true"><path d="M3 18 C 14 4, 24 32, 34 18"/><path d="M28 13 L 35 18 L 29 24"/><circle cx="3" cy="18" r="3"/></svg>
           <p class="mt-3 text-[15px] leading-relaxed">Разбираю текущий сервис, общаюсь с сотрудниками и HR, нахожу узкие места.</p>
         </li>
-        <li class="reveal note note-red" style="--r:1.5deg">
+        <li class="reveal note note-red">
           <span class="mono text-[12px]">02</span>
-          <h3 class="hand mt-1 text-[2rem] leading-none">Прототипирование</h3>
+          <h3 class="hand mt-1 text-[2rem] leading-none">Прототипирование</h3><svg class="noodle" viewBox="0 0 40 36" aria-hidden="true"><path d="M3 18 C 14 4, 24 32, 34 18"/><path d="M28 13 L 35 18 L 29 24"/><circle cx="3" cy="18" r="3"/></svg>
           <p class="mt-3 text-[15px] leading-relaxed">Собираю интерактивные прототипы и проверяю их на пользователях.</p>
         </li>
-        <li class="reveal note note-blue" style="--r:-1deg">
+        <li class="reveal note note-blue">
           <span class="mono text-[12px]">03</span>
-          <h3 class="hand mt-1 text-[2rem] leading-none">Доработка</h3>
+          <h3 class="hand mt-1 text-[2rem] leading-none">Доработка</h3><svg class="noodle" viewBox="0 0 40 36" aria-hidden="true"><path d="M3 18 C 14 4, 24 32, 34 18"/><path d="M28 13 L 35 18 L 29 24"/><circle cx="3" cy="18" r="3"/></svg>
           <p class="mt-3 text-[15px] leading-relaxed">Вношу правки по обратной связи и презентую решения команде.</p>
         </li>
-        <li class="reveal note bg-white" style="--r:2deg">
+        <li class="reveal note bg-white">
           <span class="mono text-[12px]">04</span>
           <h3 class="hand mt-1 text-[2rem] leading-none">Ревью вёрстки</h3>
           <p class="mt-3 text-[15px] leading-relaxed">Довожу продукт до релиза и слежу, чтобы реализация совпала с макетом.</p>
@@ -194,11 +194,11 @@
 
       <div class="mt-14 grid gap-10 md:grid-cols-2 md:gap-12">
         <a href="case.html?id=vacation" class="reveal group flex items-center gap-5 sm:gap-7">
-          <span class="grade"><span data-count="30" data-prefix="до " data-suffix="%">до 30%</span></span>
+          <span class="grade" data-label="Метрика / Отпуска"><span data-count="30" data-prefix="до " data-suffix="%">до 30%</span></span>
           <span class="text-[1.15rem] leading-snug sm:text-[1.35rem]"><span class="link-u">времени HR экономит сбор отпусков и удалёнок в одном месте</span></span>
         </a>
         <a href="case.html?id=review" class="reveal group flex items-center gap-5 sm:gap-7">
-          <span class="grade" style="transform:rotate(3deg)"><span data-count="15" data-suffix="%">15%</span></span>
+          <span class="grade" data-label="Метрика / Ревью 360°"><span data-count="15" data-suffix="%">15%</span></span>
           <span class="text-[1.15rem] leading-snug sm:text-[1.35rem]"><span class="link-u">сотрудников получили повышение грейда по итогам ревью 360°</span></span>
         </a>
       </div>
@@ -212,21 +212,20 @@
 
     <!-- ===== CTA ===== -->
     <section id="contact" class="relative py-24 sm:py-32">
-      <div class="reveal note note-red absolute right-2 top-10 hidden w-56 md:block" style="--r:5deg">
-        <span class="tape" style="--tr:6deg"></span>
+      <div class="reveal note note-red absolute right-2 top-10 hidden w-56 md:block">
         <p class="hand text-[1.6rem] leading-[1.05]">Часть проектов под NDA — покажу макеты на созвоне</p>
       </div>
       <h2 class="reveal display max-w-4xl text-[3rem] sm:text-[6rem]">Давайте обсудим ваш продукт</h2>
       <p class="reveal mt-6 max-w-md text-[17px] leading-relaxed text-ink/75 md:hidden">Часть проектов под NDA — подробные макеты могу показать на личном созвоне.</p>
       <div class="reveal mt-10 flex flex-wrap items-center gap-3">
         <a href="https://t.me/p_p_polly" target="_blank" rel="noopener" class="btn bg-blue text-white">Телеграм</a>
-        <a href="mailto:psineleva@bk.ru" class="btn bg-red text-white">psineleva@bk.ru</a>
+        <a href="mailto:psineleva@bk.ru" class="btn bg-purple text-white">psineleva@bk.ru</a>
         <a href="https://drive.google.com/file/d/1vTA9CH9CJkSyZ6TN2uQzDy6aibkoubeJ/view" target="_blank" rel="noopener" class="btn bg-marker">Резюме</a>
       </div>
     </section>
 
     <!-- ===== Footer ===== -->
-    <footer class="mono flex flex-col items-center justify-between gap-4 border-t-[1.5px] border-ink py-8 text-[12px] sm:flex-row">
+    <footer class="mono flex flex-col items-center justify-between gap-4 border-t border-black/15 py-8 text-[12px] sm:flex-row">
       <p>© 2026 Полина Артамонова · Санкт-Петербург</p>
       <div class="flex gap-6">
         <a href="https://t.me/p_p_polly" target="_blank" rel="noopener" class="link-u">Телеграм</a>
@@ -236,7 +235,7 @@
     </footer>
   </main>
 
-  <script src="js/doodles.js?v=20261022220330"></script>
-  <script src="js/site.js?v=20261022220330"></script>
+  <script src="js/doodles.js?v=20261022221421"></script>
+  <script src="js/site.js?v=20261022221421"></script>
 </body>
 </html>

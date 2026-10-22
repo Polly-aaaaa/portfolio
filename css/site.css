@@ -1,161 +1,176 @@
 /* Общие стили для всех страниц.
-   Мир: скрапбук на белой бумаге — огромные плотные заголовки, моно-плашки-маркеры,
-   отпечатки на скотче, стикеры, записки от руки. */
+   Мир: рабочий файл дизайнера — холст с точечной сеткой, фреймы с подписями,
+   синее выделение с маркерами, стикеры FigJam, курсоры соавторов, связи прототипа. */
 
 :root {
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
-  --ink: #23261f;
-  --paper: #fbfaf5;
-  --red: #d02a25;          /* красная ручка */
-  --blue: #2346c8;         /* синяя ручка */
-  --marker: #c7f45a;       /* текстовыделитель */
-  --note-marker: #dcf98f;
-  --note-red: #ffdcd9;
-  --note-blue: #dfe5fb;
-  /* лёгкая фактура бумаги */
-  --fiber: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.6' numOctaves='4' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .15 0 0 0 0 .15 0 0 0 0 .13 0 0 0 .16 -.05'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  --ink: #1e1e1e;
+  --canvas: #f5f5f5;
+  --sel: #0d99ff;          /* синий выделения */
+  --blue: #0b72d6;         /* синий для кнопок — темнее, чтобы белый текст читался */
+  --purple: #7b3fe4;       /* фиолетовый компонентов */
+  --marker: #ffcd29;       /* жёлтый */
+  --sticky-yellow: #ffe28a;
+  --sticky-pink: #ffc7c2;
+  --sticky-blue: #bde3ff;
+  /* четыре квадратных маркера по углам выделения */
+  --handles:
+    linear-gradient(#fff,#fff) 1.5px 1.5px / 5px 5px no-repeat,
+    linear-gradient(#fff,#fff) calc(100% - 1.5px) 1.5px / 5px 5px no-repeat,
+    linear-gradient(#fff,#fff) 1.5px calc(100% - 1.5px) / 5px 5px no-repeat,
+    linear-gradient(#fff,#fff) calc(100% - 1.5px) calc(100% - 1.5px) / 5px 5px no-repeat,
+    linear-gradient(var(--sel),var(--sel)) 0 0 / 8px 8px no-repeat,
+    linear-gradient(var(--sel),var(--sel)) 100% 0 / 8px 8px no-repeat,
+    linear-gradient(var(--sel),var(--sel)) 0 100% / 8px 8px no-repeat,
+    linear-gradient(var(--sel),var(--sel)) 100% 100% / 8px 8px no-repeat;
 }
 
 html { scroll-behavior: smooth; }
+/* холст с точечной сеткой */
 body {
   color: var(--ink); -webkit-font-smoothing: antialiased; overflow-x: clip;
-  background-color: var(--paper);
-  background-image: var(--fiber), radial-gradient(120% 80% at 20% 0%, #ffffff 0%, transparent 60%);
+  background-color: var(--canvas);
+  background-image: radial-gradient(#cdcdcd 1px, transparent 1.4px);
+  background-size: 20px 20px;
 }
 
-:focus-visible { outline: 2px solid var(--blue); outline-offset: 3px; }
-::selection { background: var(--marker); color: var(--ink); }
-html { scrollbar-color: #bdbdb4 transparent; }
+:focus-visible { outline: 2px solid var(--sel); outline-offset: 3px; }
+::selection { background: rgba(13,153,255,.25); color: var(--ink); }
+html { scrollbar-color: #c4c4c4 transparent; }
 
 /* ---------- Типографика ---------- */
-.display { font-family: Onest, sans-serif; font-weight: 800; text-transform: uppercase; letter-spacing: -0.065em; line-height: .86; overflow-wrap: break-word; }
+.display { font-family: Onest, sans-serif; font-weight: 800; text-transform: uppercase; letter-spacing: -0.06em; line-height: .88; overflow-wrap: break-word; }
 .mono { font-family: Onest, sans-serif; font-weight: 500; letter-spacing: .01em; }
-.hand { font-family: Caveat, cursive; font-weight: 600; letter-spacing: 0; text-transform: none; }
+/* бывший рукописный — теперь текст стикеров FigJam */
+.hand { font-family: Onest, sans-serif; font-weight: 600; letter-spacing: -.01em; text-transform: none; font-size: 1.1rem !important; line-height: 1.35 !important; }
 h1, h2, h3, h4 { text-wrap: balance; }
 .prose-case b { font-weight: 600; color: var(--ink); }
 
-/* ---------- Плашки-маркеры (как в тексте у референса) ---------- */
+/* ---------- Чипы-свойства ---------- */
 .pill {
   display: inline-block; vertical-align: .12em; margin: 0 .1em;
-  padding: .3em .65em; border-radius: 6px;
+  padding: .3em .6em; border-radius: 4px;
   font-family: Onest, sans-serif; font-weight: 600;
-  letter-spacing: 0; font-size: max(13px, .62em); line-height: 1.2; color: var(--ink); white-space: nowrap;
+  letter-spacing: 0; font-size: max(13px, .6em); line-height: 1.2; color: var(--ink); white-space: nowrap;
 }
-.pill-red { background: var(--red); color: #fff; }
+.pill-purple { background: var(--purple); color: #fff; }
 .pill-marker { background: var(--marker); }
 .pill-blue { background: var(--blue); color: #fff; }
-.pill-white { background: #fff; box-shadow: inset 0 0 0 1.5px var(--ink); }
+.pill-white { background: #fff; box-shadow: inset 0 0 0 1px #dcdcdc; }
 
-/* Кнопки — те же плашки, только крупнее */
+/* ---------- Кнопки — как Share в редакторе ---------- */
 .btn {
-  display: inline-flex; align-items: center; gap: .6em; padding: 1em 1.5em; border-radius: 999px;
+  display: inline-flex; align-items: center; gap: .6em; padding: .85em 1.3em; border-radius: 6px;
   font-family: Onest, sans-serif; font-weight: 600; letter-spacing: 0; font-size: 15px;
-  transition: transform .35s var(--ease-out), box-shadow .35s var(--ease-out), background-color .2s;
-  box-shadow: 0 2px 0 rgba(38,39,34,.9);
+  box-shadow: 0 1px 2px rgba(0,0,0,.12);
+  transition: transform .25s var(--ease-out), box-shadow .25s var(--ease-out), filter .2s;
 }
-.btn:hover { transform: translateY(-2px) rotate(-1deg); box-shadow: 0 5px 0 rgba(38,39,34,.9); }
-.btn:active { transform: translateY(1px); box-shadow: 0 1px 0 rgba(38,39,34,.9); transition-duration: .08s; }
+.btn:hover { transform: translateY(-2px); box-shadow: 0 6px 14px -6px rgba(0,0,0,.35); filter: brightness(1.05); }
+.btn:active { transform: translateY(0); box-shadow: 0 1px 2px rgba(0,0,0,.12); transition-duration: .08s; }
 
-/* Наклейка-бейдж под углом */
-.sticker { display: inline-block; transform: rotate(-12deg); }
+/* ---------- Выделение слоя (рамка + маркеры) ---------- */
+.mk-circle { position: relative; white-space: nowrap; padding: 0 .12em; outline: 1.5px solid var(--sel); outline-offset: 2px; }
+.mk-circle::after { content: ''; position: absolute; inset: -6.5px; background: var(--handles); pointer-events: none; }
+.mk-wave { text-decoration: underline 2px var(--sel); text-underline-offset: .22em; text-decoration-skip-ink: none; }
+.mk-hl { background: rgba(13,153,255,.2); padding: 0 .08em; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
 
-/* ---------- Пометки ручкой в тексте ---------- */
-/* обвести красной ручкой */
-.mk-circle { position: relative; white-space: nowrap; padding: 0 .12em; }
-.mk-circle::after {
-  content: ''; position: absolute; inset: -.3em -.4em -.25em -.35em; pointer-events: none;
-  background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 40' preserveAspectRatio='none'><path d='M10 23 C 7 10, 40 3, 70 5 C 95 7, 99 22, 86 31 C 70 40, 22 39, 9 30 C 3 25, 10 13, 32 10' fill='none' stroke='%23d02a25' stroke-width='2.2' stroke-linecap='round' vector-effect='non-scaling-stroke'/></svg>") center / 100% 100% no-repeat;
-}
-/* подчеркнуть волной синей ручкой */
-.mk-wave {
-  background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='22' height='8' viewBox='0 0 22 8'><path d='M0 5 Q 5.5 1 11 5 T 22 5' fill='none' stroke='%232346c8' stroke-width='2' stroke-linecap='round'/></svg>") 0 100% / 22px 8px repeat-x;
-  padding-bottom: .2em; -webkit-box-decoration-break: clone; box-decoration-break: clone;
-}
-/* провести салатовым маркером */
-.mk-hl {
-  background: linear-gradient(100deg, transparent .15em, rgba(199,244,90,.95) .3em, rgba(199,244,90,.85) calc(100% - .3em), transparent calc(100% - .15em)) 0 70% / 100% 60% no-repeat;
-  padding: 0 .1em; -webkit-box-decoration-break: clone; box-decoration-break: clone;
-}
-/* имя в заголовке подчёркнуто волной красной ручкой — рисуется после появления слов */
+/* «Я Полина» — выделенный текстовый слой, выделение появляется после слов */
 .underline-pen { position: relative; display: inline-block; }
 .underline-pen::after {
-  content: ''; position: absolute; left: 0; right: 0; bottom: -.16em; height: .17em; pointer-events: none;
-  background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='60' height='16' viewBox='0 0 60 16'><path d='M1 9 Q 15 2 30 9 T 59 9' fill='none' stroke='%23d02a25' stroke-width='4' stroke-linecap='round'/></svg>") 0 50% / .62em 100% repeat-x;
-  clip-path: inset(0 100% 0 0);
+  content: ''; position: absolute; inset: -.06em -.12em -.02em; pointer-events: none;
+  outline: 2px solid var(--sel); background: var(--handles); opacity: 0;
 }
-.split-done .underline-pen::after { animation: pen-draw .7s var(--ease-out) 1s forwards; }
-html:not(.js) .underline-pen::after, html.js:not(.motion-ready) .underline-pen::after { clip-path: none; }
-@keyframes pen-draw { to { clip-path: inset(0 0 0 0); } }
+.split-done .underline-pen::after { animation: sel-in .3s ease-out 1.05s forwards; }
+html:not(.js) .underline-pen::after, html.js:not(.motion-ready) .underline-pen::after { opacity: 1; }
+@keyframes sel-in { to { opacity: 1; } }
 
-/* ---------- «Оценка на полях»: число красной ручкой в обведённом овале ---------- */
+/* ---------- Метрика — выделенный фрейм с подписью ---------- */
 .grade {
   position: relative; flex: none; display: grid; place-items: center;
-  width: 10.5rem; height: 6.2rem; transform: rotate(-4deg);
-  font-family: Caveat, cursive; font-weight: 700; font-size: 2.7rem; line-height: 1; color: var(--red); white-space: nowrap;
+  min-width: 9.5rem; min-height: 5.5rem; padding: .75rem 1rem; transform: none !important;
+  background: #fff; outline: 1.5px solid var(--sel);
+  font-family: Onest, sans-serif; font-weight: 800; letter-spacing: -.04em; font-size: 2.4rem; line-height: 1; color: var(--ink); white-space: nowrap;
 }
-.grade::after {
-  content: ''; position: absolute; inset: 0; pointer-events: none;
-  background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 60' preserveAspectRatio='none'><path d='M12 32 C 8 14, 40 4, 66 6 C 92 8, 99 28, 88 42 C 74 58, 24 58, 10 44 C 3 36, 9 20, 34 13' fill='none' stroke='%23d02a25' stroke-width='2.4' stroke-linecap='round' vector-effect='non-scaling-stroke'/></svg>") center / 100% 100% no-repeat;
+.grade::after { content: ''; position: absolute; inset: -4.75px; background: var(--handles); pointer-events: none; }
+.grade::before {
+  content: attr(data-label); position: absolute; left: -1.5px; bottom: calc(100% + 6px);
+  background: var(--sel); color: #fff; font-size: 11px; font-weight: 600; letter-spacing: 0; padding: 2px 6px; border-radius: 3px;
 }
-@media (min-width: 640px) { .grade { width: 14rem; height: 8rem; font-size: 3.6rem; } }
+@media (min-width: 640px) { .grade { min-width: 12rem; min-height: 7rem; padding: 1rem 1.25rem; font-size: 3.2rem; } }
 
-/* Стрелки ручкой — без круга */
-.pen path { fill: none; stroke: var(--blue); stroke-width: 2.6; stroke-linecap: round; stroke-linejoin: round; }
+/* Стрелки-связи прототипа */
+.pen path { fill: none; stroke: var(--sel); stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
 
-/* ---------- Коллаж: отпечатки, скотч, стикеры, линованный лист ---------- */
+/* ---------- Фреймы ---------- */
 .print {
-  position: relative; background: #fff; padding: 10px 10px 14px;
-  box-shadow: 0 1px 2px rgba(0,0,0,.08), 0 14px 30px -14px rgba(0,0,0,.35);
-  transform: rotate(var(--r, 0deg));
-  transition: transform .5s var(--ease-out), box-shadow .5s var(--ease-out);
+  --r: 0deg !important;
+  position: relative; background: #fff; border-radius: 2px;
+  box-shadow: 0 1px 3px rgba(0,0,0,.08);
+  outline: 1.5px solid transparent;
+  transition: outline-color .15s, box-shadow .3s;
 }
-.group:hover .print, .print.straighten:hover { transform: rotate(0deg) translateY(-4px); box-shadow: 0 2px 4px rgba(0,0,0,.08), 0 24px 40px -18px rgba(0,0,0,.4); }
-
-.tape {
-  position: absolute; z-index: 2; width: 110px; height: 30px; pointer-events: none;
-  background: linear-gradient(180deg, rgba(220,220,214,.82), rgba(200,200,193,.78));
-  box-shadow: 0 1px 2px rgba(0,0,0,.12);
-  clip-path: polygon(2% 8%, 8% 0, 14% 10%, 22% 2%, 30% 9%, 38% 1%, 46% 8%, 54% 0, 62% 9%, 70% 2%, 78% 10%, 86% 1%, 93% 8%, 100% 3%, 98% 94%, 92% 100%, 85% 91%, 77% 99%, 69% 90%, 61% 98%, 53% 91%, 45% 100%, 37% 92%, 29% 99%, 21% 90%, 13% 98%, 6% 92%, 0 97%);
-  transform: translate(-50%, 0) rotate(var(--tr, -4deg));
-  left: 50%; top: -14px;
+/* имя фрейма над левым углом */
+.print[data-label]::before {
+  content: attr(data-label); position: absolute; left: 0; bottom: calc(100% + 6px); max-width: 100%;
+  font: 500 12px/1.2 Onest, sans-serif; color: #8c8c8c; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  transition: color .15s;
 }
+.print::after { content: ''; position: absolute; inset: -4px; background: var(--handles); opacity: 0; pointer-events: none; transition: opacity .15s; }
+.size-badge {
+  position: absolute; top: calc(100% + 8px); left: 50%; transform: translateX(-50%); z-index: 3;
+  background: var(--sel); color: #fff; font: 600 11px/1 Onest, sans-serif; padding: 4px 6px; border-radius: 3px; white-space: nowrap;
+  opacity: 0; transition: opacity .15s; pointer-events: none;
+}
+.group:hover .print, .print.straighten:hover, .print:hover { outline-color: var(--sel); box-shadow: 0 2px 6px rgba(0,0,0,.08); }
+.group:hover .print::after, .print:hover::after, .group:hover .print .size-badge, .print:hover .size-badge { opacity: 1; }
+.group:hover .print[data-label]::before, .print:hover[data-label]::before { color: var(--sel); }
+.tape { display: none; }
 
+/* ---------- Стикеры FigJam ---------- */
 .note {
-  position: relative; padding: 22px 22px 26px;
-  box-shadow: 0 1px 2px rgba(0,0,0,.06), 0 12px 24px -14px rgba(0,0,0,.3);
-  transform: rotate(var(--r, 0deg));
-  transition: transform .5s var(--ease-out);
+  --r: 0deg !important;
+  position: relative; padding: 20px 20px 22px; border-radius: 3px;
+  box-shadow: 0 1px 3px rgba(0,0,0,.12), 0 8px 16px -8px rgba(0,0,0,.2);
+  outline: 1.5px solid transparent; transition: outline-color .15s;
 }
-.note:hover { transform: rotate(0deg); }
-.note-marker { background: var(--note-marker); }
-.note-red { background: var(--note-red); }
-.note-blue { background: var(--note-blue); }
-.note-lined {
-  background:
-    linear-gradient(90deg, transparent 38px, rgba(255,99,99,.45) 38px, rgba(255,99,99,.45) 40px, transparent 40px),
-    repeating-linear-gradient(180deg, #fff 0 31px, #b9cdf0 31px 32px);
-  background-color: #fff; padding-left: 54px; line-height: 32px;
+.note::after { content: ''; position: absolute; inset: -4px; background: var(--handles); opacity: 0; pointer-events: none; transition: opacity .15s; }
+.note:hover { outline-color: var(--sel); }
+.note:hover::after { opacity: 1; }
+.note-marker { background: var(--sticky-yellow); }
+.note-red { background: var(--sticky-pink); }
+.note-blue { background: var(--sticky-blue); }
+.note-lined { background: #fff; }
+
+/* ---------- Курсоры соавторов ---------- */
+.mp { position: absolute; z-index: 5; pointer-events: none; display: flex; align-items: flex-start; animation: drift var(--dur, 16s) ease-in-out infinite alternate; animation-delay: var(--delay, 0s); }
+.mp svg { width: 18px; height: 18px; flex: none; filter: drop-shadow(0 1px 1px rgba(0,0,0,.25)); }
+.mp svg path { fill: var(--c); stroke: #fff; stroke-width: 1.4; stroke-linejoin: round; }
+.mp span { margin: 13px 0 0 -3px; background: var(--c); color: #fff; font: 600 12px/1 Onest, sans-serif; padding: 4px 7px; border-radius: 0 6px 6px 6px; white-space: nowrap; }
+@keyframes drift {
+  0% { transform: translate(0, 0); }
+  30% { transform: translate(var(--dx, 70px), var(--dy, 30px)); }
+  65% { transform: translate(calc(var(--dx, 70px) * -.4), calc(var(--dy, 30px) * 1.6)); }
+  100% { transform: translate(calc(var(--dx, 70px) * .6), calc(var(--dy, 30px) * -.6)); }
 }
 
-/* Рисованная стрелка в круге */
-.scribble path { fill: none; stroke: var(--ink); stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+/* ---------- Связи прототипа между этапами ---------- */
+.noodle { display: none; position: absolute; top: 50%; right: -2.15rem; width: 2.3rem; height: 36px; transform: translateY(-50%); overflow: visible; pointer-events: none; z-index: 2; }
+@media (min-width: 1024px) { .noodle { display: block; } }
+.noodle path { fill: none; stroke: var(--sel); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.noodle circle { fill: #fff; stroke: var(--sel); stroke-width: 2; }
 
-/* ---------- Появление: элемент «кладут» на страницу ----------
-   Скрываем только когда JS точно есть; если site.js не загрузился — показываем через 2 с. */
+/* ---------- Появление ---------- */
 html.js .reveal {
-  opacity: 0; transform: translateY(18px) rotate(calc(var(--r, 0deg) - 2deg)) scale(.98);
+  opacity: 0; transform: translateY(16px);
   transition: opacity .6s var(--ease-out), transform .8s var(--ease-out);
   transition-delay: var(--stagger, 0ms);
 }
-/* в конце элемент лежит под своим углом (--r), как наклеенный */
-html.js .reveal.in { opacity: 1; transform: rotate(var(--r, 0deg)); }
-html.js .reveal.in.note:hover, html.js .reveal.in.print.straighten:hover { transform: rotate(0deg); transition-delay: 0ms; }
+html.js .reveal.in { opacity: 1; transform: none; }
 html.js:not(.motion-ready) .reveal { animation: failsafe-show 0s 2s forwards; }
 @keyframes failsafe-show { to { opacity: 1; transform: none; visibility: visible; } }
 
-/* Коллажные элементы первого экрана падают на место */
-.drop { animation: drop .9s var(--ease-out) both; animation-delay: var(--d, 0ms); }
-@keyframes drop { from { opacity: 0; transform: translateY(-30px) rotate(calc(var(--r, 0deg) - 10deg)) scale(1.06); } to { opacity: 1; transform: rotate(var(--r, 0deg)); } }
+.drop { animation: drop .8s var(--ease-out) both; animation-delay: var(--d, 0ms); }
+@keyframes drop { from { opacity: 0; transform: translateY(-16px) scale(1.03); } to { opacity: 1; transform: none; } }
 
 /* ---------- Заголовок по словам ---------- */
 .w { display: inline-block; vertical-align: top; max-width: 100%; }
@@ -176,7 +191,7 @@ html.js:not(.motion-ready) [data-split] { animation: failsafe-show 0s 2s forward
 
 /* ---------- Навбар ---------- */
 #nav { transition: background-color .3s, box-shadow .4s var(--ease-out); }
-#nav.nav-scrolled { box-shadow: 0 10px 24px -14px rgba(0,0,0,.35); }
+#nav.nav-scrolled { box-shadow: 0 8px 20px -10px rgba(0,0,0,.25); }
 #menu li { opacity: 0; transform: translateY(-6px); transition: opacity .2s, transform .3s var(--ease-out); }
 #nav.open #menu li { opacity: 1; transform: none; transition-delay: calc(var(--i, 0) * 45ms + 60ms); }
 
@@ -188,7 +203,7 @@ html.js .stages.in .stage-dot { background: var(--blue); color: #fff; }
 [data-count] { font-variant-numeric: tabular-nums; }
 
 /* ---------- Прогресс чтения ---------- */
-.read-progress { position: fixed; inset: 0 0 auto 0; height: 4px; z-index: 70; background: var(--blue); transform-origin: 0 50%; transform: scaleX(0); }
+.read-progress { position: fixed; inset: 0 0 auto 0; height: 3px; z-index: 70; background: var(--sel); transform-origin: 0 50%; transform: scaleX(0); }
 
 /* ---------- Переходы между страницами (обложка перетекает в кейс) ---------- */
 @view-transition { navigation: auto; }
@@ -199,34 +214,31 @@ html.js .stages.in .stage-dot { background: var(--blue); color: #fff; }
 #lightbox { transition: opacity .3s var(--ease-out); }
 #lightbox.hidden-lb { opacity: 0; pointer-events: none; }
 
+/* ---------- Кнопка «наверх» — круглая плавающая кнопка редактора ---------- */
+.to-top {
+  position: fixed; right: 16px; bottom: 16px; z-index: 60;
+  width: 46px; height: 46px; border-radius: 999px; display: grid; place-items: center;
+  background: #fff; color: var(--ink); border: 1px solid #e3e3e3;
+  box-shadow: 0 4px 14px -6px rgba(0,0,0,.3);
+  opacity: 0; pointer-events: none; transform: translateY(14px);
+  transition: opacity .3s var(--ease-out), transform .45s var(--ease-out), border-color .15s;
+}
+.to-top.show { opacity: 1; pointer-events: auto; transform: none; }
+.to-top:hover { transform: translateY(-3px); border-color: var(--sel); }
+.to-top:active { transform: translateY(1px); transition-duration: .08s; }
+.to-top svg path { fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+/* место под кнопку, чтобы она не закрывала ссылки в подвале */
+body footer.mono { padding-bottom: 88px; }
+@media (min-width: 640px) { body footer.mono { padding-bottom: 32px; padding-right: 72px; } }
+
 /* ---------- Меньше движения ---------- */
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .underline-pen::after { animation: none !important; clip-path: none; }
+  .underline-pen::after { animation: none !important; opacity: 1; }
   html.js .reveal { transform: none; transition: opacity .3s; }
-  .split-done .w > .wi, .drop { animation: none; }
+  .split-done .w > .wi, .drop, .mp { animation: none; }
   #menu li, #nav.open #menu li { transform: none; }
   .stage-dot { transition-delay: 0ms; }
-  .btn:hover, .group:hover .print, .note:hover { transform: rotate(var(--r, 0deg)); }
+  .btn:hover, .to-top, .to-top.show, .to-top:hover { transform: none; }
   ::view-transition-group(*), ::view-transition-old(*), ::view-transition-new(*) { animation: none !important; }
 }
-
-/* ---------- Кнопка «наверх»: стрелка синей ручкой с подписью ---------- */
-.to-top {
-  position: fixed; right: 16px; bottom: 16px; z-index: 60;
-  display: flex; flex-direction: column; align-items: center; gap: 0;
-  padding: 8px 12px 6px; border-radius: 14px;
-  background: var(--paper); color: var(--blue);
-  box-shadow: 0 8px 20px -12px rgba(0,0,0,.35);
-  opacity: 0; pointer-events: none; transform: translateY(14px);
-  transition: opacity .3s var(--ease-out), transform .45s var(--ease-out);
-}
-.to-top.show { opacity: 1; pointer-events: auto; transform: none; }
-.to-top:hover { transform: translateY(-4px); }
-.to-top:active { transform: translateY(1px); transition-duration: .08s; }
-.to-top svg path { fill: none; stroke: currentColor; stroke-width: 2.6; stroke-linecap: round; stroke-linejoin: round; }
-.to-top span { font-family: Caveat, cursive; font-weight: 600; font-size: 1.3rem; line-height: 1; }
-/* место под кнопку, чтобы она не закрывала ссылки в подвале */
-body footer.mono { padding-bottom: 96px; }
-@media (min-width: 640px) { body footer.mono { padding-bottom: 32px; padding-right: 84px; } }
-@media (prefers-reduced-motion: reduce) { .to-top, .to-top.show, .to-top:hover { transform: none; } }
