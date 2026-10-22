@@ -21,7 +21,7 @@
             display: ['Geologica', 'Onest', 'sans-serif'],
             sans: ['Onest', 'sans-serif'],
           },
-          colors: { paper: '#fafafa', ink: '#0a0a0a', muted: '#6b6b6b', line: '#e9e9e9' },
+          colors: { paper: '#fafafa', ink: '#0a0a0a', muted: '#6b6b6b', line: '#e9e9e9', lilac: { 50: '#f7f0fd', 200: '#e7dbfb', 300: '#c9b3f5' } },
           boxShadow: {
             pill: '0 18px 40px -12px rgba(0,0,0,.45), inset 0 1px 0 rgba(255,255,255,.18)',
             card: '0 1px 2px rgba(0,0,0,.04), 0 12px 32px -12px rgba(0,0,0,.12)',
@@ -32,11 +32,11 @@
   </script>
   <link rel="stylesheet" href="css/site.css" />
 </head>
-<body class="font-sans text-ink selection:bg-ink selection:text-white">
+<body class="font-sans text-ink">
 
   <!-- ===== Nav ===== -->
   <header class="fixed inset-x-0 top-4 z-50 flex justify-center px-4">
-    <nav id="nav" class="w-full max-w-[22rem] rounded-2xl border border-black/5 bg-[#ececec]/80 backdrop-blur-xl transition-all duration-300">
+    <nav id="nav" class="ink-box w-full max-w-[22rem] rounded-2xl bg-white transition-all duration-300">
       <div class="flex items-center justify-between px-4 py-3">
         <a href="#top" aria-label="Наверх" class="doodle-slot">
           <img src="assets/identity-sm.webp" width="160" height="144" alt="Полина Артамонова" class="doodle block h-10 w-auto" />
@@ -49,10 +49,10 @@
       <div id="menu" class="grid grid-rows-[0fr] transition-all duration-300">
         <div class="overflow-hidden">
           <ul class="flex flex-col gap-1 px-4 pb-4 font-display text-lg">
-            <li><a href="#work" class="block rounded-lg px-2 py-1.5 hover:bg-black/5">Проекты</a></li>
-            <li><a href="#process" class="block rounded-lg px-2 py-1.5 hover:bg-black/5">Как я работаю</a></li>
-            <li><a href="#results" class="block rounded-lg px-2 py-1.5 hover:bg-black/5">Результаты</a></li>
-            <li><a href="#contact" class="block rounded-lg px-2 py-1.5 hover:bg-black/5">Контакты</a></li>
+            <li><a href="#work" class="block rounded-lg px-2 py-1.5 transition-colors hover:bg-lilac-200">Проекты</a></li>
+            <li><a href="#process" class="block rounded-lg px-2 py-1.5 transition-colors hover:bg-lilac-200">Как я работаю</a></li>
+            <li><a href="#results" class="block rounded-lg px-2 py-1.5 transition-colors hover:bg-lilac-200">Результаты</a></li>
+            <li><a href="#contact" class="block rounded-lg px-2 py-1.5 transition-colors hover:bg-lilac-200">Контакты</a></li>
           </ul>
         </div>
       </div>
@@ -68,7 +68,7 @@
 
       <h1 data-split class="mx-auto max-w-4xl font-display text-[2.75rem] font-medium leading-[1.05] tracking-[-0.04em] sm:text-6xl md:text-7xl">
         Полина
-        <span class="avatar-pop mx-1 inline-block h-[0.9em] w-[0.9em] -rotate-6 overflow-hidden rounded-full align-[-0.12em] shadow-lg ring-2 ring-white transition-transform duration-300 hover:rotate-6 hover:scale-110">
+        <span class="avatar-pop mx-1 inline-block h-[0.9em] w-[0.9em] -rotate-6 overflow-hidden rounded-full align-[-0.12em] ring-2 ring-ink transition-transform duration-300 hover:rotate-6 hover:scale-110">
           <img src="assets/avatar.jpg" alt="Полина Артамонова" class="h-full w-full object-cover object-[50%_35%]" />
         </span>
         Артамонова,<br class="hidden sm:block" />
@@ -81,12 +81,12 @@
 
       <div style="--stagger:640ms" class="reveal mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
         <a href="https://t.me/p_p_polly" target="_blank" rel="noopener"
-           class="group inline-flex items-center gap-5 rounded-full bg-gradient-to-b from-[#3a3a3a] to-ink px-6 py-4 font-display text-[15px] font-medium tracking-tight text-white shadow-pill transition-all duration-300 press hover:scale-[1.03]">
+           class="group ink-box ink-btn inline-flex items-center gap-5 rounded-full bg-ink px-6 py-3.5 font-display text-[15px] font-medium tracking-tight text-white">
           Написать в Телеграм
           <span class="flex items-center"><span class="arrow-line block h-px w-12 bg-white/80"></span><svg width="8" height="10" viewBox="0 0 8 10" class="-ml-1"><path d="M1 1l5 4-5 4" fill="none" stroke="white" stroke-width="1.2"/></svg></span>
         </a>
         <a href="https://drive.google.com/file/d/1vTA9CH9CJkSyZ6TN2uQzDy6aibkoubeJ/view" target="_blank" rel="noopener"
-           class="group inline-flex items-center gap-2 rounded-full border border-black/10 bg-white px-6 py-4 font-display text-[15px] font-medium tracking-tight shadow-sm transition-all duration-300 press hover:scale-[1.03] hover:shadow-card">
+           class="group ink-box ink-btn inline-flex items-center gap-2 rounded-full bg-lilac-200 px-6 py-3.5 font-display text-[15px] font-medium tracking-tight text-ink hover:bg-lilac-300">
           Резюме
           <span data-icon="arrow-ur" class="h-4 w-4 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"></span>
         </a>
@@ -103,8 +103,8 @@
 
       <div data-stagger class="mt-14 grid gap-x-8 gap-y-14 md:grid-cols-2">
         <a href="case.html?id=corp" class="reveal group block">
-          <div style="view-transition-name: cover-corp" class="overflow-hidden rounded-2xl border border-black/5 bg-[#eef3ff] shadow-card transition-all duration-500 group-hover:-translate-y-1 group-hover:shadow-xl">
-            <img src="assets/corp.webp" width="2000" height="1200" alt="Корпоративный HR-сервис — главная страница" loading="lazy" class="aspect-[5/3] w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]" />
+          <div class="ink-box ink-lift ink-lg rounded-2xl bg-[#eef3ff]">
+            <div style="view-transition-name: cover-corp" class="overflow-hidden rounded-[14px]"><img src="assets/corp.webp" width="2000" height="1200" alt="Корпоративный HR-сервис — главная страница" loading="lazy" class="aspect-[5/3] w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]" /></div>
           </div>
           <div class="mt-5 flex items-center gap-3">
             <h3 class="font-display text-xl font-medium tracking-tight">Корпоративный сервис</h3>
@@ -114,8 +114,8 @@
           <p class="mt-3 text-sm text-ink/60">B2E · Web · 2 кейса внутри · 2024–2025</p>
         </a>
         <a href="case.html?id=support" class="reveal group block md:mt-24">
-          <div style="view-transition-name: cover-support" class="overflow-hidden rounded-2xl border border-black/5 bg-[#ffb800] shadow-card transition-all duration-500 group-hover:-translate-y-1 group-hover:shadow-xl">
-            <img src="assets/support.webp" width="2000" height="1200" alt="Сервис технической поддержки — панель сотрудника и мобильный клиент" loading="lazy" class="aspect-[5/3] w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]" />
+          <div class="ink-box ink-lift ink-lg rounded-2xl bg-[#ffb800]">
+            <div style="view-transition-name: cover-support" class="overflow-hidden rounded-[14px]"><img src="assets/support.webp" width="2000" height="1200" alt="Сервис технической поддержки — панель сотрудника и мобильный клиент" loading="lazy" class="aspect-[5/3] w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]" /></div>
           </div>
           <div class="mt-5 flex items-center gap-3">
             <h3 class="font-display text-xl font-medium tracking-tight">Сервис технической поддержки</h3>
@@ -125,8 +125,8 @@
           <p class="mt-3 text-sm text-ink/60">B2C · Web · PWA · 2025</p>
         </a>
         <a href="case.html?id=docs" class="reveal group block">
-          <div style="view-transition-name: cover-docs" class="overflow-hidden rounded-2xl border border-black/5 bg-[#f3efff] shadow-card transition-all duration-500 group-hover:-translate-y-1 group-hover:shadow-xl">
-            <img src="assets/docs.webp" width="2000" height="1200" alt="Сервис для работы с документами — кабинет администратора" loading="lazy" class="aspect-[5/3] w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]" />
+          <div class="ink-box ink-lift ink-lg rounded-2xl bg-[#f3efff]">
+            <div style="view-transition-name: cover-docs" class="overflow-hidden rounded-[14px]"><img src="assets/docs.webp" width="2000" height="1200" alt="Сервис для работы с документами — кабинет администратора" loading="lazy" class="aspect-[5/3] w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]" /></div>
           </div>
           <div class="mt-5 flex items-center gap-3">
             <h3 class="font-display text-xl font-medium tracking-tight">Сервис для работы с документами</h3>
@@ -136,8 +136,8 @@
           <p class="mt-3 text-sm text-ink/60">B2C · Web · 2024–2025</p>
         </a>
         <a href="case.html?id=biz" class="reveal group block md:mt-24">
-          <div style="view-transition-name: cover-biz" class="overflow-hidden rounded-2xl border border-black/5 bg-[#0b3d86] shadow-card transition-all duration-500 group-hover:-translate-y-1 group-hover:shadow-xl">
-            <img src="assets/biz.webp" width="2000" height="1200" alt="Сервис для предпринимателей — макеты под NDA" loading="lazy" class="aspect-[5/3] w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]" />
+          <div class="ink-box ink-lift ink-lg rounded-2xl bg-[#0b3d86]">
+            <div style="view-transition-name: cover-biz" class="overflow-hidden rounded-[14px]"><img src="assets/biz.webp" width="2000" height="1200" alt="Сервис для предпринимателей — макеты под NDA" loading="lazy" class="aspect-[5/3] w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]" /></div>
           </div>
           <div class="mt-5 flex items-center gap-3">
             <h3 class="font-display text-xl font-medium tracking-tight">Сервис для предпринимателей</h3>
@@ -164,32 +164,32 @@
         <div class="reveal" style="--stagger:120ms">
           <h3 class="text-sm font-medium text-ink/60">С кем работаю</h3>
           <ul class="mt-3 divide-y divide-line border-y border-line text-base">
-            <li class="py-3">Проджект-менеджер и заказчик</li>
-            <li class="py-3">Тим-лид</li>
-            <li class="py-3">Тестировщик</li>
-            <li class="py-3">Разработчики</li>
+            <li class="flex items-center gap-3 py-3"><span class="h-2.5 w-2.5 shrink-0 rounded-full border-2 border-ink bg-lilac-200"></span>Проджект-менеджер и заказчик</li>
+            <li class="flex items-center gap-3 py-3"><span class="h-2.5 w-2.5 shrink-0 rounded-full border-2 border-ink bg-lilac-200"></span>Тим-лид</li>
+            <li class="flex items-center gap-3 py-3"><span class="h-2.5 w-2.5 shrink-0 rounded-full border-2 border-ink bg-lilac-200"></span>Тестировщик</li>
+            <li class="flex items-center gap-3 py-3"><span class="h-2.5 w-2.5 shrink-0 rounded-full border-2 border-ink bg-lilac-200"></span>Разработчики</li>
           </ul>
         </div>
       </div>
 
       <ol data-stagger class="mt-20 grid gap-x-8 gap-y-12 sm:grid-cols-2 lg:grid-cols-4">
-        <li class="reveal border-t-2 border-ink pt-4">
-          <span class="font-display text-sm tabular-nums text-ink/50">01</span>
+        <li class="reveal border-t-2 border-ink pt-5">
+          <span class="grid h-9 w-9 place-items-center rounded-full border-2 border-ink bg-lilac-200 font-display text-sm font-medium tabular-nums">01</span>
           <h3 class="mt-2 font-display text-xl font-medium tracking-tight">Анализ и интервью</h3>
           <p class="mt-2 text-[15px] leading-relaxed text-ink/70">Разбираю текущий сервис, общаюсь с сотрудниками и HR, нахожу узкие места.</p>
         </li>
-        <li class="reveal border-t-2 border-ink pt-4">
-          <span class="font-display text-sm tabular-nums text-ink/50">02</span>
+        <li class="reveal border-t-2 border-ink pt-5">
+          <span class="grid h-9 w-9 place-items-center rounded-full border-2 border-ink bg-lilac-200 font-display text-sm font-medium tabular-nums">02</span>
           <h3 class="mt-2 font-display text-xl font-medium tracking-tight">Прототипирование</h3>
           <p class="mt-2 text-[15px] leading-relaxed text-ink/70">Собираю интерактивные прототипы и проверяю их на пользователях.</p>
         </li>
-        <li class="reveal border-t-2 border-ink pt-4">
-          <span class="font-display text-sm tabular-nums text-ink/50">03</span>
+        <li class="reveal border-t-2 border-ink pt-5">
+          <span class="grid h-9 w-9 place-items-center rounded-full border-2 border-ink bg-lilac-200 font-display text-sm font-medium tabular-nums">03</span>
           <h3 class="mt-2 font-display text-xl font-medium tracking-tight">Доработка</h3>
           <p class="mt-2 text-[15px] leading-relaxed text-ink/70">Вношу правки по обратной связи и презентую решения команде.</p>
         </li>
-        <li class="reveal border-t-2 border-ink pt-4">
-          <span class="font-display text-sm tabular-nums text-ink/50">04</span>
+        <li class="reveal border-t-2 border-ink pt-5">
+          <span class="grid h-9 w-9 place-items-center rounded-full border-2 border-ink bg-lilac-200 font-display text-sm font-medium tabular-nums">04</span>
           <h3 class="mt-2 font-display text-xl font-medium tracking-tight">Ревью вёрстки</h3>
           <p class="mt-2 text-[15px] leading-relaxed text-ink/70">Довожу продукт до релиза и слежу, чтобы реализация совпала с макетом.</p>
         </li>
@@ -205,33 +205,33 @@
 
       <ul data-stagger class="mt-14 border-t border-line">
         <li class="reveal border-b border-line">
-          <a href="case.html?id=vacation" class="group grid gap-3 py-7 sm:grid-cols-[1fr_auto] sm:items-center sm:gap-12">
+          <a href="case.html?id=vacation" class="group -mx-4 grid gap-3 rounded-2xl px-4 py-7 transition-colors hover:bg-lilac-50 sm:grid-cols-[1fr_auto] sm:items-center sm:gap-12">
             <p class="font-display text-[1.375rem] leading-snug tracking-tight text-ink/60 sm:text-[1.75rem] [&_b]:font-medium [&_b]:text-ink"><b><span data-count="30" data-prefix="До " data-suffix="%">До 30%</span> времени HR</b> экономит сбор отпусков и удалёнок в одном месте</p>
-            <span class="flex items-center gap-2 text-sm text-ink/60 transition-colors group-hover:text-ink">Сбор отпусков и удалёнок<span data-icon="arrow-r" class="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1"></span></span>
+            <span class="flex items-center gap-3 text-sm text-ink/60 transition-colors group-hover:text-ink">Сбор отпусков и удалёнок<span class="grid h-8 w-8 shrink-0 place-items-center rounded-full border-2 border-ink bg-lilac-200 text-ink transition-colors group-hover:bg-lilac-300"><span data-icon="arrow-r" class="h-4 w-4"></span></span></span>
           </a>
         </li>
         <li class="reveal border-b border-line">
-          <a href="case.html?id=review" class="group grid gap-3 py-7 sm:grid-cols-[1fr_auto] sm:items-center sm:gap-12">
+          <a href="case.html?id=review" class="group -mx-4 grid gap-3 rounded-2xl px-4 py-7 transition-colors hover:bg-lilac-50 sm:grid-cols-[1fr_auto] sm:items-center sm:gap-12">
             <p class="font-display text-[1.375rem] leading-snug tracking-tight text-ink/60 sm:text-[1.75rem] [&_b]:font-medium [&_b]:text-ink"><b><span data-count="15" data-suffix="%">15%</span> сотрудников</b> по итогам ревью 360° получили повышение грейда</p>
-            <span class="flex items-center gap-2 text-sm text-ink/60 transition-colors group-hover:text-ink">Ревью 360°<span data-icon="arrow-r" class="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1"></span></span>
+            <span class="flex items-center gap-3 text-sm text-ink/60 transition-colors group-hover:text-ink">Ревью 360°<span class="grid h-8 w-8 shrink-0 place-items-center rounded-full border-2 border-ink bg-lilac-200 text-ink transition-colors group-hover:bg-lilac-300"><span data-icon="arrow-r" class="h-4 w-4"></span></span></span>
           </a>
         </li>
         <li class="reveal border-b border-line">
-          <a href="case.html?id=corp" class="group grid gap-3 py-7 sm:grid-cols-[1fr_auto] sm:items-center sm:gap-12">
+          <a href="case.html?id=corp" class="group -mx-4 grid gap-3 rounded-2xl px-4 py-7 transition-colors hover:bg-lilac-50 sm:grid-cols-[1fr_auto] sm:items-center sm:gap-12">
             <p class="font-display text-[1.375rem] leading-snug tracking-tight text-ink/60 sm:text-[1.75rem] [&_b]:font-medium [&_b]:text-ink">Корпоративный сервис стал <b>основным внутренним сервисом</b> компании</p>
-            <span class="flex items-center gap-2 text-sm text-ink/60 transition-colors group-hover:text-ink">Корпоративный сервис<span data-icon="arrow-r" class="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1"></span></span>
+            <span class="flex items-center gap-3 text-sm text-ink/60 transition-colors group-hover:text-ink">Корпоративный сервис<span class="grid h-8 w-8 shrink-0 place-items-center rounded-full border-2 border-ink bg-lilac-200 text-ink transition-colors group-hover:bg-lilac-300"><span data-icon="arrow-r" class="h-4 w-4"></span></span></span>
           </a>
         </li>
         <li class="reveal border-b border-line">
-          <a href="case.html?id=review" class="group grid gap-3 py-7 sm:grid-cols-[1fr_auto] sm:items-center sm:gap-12">
+          <a href="case.html?id=review" class="group -mx-4 grid gap-3 rounded-2xl px-4 py-7 transition-colors hover:bg-lilac-50 sm:grid-cols-[1fr_auto] sm:items-center sm:gap-12">
             <p class="font-display text-[1.375rem] leading-snug tracking-tight text-ink/60 sm:text-[1.75rem] [&_b]:font-medium [&_b]:text-ink">Компания <b>отказалась от сторонних решений</b> для оценки персонала и получила более репрезентативные данные</p>
-            <span class="flex items-center gap-2 text-sm text-ink/60 transition-colors group-hover:text-ink">Ревью 360°<span data-icon="arrow-r" class="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1"></span></span>
+            <span class="flex items-center gap-3 text-sm text-ink/60 transition-colors group-hover:text-ink">Ревью 360°<span class="grid h-8 w-8 shrink-0 place-items-center rounded-full border-2 border-ink bg-lilac-200 text-ink transition-colors group-hover:bg-lilac-300"><span data-icon="arrow-r" class="h-4 w-4"></span></span></span>
           </a>
         </li>
         <li class="reveal border-b border-line">
-          <a href="case.html?id=support" class="group grid gap-3 py-7 sm:grid-cols-[1fr_auto] sm:items-center sm:gap-12">
+          <a href="case.html?id=support" class="group -mx-4 grid gap-3 rounded-2xl px-4 py-7 transition-colors hover:bg-lilac-50 sm:grid-cols-[1fr_auto] sm:items-center sm:gap-12">
             <p class="font-display text-[1.375rem] leading-snug tracking-tight text-ink/60 sm:text-[1.75rem] [&_b]:font-medium [&_b]:text-ink">Закрытие обращения в техподдержке стало <b>короче</b> — сотрудники обрабатывают запросы быстрее</p>
-            <span class="flex items-center gap-2 text-sm text-ink/60 transition-colors group-hover:text-ink">Сервис техподдержки<span data-icon="arrow-r" class="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1"></span></span>
+            <span class="flex items-center gap-3 text-sm text-ink/60 transition-colors group-hover:text-ink">Сервис техподдержки<span class="grid h-8 w-8 shrink-0 place-items-center rounded-full border-2 border-ink bg-lilac-200 text-ink transition-colors group-hover:bg-lilac-300"><span data-icon="arrow-r" class="h-4 w-4"></span></span></span>
           </a>
         </li>
       </ul>
@@ -241,19 +241,19 @@
     <section id="contact" class="cross relative border-t border-line px-4 py-24 text-center sm:px-8 sm:py-32">
       <div class="reveal mx-auto max-w-2xl">
         <div class="relative mx-auto w-fit">
-          <img src="assets/avatar.jpg" alt="" class="h-20 w-20 rounded-full object-cover object-[50%_35%] shadow-xl ring-4 ring-white" />
+          <img src="assets/avatar.jpg" alt="" class="h-20 w-20 rounded-full bg-lilac-200 object-cover object-[50%_35%] ring-2 ring-ink" />
           <span data-doodle="tea" class="doodle-slot absolute -bottom-3 -right-12 h-16 w-16 rotate-12"></span>
         </div>
         <h2 class="mt-8 font-display text-[2rem] font-medium leading-[1.05] tracking-[-0.04em] sm:text-6xl">Давайте обсудим<br />ваш продукт</h2>
         <p class="mx-auto mt-5 max-w-md text-[15px] leading-relaxed text-muted">Часть проектов под NDA — подробные макеты могу показать на личном созвоне.</p>
         <div class="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
           <a href="https://t.me/p_p_polly" target="_blank" rel="noopener"
-             class="group inline-flex items-center gap-5 rounded-full bg-gradient-to-b from-[#3a3a3a] to-ink px-6 py-4 font-display text-[15px] font-medium tracking-tight text-white shadow-pill transition-all duration-300 press hover:scale-[1.03]">
+             class="group ink-box ink-btn inline-flex items-center gap-5 rounded-full bg-ink px-6 py-3.5 font-display text-[15px] font-medium tracking-tight text-white">
             Телеграм
             <span class="flex items-center"><span class="arrow-line block h-px w-12 bg-white/80"></span><svg width="8" height="10" viewBox="0 0 8 10" class="-ml-1"><path d="M1 1l5 4-5 4" fill="none" stroke="white" stroke-width="1.2"/></svg></span>
           </a>
           <a href="mailto:psineleva@bk.ru"
-             class="inline-flex items-center gap-2 rounded-full border border-black/10 bg-white px-6 py-4 font-display text-[15px] font-medium tracking-tight shadow-sm transition-all duration-300 press hover:scale-[1.03] hover:shadow-card">
+             class="ink-box ink-btn inline-flex items-center gap-2 rounded-full bg-lilac-200 px-6 py-3.5 font-display text-[15px] font-medium tracking-tight text-ink hover:bg-lilac-300">
             psineleva@bk.ru
           </a>
         </div>

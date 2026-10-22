@@ -3,7 +3,33 @@
 :root {
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
   --ink: #0a0a0a;
+  /* Сирень из иллюстраций: фон-размывка, заливка, нажатое состояние */
+  --lilac-50: #f7f0fd;
+  --lilac-200: #e7dbfb;
+  --lilac-300: #c9b3f5;
+  /* Растр точками — тот же, что в тенях и кудрях иллюстраций */
+  --dots: radial-gradient(circle, var(--ink) 1.05px, transparent 1.35px) 0 0 / 5px 5px;
 }
+
+/* ---------- Материал иллюстраций: чернильный контур + растровая тень ----------
+   Тень — псевдоэлемент позади блока. Поэтому сам .ink-box не должен становиться
+   стековым контекстом (без transform/opacity/backdrop-filter/overflow:hidden на нём):
+   обрезку и анимацию делаем на вложенном элементе, «подъём» — через top/left. */
+.ink-box { position: relative; border: 2px solid var(--ink); --ht: 5px; }
+.ink-box::before {
+  content: ''; position: absolute; inset: -2px; z-index: -1; pointer-events: none;
+  border-radius: inherit; background: var(--dots);
+  transform: translate(var(--ht), var(--ht));
+  transition: transform .35s var(--ease-out);
+}
+.ink-lg { --ht: 8px; }
+
+/* Кнопки и карточки-ссылки: приподнимаются над тенью и ложатся на неё при нажатии */
+.ink-btn, .ink-lift { top: 0; left: 0; transition: top .3s var(--ease-out), left .3s var(--ease-out), background-color .2s; }
+.ink-btn:hover, .group:hover .ink-lift { top: -2px; left: -2px; }
+.ink-btn:hover::before, .group:hover .ink-lift::before { transform: translate(calc(var(--ht) + 3px), calc(var(--ht) + 3px)); }
+.ink-btn:active, .group:active .ink-lift { top: 3px; left: 3px; transition-duration: .08s; }
+.ink-btn:active::before, .group:active .ink-lift::before { transform: translate(1px, 1px); transition-duration: .08s; }
 
 html { scroll-behavior: smooth; }
 body { background: #fafafa; -webkit-font-smoothing: antialiased; overflow-x: clip; }
@@ -14,7 +40,8 @@ a, button, summary, label[for], [role="button"] { cursor: url("../assets/cursor/
 
 /* Поверхности браузера */
 :focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
-html { scrollbar-color: #cfcfcf transparent; }
+html { scrollbar-color: var(--lilac-300) transparent; }
+::selection { background: var(--lilac-200); color: var(--ink); }
 
 /* Плюсики на пересечении линий, как у референса */
 .cross::before, .cross::after {
@@ -69,12 +96,12 @@ html.js:not(.motion-ready) [data-split] { animation: failsafe-show 0s 2s forward
 
 /* ---------- Навбар ---------- */
 #nav { transition: background-color .3s, box-shadow .4s var(--ease-out), max-width .4s var(--ease-out); }
-#nav.nav-scrolled { background-color: rgba(255,255,255,.78); box-shadow: 0 10px 30px -14px rgba(0,0,0,.28); }
+#nav.nav-scrolled { background-color: #fff; }
 #menu li { opacity: 0; transform: translateY(-6px); transition: opacity .2s, transform .3s var(--ease-out); }
 #nav.open #menu li { opacity: 1; transform: none; transition-delay: calc(var(--i, 0) * 45ms + 60ms); }
 
 /* ---------- Этапы загораются по очереди ---------- */
-html.js .stages .stage-dot { background: rgba(10,10,10,.08); color: var(--ink); }
+html.js .stages .stage-dot { background: var(--lilac-200); color: var(--ink); }
 .stage-dot { transition: background-color .35s, color .35s; transition-delay: calc(var(--i, 0) * 110ms + 250ms); }
 html.js .stages.in .stage-dot { background: var(--ink); color: #fff; }
 
@@ -82,7 +109,7 @@ html.js .stages.in .stage-dot { background: var(--ink); color: #fff; }
 [data-count] { font-variant-numeric: tabular-nums; }
 
 /* ---------- Прогресс чтения ---------- */
-.read-progress { position: fixed; inset: 0 0 auto 0; height: 2px; z-index: 70; background: var(--ink); transform-origin: 0 50%; transform: scaleX(0); }
+.read-progress { position: fixed; inset: 0 0 auto 0; height: 3px; z-index: 70; background: var(--lilac-300); border-bottom: 1px solid var(--ink); transform-origin: 0 50%; transform: scaleX(0); }
 
 /* ---------- Переходы между страницами (обложка перетекает в кейс) ---------- */
 @view-transition { navigation: auto; }

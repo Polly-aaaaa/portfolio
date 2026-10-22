@@ -90,7 +90,6 @@ function toggleMenu(open) {
   btn.setAttribute('aria-expanded', open);
   menu.style.gridTemplateRows = open ? '1fr' : '0fr';
   nav.classList.toggle('open', open);
-  nav.classList.toggle('bg-white/90', open);
   l1.style.transform = open ? 'translateY(3.75px) rotate(45deg)' : '';
   l2.style.transform = open ? 'translateY(-3.75px) rotate(-45deg)' : '';
 }

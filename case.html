@@ -21,7 +21,7 @@
             display: ['Geologica', 'Onest', 'sans-serif'],
             sans: ['Onest', 'sans-serif'],
           },
-          colors: { paper: '#fafafa', ink: '#0a0a0a', muted: '#6b6b6b', line: '#e9e9e9' },
+          colors: { paper: '#fafafa', ink: '#0a0a0a', muted: '#6b6b6b', line: '#e9e9e9', lilac: { 50: '#f7f0fd', 200: '#e7dbfb', 300: '#c9b3f5' } },
           boxShadow: {
             pill: '0 18px 40px -12px rgba(0,0,0,.45), inset 0 1px 0 rgba(255,255,255,.18)',
             card: '0 1px 2px rgba(0,0,0,.04), 0 12px 32px -12px rgba(0,0,0,.12)',
@@ -32,12 +32,12 @@
   </script>
   <link rel="stylesheet" href="css/site.css" />
 </head>
-<body class="font-sans text-ink selection:bg-ink selection:text-white">
+<body class="font-sans text-ink">
   <div class="read-progress" aria-hidden="true"></div>
 
   <!-- ===== Nav ===== -->
   <header class="fixed inset-x-0 top-4 z-50 flex justify-center px-4">
-    <nav id="nav" class="w-full max-w-[22rem] rounded-2xl border border-black/5 bg-[#ececec]/80 backdrop-blur-xl transition-all duration-300">
+    <nav id="nav" class="ink-box w-full max-w-[22rem] rounded-2xl bg-white transition-all duration-300">
       <div class="flex items-center justify-between px-4 py-3">
         <a href="index.html" aria-label="На главную" class="doodle-slot">
           <img src="assets/identity-sm.webp" width="160" height="144" alt="Полина Артамонова" class="doodle block h-10 w-auto" />
@@ -50,9 +50,9 @@
       <div id="menu" class="grid grid-rows-[0fr] transition-all duration-300">
         <div class="overflow-hidden">
           <ul class="flex flex-col gap-1 px-4 pb-4 font-display text-lg">
-            <li><a href="index.html" class="block rounded-lg px-2 py-1.5 hover:bg-black/5">Главная</a></li>
-            <li><a href="index.html#work" class="block rounded-lg px-2 py-1.5 hover:bg-black/5">Все проекты</a></li>
-            <li><a href="#contact" class="block rounded-lg px-2 py-1.5 hover:bg-black/5">Контакты</a></li>
+            <li><a href="index.html" class="block rounded-lg px-2 py-1.5 transition-colors hover:bg-lilac-200">Главная</a></li>
+            <li><a href="index.html#work" class="block rounded-lg px-2 py-1.5 transition-colors hover:bg-lilac-200">Все проекты</a></li>
+            <li><a href="#contact" class="block rounded-lg px-2 py-1.5 transition-colors hover:bg-lilac-200">Контакты</a></li>
           </ul>
         </div>
       </div>
@@ -66,19 +66,19 @@
     <section id="contact" class="cross relative border-t border-line px-4 py-24 text-center sm:px-8 sm:py-32">
       <div class="reveal mx-auto max-w-2xl">
         <div class="relative mx-auto w-fit">
-          <img src="assets/avatar.jpg" alt="" class="h-20 w-20 rounded-full object-cover object-[50%_35%] shadow-xl ring-4 ring-white" />
+          <img src="assets/avatar.jpg" alt="" class="h-20 w-20 rounded-full bg-lilac-200 object-cover object-[50%_35%] ring-2 ring-ink" />
           <span data-doodle="tea" class="doodle-slot absolute -bottom-3 -right-12 h-16 w-16 rotate-12"></span>
         </div>
         <h2 class="mt-8 font-display text-[2rem] font-medium leading-[1.05] tracking-[-0.04em] sm:text-6xl">Давайте обсудим<br />ваш продукт</h2>
         <p class="mx-auto mt-5 max-w-md text-[15px] leading-relaxed text-muted">Часть проектов под NDA — подробные макеты могу показать на личном созвоне.</p>
         <div class="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
           <a href="https://t.me/p_p_polly" target="_blank" rel="noopener"
-             class="group inline-flex items-center gap-5 rounded-full bg-gradient-to-b from-[#3a3a3a] to-ink px-6 py-4 font-display text-[15px] font-medium tracking-tight text-white shadow-pill transition-all duration-300 press hover:scale-[1.03]">
+             class="group ink-box ink-btn inline-flex items-center gap-5 rounded-full bg-ink px-6 py-3.5 font-display text-[15px] font-medium tracking-tight text-white">
             Телеграм
             <span class="flex items-center"><span class="arrow-line block h-px w-12 bg-white/80"></span><svg width="8" height="10" viewBox="0 0 8 10" class="-ml-1"><path d="M1 1l5 4-5 4" fill="none" stroke="white" stroke-width="1.2"/></svg></span>
           </a>
           <a href="mailto:psineleva@bk.ru"
-             class="inline-flex items-center gap-2 rounded-full border border-black/10 bg-white px-6 py-4 font-display text-[15px] font-medium tracking-tight shadow-sm transition-all duration-300 press hover:scale-[1.03] hover:shadow-card">
+             class="ink-box ink-btn inline-flex items-center gap-2 rounded-full bg-lilac-200 px-6 py-3.5 font-display text-[15px] font-medium tracking-tight text-ink hover:bg-lilac-300">
             psineleva@bk.ru
           </a>
         </div>
@@ -101,7 +101,7 @@
 
   <!-- Увеличение картинок -->
   <div id="lightbox" class="hidden-lb fixed inset-0 z-[60] flex cursor-zoom-out items-center justify-center bg-black/80 p-4 backdrop-blur-sm sm:p-10" role="dialog" aria-modal="true" aria-label="Изображение">
-    <button id="lightboxClose" aria-label="Закрыть" class="absolute right-4 top-4 grid h-10 w-10 place-items-center rounded-full bg-white/90 text-ink"><span data-icon="close" class="block h-5 w-5"></span></button>
+    <button id="lightboxClose" aria-label="Закрыть" class="absolute right-4 top-4 grid h-10 w-10 place-items-center rounded-full border-2 border-ink bg-lilac-200 text-ink"><span data-icon="close" class="block h-5 w-5"></span></button>
   </div>
 
   <script src="js/cases.js"></script>

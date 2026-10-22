@@ -16,7 +16,7 @@ function picture(key, { alt = '', cls = '', zoom = true, eager = false } = {}) {
 
 function figure(key, caption = '', { narrow = false } = {}) {
   return `<figure class="reveal ${narrow ? 'mx-auto max-w-xl' : ''}">
-    <div class="overflow-hidden rounded-2xl border border-black/5 bg-white shadow-card">${picture(key, { alt: caption })}</div>
+    <div class="rounded-[20px] border-[1.5px] border-ink bg-lilac-50 p-1.5 sm:p-2">${picture(key, { alt: caption, cls: 'rounded-[13px]' })}</div>
     ${caption ? `<figcaption class="mt-3 text-center text-sm text-ink/60">${caption}</figcaption>` : ''}
   </figure>`;
 }
@@ -35,13 +35,13 @@ function stagesBlock(stages) {
   return `<div class="reveal stages mx-auto max-w-2xl">
     <h3 class="text-sm font-medium text-ink/60">Этапы</h3>
     <ol class="mt-3 flex flex-wrap gap-2">${stages.map((s, i) =>
-      `<li class="flex items-center gap-2 rounded-full border border-black/5 bg-white py-1.5 pl-1.5 pr-3.5 text-sm shadow-sm"><span class="stage-dot grid h-6 w-6 place-items-center rounded-full bg-ink text-[11px] font-medium tabular-nums text-white">${i + 1}</span>${s}</li>`).join('')}
+      `<li class="flex items-center gap-2 rounded-full border-[1.5px] border-ink bg-white py-1 pl-1 pr-3.5 text-sm"><span class="stage-dot grid h-6 w-6 place-items-center rounded-full bg-ink text-[11px] font-medium tabular-nums text-white">${i + 1}</span>${s}</li>`).join('')}
     </ol>
   </div>`;
 }
 
 // «Задача и итог»: проблема → цель, затем роль и что сделала, в конце — тёмная панель результатов
-const badge = (name, cls = 'bg-[#f7f0fd] text-ink') =>
+const badge = (name, cls = 'border-2 border-ink bg-lilac-200 text-ink') =>
   `<span class="grid h-9 w-9 shrink-0 place-items-center rounded-full ${cls}">${icon(name, 'h-[18px] w-[18px]')}</span>`;
 
 const labelHead = (s, badgeCls) =>
@@ -50,23 +50,24 @@ const labelHead = (s, badgeCls) =>
 function problemGoal(problem, goal) {
   if (!problem || !goal) return '';
   return `
-  <div class="reveal relative grid overflow-hidden rounded-3xl border border-black/5 bg-white shadow-card md:grid-cols-2">
+  <div class="reveal"><div class="ink-box ink-lg rounded-3xl bg-white">
+  <div class="relative grid overflow-hidden rounded-[22px] md:grid-cols-2">
     <div class="p-7 sm:p-10">
-      ${labelHead(problem, 'bg-black/5 text-ink')}
+      ${labelHead(problem, 'border-2 border-ink bg-lilac-200 text-ink')}
       <p class="prose-case mt-6 font-display text-[1.25rem] leading-snug tracking-tight text-ink/75 sm:text-[1.375rem]">${problem.html}</p>
     </div>
-    <div class="border-t border-black/5 bg-[#f7f0fd] p-7 sm:p-10 md:border-l md:border-t-0">
-      ${labelHead(goal, 'bg-white text-ink')}
+    <div class="border-t-2 border-ink bg-lilac-200 p-7 sm:p-10 md:border-l-2 md:border-t-0">
+      ${labelHead(goal, 'border-2 border-ink bg-white text-ink')}
       <p class="prose-case mt-6 font-display text-[1.25rem] leading-snug tracking-tight text-ink sm:text-[1.375rem]">${goal.html}</p>
     </div>
-    <span class="absolute left-1/2 top-1/2 hidden h-11 w-11 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full border border-black/10 bg-white shadow-sm md:grid">${icon('arrow-r', 'h-5 w-5')}</span>
-  </div>`;
+    <span class="absolute left-1/2 top-1/2 hidden h-11 w-11 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full border-2 border-ink bg-white md:grid">${icon('arrow-r', 'h-5 w-5')}</span>
+  </div></div></div>`;
 }
 
 function detailRow(s) {
   const list = s.list
     ? `<ul class="mt-5 grid gap-2.5 sm:grid-cols-2">${s.list.map((li) =>
-        `<li class="flex items-start gap-3 rounded-2xl border border-black/5 bg-white px-4 py-3.5 text-[15px] leading-snug text-ink/80"><span class="grid h-6 w-6 shrink-0 place-items-center rounded-full bg-[#f7f0fd] text-ink">${icon('check', 'h-3.5 w-3.5')}</span><span>${li}</span></li>`).join('')}</ul>`
+        `<li class="flex items-start gap-3 rounded-2xl border-[1.5px] border-ink bg-white px-4 py-3.5 text-[15px] leading-snug text-ink/80"><span class="grid h-6 w-6 shrink-0 place-items-center rounded-full border-[1.5px] border-ink bg-lilac-200 text-ink">${icon('check', 'h-3.5 w-3.5')}</span><span>${li}</span></li>`).join('')}</ul>`
     : '';
   return `
   <div class="reveal grid gap-4 border-b border-line py-8 md:grid-cols-[13rem_1fr] md:gap-10">
@@ -82,22 +83,22 @@ function resultsPanel(c) {
     `<li class="border-t border-white/15 pt-5"><p class="font-display text-lg leading-snug tracking-tight text-white/65 sm:text-xl [&_b]:font-medium [&_b]:text-white">${r}</p></li>`).join('');
   const note = c.resultsNote ? `<p class="mt-8 text-sm leading-relaxed text-white/60">* ${c.resultsNote}</p>` : '';
   return `
-  <div class="reveal mt-10 rounded-3xl bg-ink p-7 text-white shadow-xl sm:p-10">
-    <div class="flex items-center gap-3">${badge('star', 'bg-white/10 text-white')}<h3 class="font-display text-xl font-medium tracking-tight">Результаты</h3></div>
+  <div class="reveal mt-10"><div class="ink-box ink-lg rounded-3xl bg-ink p-7 text-white sm:p-10">
+    <div class="flex items-center gap-3">${badge('star', 'bg-lilac-200 text-ink')}<h3 class="font-display text-xl font-medium tracking-tight">Результаты</h3></div>
     <ul class="mt-8 grid gap-x-8 gap-y-6 ${cols}">${items}</ul>
     ${note}
-  </div>`;
+  </div></div>`;
 }
 
 function caseCard(id) {
   const c = CASES[id];
-  return `<a href="case.html?id=${id}" class="reveal group press flex flex-col overflow-hidden rounded-2xl border border-black/5 bg-white shadow-card transition-all duration-300 hover:scale-[1.02] hover:shadow-xl">
-    <div class="overflow-hidden" style="background:${c.coverBg}; view-transition-name: cover-${id}">${picture(c.cover, { alt: c.title, zoom: false, cls: 'aspect-[5/4] object-cover transition-transform duration-700 group-hover:scale-105' })}</div>
+  return `<a href="case.html?id=${id}" class="reveal group block"><div class="ink-box ink-lift ink-lg rounded-2xl bg-white">
+    <div class="overflow-hidden rounded-t-[14px] border-b-2 border-ink" style="background:${c.coverBg}; view-transition-name: cover-${id}">${picture(c.cover, { alt: c.title, zoom: false, cls: 'aspect-[5/4] object-cover transition-transform duration-700 group-hover:scale-105' })}</div>
     <div class="flex items-center justify-between gap-4 p-5">
       <h4 class="font-display text-lg font-medium leading-snug tracking-tight">${c.title}</h4>
-      <span class="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-ink text-white transition-transform duration-300 group-hover:rotate-45">${icon('arrow-ur', 'h-4 w-4')}</span>
+      <span class="grid h-9 w-9 shrink-0 place-items-center rounded-full border-2 border-ink bg-lilac-200 text-ink transition-colors group-hover:bg-lilac-300">${icon('arrow-ur', 'h-4 w-4')}</span>
     </div>
-  </a>`;
+  </div></a>`;
 }
 
 const h2 = (html, extra = '') => `<h2 class="${extra} font-display text-[2rem] font-medium tracking-[-0.04em] sm:text-5xl">${html}</h2>`;
@@ -119,7 +120,7 @@ function render(id) {
     <p style="--stagger:600ms" class="reveal mt-5 text-sm text-ink/60">${meta(c)}</p>
   </section>
   <div class="px-4 pb-20 sm:px-8 sm:pb-28">
-    <div class="overflow-hidden rounded-3xl border border-black/5 shadow-card" style="background:${c.coverBg}; view-transition-name: cover-${id}">${picture(c.cover, { alt: c.title, eager: true })}</div>
+    <div class="ink-box ink-lg rounded-3xl" style="background:${c.coverBg}"><div class="overflow-hidden rounded-[22px]" style="view-transition-name: cover-${id}">${picture(c.cover, { alt: c.title, eager: true })}</div></div>
   </div>`;
 
   const problem = c.summary.find((x) => x.label === 'Проблема');
@@ -151,7 +152,7 @@ function render(id) {
       ? `<div class="reveal mb-10 text-center">${usePencil()}${h2(num + s.title)}</div>`
       : (s.stages ? `<div class="reveal mb-10 text-center">${usePencil()}${h2('Как шла работа')}</div>` : '');
     const note = s.note
-      ? `<div class="reveal mx-auto flex max-w-2xl items-start gap-3 rounded-2xl bg-[#f7f0fd] px-5 py-4 text-[15px] leading-relaxed text-ink/80">${icon('lock', 'mt-0.5 h-5 w-5 text-ink')}<span>${s.note}</span></div>`
+      ? `<div class="reveal mx-auto flex max-w-2xl items-start gap-3 rounded-2xl border-[1.5px] border-ink bg-lilac-50 px-5 py-4 text-[15px] leading-relaxed text-ink/80">${icon('lock', 'mt-0.5 h-5 w-5 text-ink')}<span>${s.note}</span></div>`
       : '';
     return `
     <section class="cross relative border-t border-line px-4 py-20 sm:px-8 sm:py-28">
@@ -176,8 +177,8 @@ function render(id) {
   const nextBlock = `
   <section class="cross relative border-t border-line px-4 py-20 sm:px-8 sm:py-28">
     <a href="case.html?id=${next}" class="reveal group grid items-center gap-8 md:grid-cols-2">
-      <div class="overflow-hidden rounded-2xl border border-black/5 shadow-card transition-all duration-500 group-hover:-translate-y-1 group-hover:shadow-xl" style="background:${nc.coverBg}${nextVT}">
-        ${picture(nc.cover, { alt: nc.title, zoom: false, cls: 'aspect-[5/3] object-cover transition-transform duration-700 group-hover:scale-[1.03]' })}
+      <div class="ink-box ink-lift ink-lg rounded-2xl" style="background:${nc.coverBg}">
+        <div class="overflow-hidden rounded-[14px]" style="${nextVT.replace('; ', '')}">${picture(nc.cover, { alt: nc.title, zoom: false, cls: 'aspect-[5/3] object-cover transition-transform duration-700 group-hover:scale-[1.03]' })}</div>
       </div>
       <div>
         <span data-doodle="plane" class="doodle-slot mb-4 h-16 w-16"></span>
