@@ -38,8 +38,8 @@
   <header class="fixed inset-x-0 top-4 z-50 flex justify-center px-4">
     <nav id="nav" class="w-full max-w-[22rem] rounded-2xl border border-black/5 bg-[#ececec]/80 backdrop-blur-xl transition-all duration-300">
       <div class="flex items-center justify-between px-4 py-3">
-        <a href="index.html" aria-label="На главную" class="transition-transform duration-500 hover:rotate-90">
-          <svg width="22" height="22" viewBox="0 0 24 24"><path d="M10.6 2h2.8v7.2l6.2-3.6 1.4 2.4-6.2 3.6 6.2 3.6-1.4 2.4-6.2-3.6V22h-2.8v-7.2l-6.2 3.6-1.4-2.4L9.2 12 3 8.4 4.4 6l6.2 3.6z"/></svg>
+        <a href="index.html" aria-label="На главную" class="doodle-slot">
+          <span data-doodle="mark" data-label="Полина Артамонова" class="block h-9 w-9"></span>
         </a>
         <button id="menuBtn" aria-label="Меню" aria-expanded="false" class="flex h-8 w-8 flex-col items-center justify-center gap-[5px]">
           <span class="block h-[2.5px] w-5 rounded bg-ink transition-transform duration-300"></span>
@@ -64,7 +64,10 @@
     <!-- ===== CTA ===== -->
     <section id="contact" class="cross relative border-t border-line px-4 py-24 text-center sm:px-8 sm:py-32">
       <div class="reveal mx-auto max-w-2xl">
-        <img src="assets/avatar.jpg" alt="" class="mx-auto h-20 w-20 rounded-full object-cover object-[50%_35%] shadow-xl ring-4 ring-white" />
+        <div class="relative mx-auto w-fit">
+          <img src="assets/avatar.jpg" alt="" class="h-20 w-20 rounded-full object-cover object-[50%_35%] shadow-xl ring-4 ring-white" />
+          <span data-doodle="tea" class="doodle-slot absolute -bottom-3 -right-12 h-16 w-16 rotate-12"></span>
+        </div>
         <h2 class="mt-8 font-display text-[2rem] font-medium leading-[1.05] tracking-[-0.04em] sm:text-6xl">Давайте обсудим<br />ваш продукт</h2>
         <p class="mx-auto mt-5 max-w-md text-[15px] leading-relaxed text-muted">Часть проектов под NDA — подробные макеты могу показать на личном созвоне.</p>
         <div class="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
@@ -84,7 +87,7 @@
     <!-- ===== Footer ===== -->
     <footer class="cross relative border-t border-line px-4 sm:px-8">
       <div class="flex flex-col items-center justify-between gap-4 py-8 text-sm text-muted sm:flex-row">
-        <p>© 2026 Полина Артамонова · Санкт-Петербург</p>
+        <p class="flex items-center gap-2"><span data-doodle="mark" class="doodle-slot h-7 w-7"></span>© 2026 Полина Артамонова · Санкт-Петербург</p>
         <div class="flex gap-5">
           <a href="https://t.me/p_p_polly" target="_blank" rel="noopener" class="link-u transition-colors hover:text-ink">Телеграм</a>
           <a href="mailto:psineleva@bk.ru" class="link-u transition-colors hover:text-ink">Почта</a>
@@ -102,6 +105,7 @@
 
   <script src="js/cases.js"></script>
   <script src="js/case.js"></script>
+  <script src="js/doodles.js"></script>
   <script src="js/site.js"></script>
 </body>
 </html>

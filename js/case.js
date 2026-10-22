@@ -114,6 +114,7 @@ function render(id) {
   const summary = `
   <section class="cross relative border-t border-line px-4 py-20 sm:px-8 sm:py-28">
     <div class="reveal text-center">
+      <span data-doodle="glasses" class="doodle-slot mb-5 h-20 w-20 sm:h-24 sm:w-24"></span>
       <p class="font-mono text-[11px] uppercase tracking-[0.2em] text-muted">Коротко о проекте</p>
       <h2 class="mt-3 font-display text-[2rem] font-medium tracking-[-0.04em] sm:text-5xl">Задача и итог</h2>
     </div>
@@ -126,14 +127,18 @@ function render(id) {
 
   const multi = c.sections.filter((s) => s.title).length > 1;
   let fn = 0;
+  let pencil = `<span data-doodle="pencil" class="doodle-slot mb-5 h-20 w-20 sm:h-24 sm:w-24"></span>`;
+  const usePencil = () => { const p = pencil; pencil = ''; return p; };
   const sections = c.sections.map((s) => {
     if (s.title) fn++;
     const head = s.title ? `
       <div class="reveal mb-10 text-center">
+        ${usePencil()}
         <p class="font-mono text-[11px] uppercase tracking-[0.2em] text-muted">${multi ? `✏️ Функционал № ${fn}` : '✏️ Функционал'}</p>
         <h2 class="mt-3 font-display text-[2rem] font-medium tracking-[-0.04em] sm:text-5xl">${s.title}</h2>
       </div>` : (s.stages ? `
       <div class="reveal mb-10 text-center">
+        ${usePencil()}
         <p class="font-mono text-[11px] uppercase tracking-[0.2em] text-muted">Процесс</p>
         <h2 class="mt-3 font-display text-[2rem] font-medium tracking-[-0.04em] sm:text-5xl">Как шла работа</h2>
       </div>` : '');
@@ -165,6 +170,7 @@ function render(id) {
         ${picture(nc.cover, { alt: nc.title, zoom: false, cls: 'aspect-[5/3] object-cover transition-transform duration-700 group-hover:scale-[1.03]' })}
       </div>
       <div>
+        <span data-doodle="plane" class="doodle-slot mb-4 h-16 w-16"></span>
         <p class="font-mono text-[11px] uppercase tracking-[0.2em] text-muted">Следующий ${nc.kicker ? 'кейс' : 'проект'}</p>
         <h2 class="mt-3 font-display text-[2rem] font-medium leading-[1.1] tracking-[-0.04em] sm:text-5xl">${nc.title}</h2>
         <div class="mt-5 flex items-center gap-3 font-display text-[15px] font-medium">Смотреть ${ARROW('#0a0a0a', 'w-12')}</div>

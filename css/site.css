@@ -89,6 +89,20 @@ html.js .stages.in .stage-dot { background: var(--ink); color: #fff; }
 #lightbox { transition: opacity .3s var(--ease-out); }
 #lightbox.hidden-lb { opacity: 0; pointer-events: none; }
 
+/* ---------- Иллюстрации-айдентика (js/doodles.js) ---------- */
+.doodle { display: block; width: 100%; height: 100%; overflow: visible; }
+.doodle .ink { stroke-dasharray: 1 1; stroke-dashoffset: 0;
+  transition: stroke-dashoffset 1s var(--ease-out);
+  transition-delay: calc(var(--k, 0) * 110ms + var(--stagger, 0ms) + 120ms); }
+.doodle .tone, .doodle .txt { transition: opacity .6s var(--ease-out); transition-delay: calc(var(--stagger, 0ms) + 520ms); }
+html.js .reveal:not(.in) .doodle .ink { stroke-dashoffset: 1; }
+html.js .reveal:not(.in) .doodle .tone, html.js .reveal:not(.in) .doodle .txt { opacity: 0; }
+html.js:not(.motion-ready) .doodle .ink { stroke-dashoffset: 0; }
+html.js:not(.motion-ready) .doodle .tone, html.js:not(.motion-ready) .doodle .txt { opacity: 1; }
+.doodle-slot { display: inline-block; }
+.doodle-slot:hover .doodle { animation: wiggle .6s var(--ease-out); }
+@keyframes wiggle { 25% { transform: rotate(-7deg); } 60% { transform: rotate(5deg); } 100% { transform: none; } }
+
 /* ---------- Меньше движения ---------- */
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
@@ -97,5 +111,8 @@ html.js .stages.in .stage-dot { background: var(--ink); color: #fff; }
   .split-done .avatar-pop { animation: none; transform: rotate(-6deg); }
   #menu li, #nav.open #menu li { transform: none; }
   .stage-dot { transition-delay: 0ms; }
+  .doodle .ink { transition: none; }
+  html.js .reveal:not(.in) .doodle .ink { stroke-dashoffset: 0; }
+  .doodle-slot:hover .doodle { animation: none; }
   ::view-transition-group(*), ::view-transition-old(*), ::view-transition-new(*) { animation: none !important; }
 }
