@@ -89,7 +89,7 @@ html.js:not(.motion-ready) [data-split] { animation: failsafe-show 0s 2s forward
   background: linear-gradient(currentColor, currentColor) 0 100% / 0 1px no-repeat;
   transition: background-size .3s var(--ease-out), color .2s;
 }
-.link-u:hover, .link-u:focus-visible { background-size: 100% 1px; }
+.link-u:hover, .link-u:focus-visible, .group:hover .link-u { background-size: 100% 1px; }
 
 .nudge-left { transition: transform .25s var(--ease-out); }
 .group:hover .nudge-left { transform: translateX(-4px); }

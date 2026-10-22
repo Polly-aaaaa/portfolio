@@ -1,8 +1,5 @@
 // Рендер страницы кейса по ?id=… из данных CASES (js/cases.js)
 
-const ARROW = (color = 'currentColor', w = 'w-8') =>
-  `<span class="flex items-center"><span class="arrow-line block h-px ${w}" style="background:${color}"></span><svg width="8" height="10" viewBox="0 0 8 10" class="-ml-1"><path d="M1 1l5 4-5 4" fill="none" stroke="${color}" stroke-width="1.2"/></svg></span>`;
-
 const icon = (name, cls = 'h-5 w-5') => `<span data-icon="${name}" class="inline-block shrink-0 ${cls}"></span>`;
 
 // Сроки и теги — одной тихой строкой, без цветных чипов
@@ -96,7 +93,6 @@ function caseCard(id) {
     <div class="overflow-hidden rounded-t-[14px] border-b-2 border-ink" style="background:${c.coverBg}; view-transition-name: cover-${id}">${picture(c.cover, { alt: c.title, zoom: false, cls: 'aspect-[5/4] object-cover transition-transform duration-700 group-hover:scale-105' })}</div>
     <div class="flex items-center justify-between gap-4 p-5">
       <h4 class="font-display text-lg font-medium leading-snug tracking-tight">${c.title}</h4>
-      <span class="grid h-9 w-9 shrink-0 place-items-center rounded-full border-2 border-ink bg-lilac-200 text-ink transition-colors group-hover:bg-lilac-300">${icon('arrow-ur', 'h-4 w-4')}</span>
     </div>
   </div></a>`;
 }
@@ -183,7 +179,7 @@ function render(id) {
       <div>
         <span data-doodle="plane" class="doodle-slot mb-4 h-16 w-16"></span>
         ${h2(nc.title, 'leading-[1.1]')}
-        <div class="mt-5 flex items-center gap-3 font-display text-[15px] font-medium">${nc.parent ? 'Следующий кейс' : 'Следующий проект'} ${ARROW('#0a0a0a', 'w-12')}</div>
+        <div class="link-u mt-5 inline-block font-display text-[15px] font-medium">${nc.parent ? 'Следующий кейс' : 'Следующий проект'}</div>
       </div>
     </a>
   </section>`;
