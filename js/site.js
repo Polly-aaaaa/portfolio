@@ -24,8 +24,6 @@ function splitWords(root, startDelay = 120, step = 55) {
           frag.append(w);
         });
         child.replaceWith(frag);
-      } else if (child.classList?.contains('avatar-pop')) {
-        child.style.setProperty('--d', `${startDelay + i++ * step}ms`);
       } else if (child.nodeType === Node.ELEMENT_NODE && child.tagName !== 'BR') {
         walk(child);
       }

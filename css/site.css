@@ -40,13 +40,6 @@ html.js:not(.motion-ready) [data-split] { animation: failsafe-show 0s 2s forward
 .split-done .w > .wi { animation: word-up .9s var(--ease-out) both; animation-delay: var(--d, 0ms); }
 @keyframes word-up { from { transform: translateY(105%); } to { transform: none; } }
 
-/* Аватар в заголовке */
-.split-done .avatar-pop { animation: avatar-pop 1s var(--ease-out) backwards; animation-delay: var(--d, 0ms); }
-@keyframes avatar-pop {
-  from { transform: scale(.2) rotate(-60deg); opacity: 0; }
-  to { transform: scale(1) rotate(-6deg); opacity: 1; }
-}
-
 /* ---------- Кнопки и ссылки ---------- */
 .press { transition: scale .3s var(--ease-out), box-shadow .3s var(--ease-out), background-color .2s; }
 .press:active { scale: .97; transition-duration: .1s; }
@@ -113,7 +106,6 @@ html.js .reveal:not(.in) .hero-char img { transform: translateY(28px) rotate(-6d
   html { scroll-behavior: auto; }
   html.js .reveal { transform: none; transition: opacity .3s; }
   .split-done .w > .wi { animation: none; }
-  .split-done .avatar-pop { animation: none; transform: rotate(-6deg); }
   #menu li, #nav.open #menu li { transform: none; }
   .stage-dot { transition-delay: 0ms; }
   .doodle .ink { transition: none; }
