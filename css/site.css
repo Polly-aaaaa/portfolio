@@ -8,6 +8,10 @@
 html { scroll-behavior: smooth; }
 body { background: #fafafa; -webkit-font-smoothing: antialiased; overflow-x: clip; }
 
+/* Курсор в стиле иллюстраций: сиреневая стрелка; над ссылками — с растром */
+html { cursor: url("../assets/cursor/arrow.svg") 4 3, auto; }
+a, button, summary, label[for], [role="button"] { cursor: url("../assets/cursor/pointer.svg") 4 3, pointer; }
+
 /* Поверхности браузера */
 :focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
 html { scrollbar-color: #cfcfcf transparent; }
