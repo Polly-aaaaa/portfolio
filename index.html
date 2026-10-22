@@ -9,6 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <script>document.documentElement.classList.add('js')</script>
   <script src="https://cdn.tailwindcss.com/3.4.17"></script>
   <script>
     tailwind.config = {
@@ -28,24 +29,7 @@
       },
     };
   </script>
-  <style>
-    html { scroll-behavior: smooth; }
-    body { background: #fafafa; -webkit-font-smoothing: antialiased; overflow-x: clip; }
-    /* Плюсики на пересечении линий, как у референса */
-    .cross::before, .cross::after {
-      content: ''; position: absolute; top: -5px; width: 9px; height: 9px;
-      background:
-        linear-gradient(#cfcfcf,#cfcfcf) center/1px 100% no-repeat,
-        linear-gradient(#cfcfcf,#cfcfcf) center/100% 1px no-repeat;
-    }
-    .cross::before { left: -5px; } .cross::after { right: -5px; }
-    .reveal { opacity: 0; transform: translateY(18px); filter: blur(6px);
-      transition: opacity .8s cubic-bezier(.2,.7,.2,1), transform .8s cubic-bezier(.2,.7,.2,1), filter .8s; }
-    .reveal.in { opacity: 1; transform: none; filter: none; }
-    @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; filter: none; transition: none; } }
-    .arrow-line { transition: width .35s cubic-bezier(.2,.7,.2,1); }
-    .group:hover .arrow-line { width: 4.5rem; }
-  </style>
+  <link rel="stylesheet" href="css/site.css" />
 </head>
 <body class="font-sans text-ink selection:bg-ink selection:text-white">
 
@@ -82,32 +66,32 @@
       <div class="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[520px] bg-[radial-gradient(60%_60%_at_50%_30%,#ffffff_0%,#fafafa_70%)]"></div>
 
       <div class="reveal inline-flex items-center gap-2 rounded-lg bg-ink px-3 py-1.5 text-[13px] font-medium text-white shadow-lg">
-        <span class="relative flex h-2 w-2"><span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75"></span><span class="relative inline-flex h-2 w-2 rounded-full bg-emerald-400"></span></span>
+        <span class="relative flex h-2 w-2"><span class="absolute inline-flex h-full w-full motion-safe:animate-ping rounded-full bg-emerald-400 opacity-75"></span><span class="relative inline-flex h-2 w-2 rounded-full bg-emerald-400"></span></span>
         UI/UX Designer
         <span class="rounded-full border border-white/70 px-1.5 text-[10px] leading-4">2 года</span>
       </div>
 
-      <h1 class="reveal mx-auto mt-7 max-w-3xl font-display text-[2.75rem] font-medium leading-[1.05] tracking-[-0.04em] sm:text-6xl md:text-7xl">
+      <h1 data-split class="mx-auto mt-7 max-w-3xl font-display text-[2.75rem] font-medium leading-[1.05] tracking-[-0.04em] sm:text-6xl md:text-7xl">
         Полина
-        <span class="mx-1 inline-block h-[0.9em] w-[0.9em] -rotate-6 overflow-hidden rounded-full align-[-0.12em] shadow-lg ring-2 ring-white transition-transform duration-300 hover:rotate-6 hover:scale-110">
+        <span class="avatar-pop mx-1 inline-block h-[0.9em] w-[0.9em] -rotate-6 overflow-hidden rounded-full align-[-0.12em] shadow-lg ring-2 ring-white transition-transform duration-300 hover:rotate-6 hover:scale-110">
           <img src="assets/avatar.jpg" alt="Полина Артамонова" class="h-full w-full object-cover object-[50%_35%]" />
         </span>
         Артамонова,<br class="hidden sm:block" />
         <span class="text-ink/40">дизайн интерфейсов.</span>
       </h1>
 
-      <p class="reveal mx-auto mt-6 max-w-md text-[15px] leading-relaxed text-muted sm:text-base">
+      <p style="--stagger:520ms" class="reveal mx-auto mt-6 max-w-md text-[15px] leading-relaxed text-muted sm:text-base">
         Проектирую пользовательские интерфейсы для B2E и B2C продуктов, участвую во всём цикле разработки и представляю решения команде. Санкт-Петербург.
       </p>
 
-      <div class="reveal mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
+      <div style="--stagger:640ms" class="reveal mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
         <a href="https://t.me/p_p_polly" target="_blank" rel="noopener"
-           class="group inline-flex items-center gap-5 rounded-full bg-gradient-to-b from-[#3a3a3a] to-ink px-6 py-4 font-display text-[15px] font-medium tracking-tight text-white shadow-pill transition-all duration-300 hover:scale-[1.03]">
+           class="group inline-flex items-center gap-5 rounded-full bg-gradient-to-b from-[#3a3a3a] to-ink px-6 py-4 font-display text-[15px] font-medium tracking-tight text-white shadow-pill transition-all duration-300 press hover:scale-[1.03]">
           Написать в Телеграм
           <span class="flex items-center"><span class="arrow-line block h-px w-12 bg-white/80"></span><svg width="8" height="10" viewBox="0 0 8 10" class="-ml-1"><path d="M1 1l5 4-5 4" fill="none" stroke="white" stroke-width="1.2"/></svg></span>
         </a>
         <a href="https://drive.google.com/file/d/1vTA9CH9CJkSyZ6TN2uQzDy6aibkoubeJ/view" target="_blank" rel="noopener"
-           class="inline-flex items-center gap-2 rounded-full border border-black/10 bg-white px-6 py-4 font-display text-[15px] font-medium tracking-tight shadow-sm transition-all duration-300 hover:scale-[1.03] hover:shadow-card">
+           class="inline-flex items-center gap-2 rounded-full border border-black/10 bg-white px-6 py-4 font-display text-[15px] font-medium tracking-tight shadow-sm transition-all duration-300 press hover:scale-[1.03] hover:shadow-card">
           Резюме ↗
         </a>
       </div>
@@ -120,11 +104,11 @@
         <p class="mt-3 text-[15px] text-muted">Некоторые детали не раскрываются в связи с NDA.</p>
       </div>
 
-      <div class="mt-14 grid gap-x-8 gap-y-14 md:grid-cols-2">
+      <div data-stagger class="mt-14 grid gap-x-8 gap-y-14 md:grid-cols-2">
         <!-- Project 1 -->
         <a href="case.html?id=corp" class="reveal group block">
-          <div class="overflow-hidden rounded-2xl border border-black/5 bg-[#eef3ff] shadow-card transition-all duration-500 group-hover:-translate-y-1 group-hover:shadow-xl">
-            <img src="assets/corp.webp" width="2000" height="1200" alt="Корпоративный HR-сервис — главная страница" loading="lazy" class="aspect-[5/3] w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]" />
+          <div style="view-transition-name: cover-corp" class="overflow-hidden rounded-2xl border border-black/5 bg-[#eef3ff] shadow-card transition-all duration-500 group-hover:-translate-y-1 group-hover:shadow-xl">
+            <img src="assets/corp.webp" width="2000" height="1200" alt="Корпоративный HR-сервис — главная страница" loading="lazy" class="aspect-[5/3] w-full object-cover transition-transform duration-700 group-press hover:scale-[1.03]" />
           </div>
           <div class="mt-5 flex items-center gap-3">
             <h3 class="font-display text-xl font-medium tracking-tight">Корпоративный сервис</h3>
@@ -141,8 +125,8 @@
 
         <!-- Project 2 -->
         <a href="case.html?id=support" class="reveal group block md:mt-24">
-          <div class="overflow-hidden rounded-2xl border border-black/5 bg-[#ffb800] shadow-card transition-all duration-500 group-hover:-translate-y-1 group-hover:shadow-xl">
-            <img src="assets/support.webp" width="2000" height="1200" alt="Сервис технической поддержки — панель сотрудника и мобильный клиент" loading="lazy" class="aspect-[5/3] w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]" />
+          <div style="view-transition-name: cover-support" class="overflow-hidden rounded-2xl border border-black/5 bg-[#ffb800] shadow-card transition-all duration-500 group-hover:-translate-y-1 group-hover:shadow-xl">
+            <img src="assets/support.webp" width="2000" height="1200" alt="Сервис технической поддержки — панель сотрудника и мобильный клиент" loading="lazy" class="aspect-[5/3] w-full object-cover transition-transform duration-700 group-press hover:scale-[1.03]" />
           </div>
           <div class="mt-5 flex items-center gap-3">
             <h3 class="font-display text-xl font-medium tracking-tight">Сервис технической поддержки</h3>
@@ -159,8 +143,8 @@
 
         <!-- Project 3 -->
         <a href="case.html?id=docs" class="reveal group block">
-          <div class="overflow-hidden rounded-2xl border border-black/5 bg-[#f3efff] shadow-card transition-all duration-500 group-hover:-translate-y-1 group-hover:shadow-xl">
-            <img src="assets/docs.webp" width="2000" height="1200" alt="Сервис для работы с документами — кабинет администратора" loading="lazy" class="aspect-[5/3] w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]" />
+          <div style="view-transition-name: cover-docs" class="overflow-hidden rounded-2xl border border-black/5 bg-[#f3efff] shadow-card transition-all duration-500 group-hover:-translate-y-1 group-hover:shadow-xl">
+            <img src="assets/docs.webp" width="2000" height="1200" alt="Сервис для работы с документами — кабинет администратора" loading="lazy" class="aspect-[5/3] w-full object-cover transition-transform duration-700 group-press hover:scale-[1.03]" />
           </div>
           <div class="mt-5 flex items-center gap-3">
             <h3 class="font-display text-xl font-medium tracking-tight">Сервис для работы с документами</h3>
@@ -176,8 +160,8 @@
 
         <!-- Project 4 -->
         <a href="case.html?id=biz" class="reveal group block md:mt-24">
-          <div class="overflow-hidden rounded-2xl border border-black/5 bg-[#0b3d86] shadow-card transition-all duration-500 group-hover:-translate-y-1 group-hover:shadow-xl">
-            <img src="assets/biz.webp" width="2000" height="1200" alt="Сервис для предпринимателей — макеты под NDA" loading="lazy" class="aspect-[5/3] w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]" />
+          <div style="view-transition-name: cover-biz" class="overflow-hidden rounded-2xl border border-black/5 bg-[#0b3d86] shadow-card transition-all duration-500 group-hover:-translate-y-1 group-hover:shadow-xl">
+            <img src="assets/biz.webp" width="2000" height="1200" alt="Сервис для предпринимателей — макеты под NDA" loading="lazy" class="aspect-[5/3] w-full object-cover transition-transform duration-700 group-press hover:scale-[1.03]" />
           </div>
           <div class="mt-5 flex items-center gap-3">
             <h3 class="font-display text-xl font-medium tracking-tight">Сервис для предпринимателей</h3>
@@ -202,7 +186,7 @@
         <h2 class="mt-3 font-display text-[2rem] font-medium tracking-[-0.04em] sm:text-5xl">Весь цикл — от интервью<br class="hidden sm:block" /> до ревью вёрстки</h2>
       </div>
 
-      <div class="mt-14 grid auto-rows-[minmax(180px,auto)] gap-4 md:grid-cols-6">
+      <div data-stagger class="mt-14 grid auto-rows-[minmax(180px,auto)] gap-4 md:grid-cols-6">
         <!-- Big: роль -->
         <div class="reveal relative overflow-hidden rounded-3xl bg-ink p-7 text-white shadow-xl md:col-span-4 md:row-span-2">
           <div class="pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full bg-gradient-to-br from-violet-500/40 to-sky-400/20 blur-3xl"></div>
@@ -266,24 +250,24 @@
         <h2 class="mt-3 font-display text-[2rem] font-medium tracking-[-0.04em] sm:text-5xl">Что изменилось после</h2>
       </div>
 
-      <div class="mt-14 grid gap-4 md:grid-cols-2">
+      <div data-stagger class="mt-14 grid gap-4 md:grid-cols-2">
         <a href="case.html?id=vacation" class="reveal group flex flex-col justify-between gap-10 rounded-3xl border border-black/5 bg-white p-7 shadow-card transition-all duration-300 hover:scale-[1.02] sm:p-9">
           <p class="font-mono text-[11px] uppercase tracking-[0.18em] text-muted">Сбор отпусков и удалёнок</p>
           <div>
-            <p class="font-display text-6xl font-medium tracking-[-0.05em] sm:text-7xl">до 30%</p>
+            <p class="font-display text-6xl font-medium tracking-[-0.05em] sm:text-7xl" data-count="30" data-prefix="до " data-suffix="%">до 30%</p>
             <p class="mt-3 max-w-xs text-[15px] leading-relaxed text-muted">времени HR экономится на сбор и обработку информации</p>
           </div>
         </a>
         <a href="case.html?id=review" class="reveal group flex flex-col justify-between gap-10 rounded-3xl border border-black/5 bg-white p-7 shadow-card transition-all duration-300 hover:scale-[1.02] sm:p-9">
           <p class="font-mono text-[11px] uppercase tracking-[0.18em] text-muted">Ревью 360°</p>
           <div>
-            <p class="font-display text-6xl font-medium tracking-[-0.05em] sm:text-7xl">15%</p>
+            <p class="font-display text-6xl font-medium tracking-[-0.05em] sm:text-7xl" data-count="15" data-suffix="%">15%</p>
             <p class="mt-3 max-w-xs text-[15px] leading-relaxed text-muted">сотрудников по итогам оценки получили повышение грейда</p>
           </div>
         </a>
       </div>
 
-      <div class="mt-4 grid gap-4 md:grid-cols-3">
+      <div data-stagger class="mt-4 grid gap-4 md:grid-cols-3">
         <figure class="reveal rounded-3xl border border-black/5 bg-white p-7 shadow-card transition-all duration-300 hover:scale-[1.02]">
           <p class="text-[15px] leading-relaxed">Продукт стал основным внутренним сервисом компании — HR и сотрудники тратят меньше времени на заполнение данных.</p>
           <figcaption class="mt-6 flex items-center gap-3 border-t border-line pt-4">
@@ -316,12 +300,12 @@
         <p class="mx-auto mt-5 max-w-md text-[15px] leading-relaxed text-muted">Часть проектов под NDA — подробные макеты могу показать на личном созвоне.</p>
         <div class="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
           <a href="https://t.me/p_p_polly" target="_blank" rel="noopener"
-             class="group inline-flex items-center gap-5 rounded-full bg-gradient-to-b from-[#3a3a3a] to-ink px-6 py-4 font-display text-[15px] font-medium tracking-tight text-white shadow-pill transition-all duration-300 hover:scale-[1.03]">
+             class="group inline-flex items-center gap-5 rounded-full bg-gradient-to-b from-[#3a3a3a] to-ink px-6 py-4 font-display text-[15px] font-medium tracking-tight text-white shadow-pill transition-all duration-300 press hover:scale-[1.03]">
             Телеграм
             <span class="flex items-center"><span class="arrow-line block h-px w-12 bg-white/80"></span><svg width="8" height="10" viewBox="0 0 8 10" class="-ml-1"><path d="M1 1l5 4-5 4" fill="none" stroke="white" stroke-width="1.2"/></svg></span>
           </a>
           <a href="mailto:psineleva@bk.ru"
-             class="inline-flex items-center gap-2 rounded-full border border-black/10 bg-white px-6 py-4 font-display text-[15px] font-medium tracking-tight shadow-sm transition-all duration-300 hover:scale-[1.03] hover:shadow-card">
+             class="inline-flex items-center gap-2 rounded-full border border-black/10 bg-white px-6 py-4 font-display text-[15px] font-medium tracking-tight shadow-sm transition-all duration-300 press hover:scale-[1.03] hover:shadow-card">
             psineleva@bk.ru
           </a>
         </div>
@@ -333,39 +317,15 @@
       <div class="flex flex-col items-center justify-between gap-4 py-8 text-sm text-muted sm:flex-row">
         <p>© 2026 Полина Артамонова · Санкт-Петербург</p>
         <div class="flex gap-5">
-          <a href="https://t.me/p_p_polly" target="_blank" rel="noopener" class="transition-colors hover:text-ink">Телеграм</a>
-          <a href="mailto:psineleva@bk.ru" class="transition-colors hover:text-ink">Почта</a>
-          <a href="https://drive.google.com/file/d/1vTA9CH9CJkSyZ6TN2uQzDy6aibkoubeJ/view" target="_blank" rel="noopener" class="transition-colors hover:text-ink">Резюме</a>
+          <a href="https://t.me/p_p_polly" target="_blank" rel="noopener" class="link-u transition-colors hover:text-ink">Телеграм</a>
+          <a href="mailto:psineleva@bk.ru" class="link-u transition-colors hover:text-ink">Почта</a>
+          <a href="https://drive.google.com/file/d/1vTA9CH9CJkSyZ6TN2uQzDy6aibkoubeJ/view" target="_blank" rel="noopener" class="link-u transition-colors hover:text-ink">Резюме</a>
         </div>
       </div>
       <p aria-hidden="true" class="select-none overflow-hidden whitespace-nowrap pb-2 text-center font-display text-[15vw] font-medium leading-[0.8] tracking-[-0.06em] text-black/[0.05] lg:text-[10.5rem]">Артамонова</p>
     </footer>
   </div>
 
-  <script>
-    // Появление блоков при скролле
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
-    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
-    document.querySelectorAll('.reveal').forEach((el, i) => {
-      el.style.transitionDelay = (i % 4) * 70 + 'ms';
-      io.observe(el);
-    });
-
-    // Меню в pill-навбаре
-    const btn = document.getElementById('menuBtn');
-    const menu = document.getElementById('menu');
-    const nav = document.getElementById('nav');
-    const [l1, l2] = btn.querySelectorAll('span');
-    function toggle(open) {
-      btn.setAttribute('aria-expanded', open);
-      menu.style.gridTemplateRows = open ? '1fr' : '0fr';
-      nav.classList.toggle('bg-white/90', open);
-      l1.style.transform = open ? 'translateY(3.75px) rotate(45deg)' : '';
-      l2.style.transform = open ? 'translateY(-3.75px) rotate(-45deg)' : '';
-    }
-    btn.addEventListener('click', () => toggle(btn.getAttribute('aria-expanded') !== 'true'));
-    menu.querySelectorAll('a').forEach((a) => a.addEventListener('click', () => toggle(false)));
-  </script>
+  <script src="js/site.js"></script>
 </body>
 </html>

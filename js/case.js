@@ -35,10 +35,10 @@ function renderBlock(b) {
 }
 
 function stagesBlock(stages) {
-  return `<div class="reveal mx-auto max-w-2xl">
+  return `<div class="reveal stages mx-auto max-w-2xl">
     <p class="font-mono text-[11px] uppercase tracking-[0.18em] text-muted">⚡️ Этапы</p>
     <ol class="mt-4 flex flex-wrap gap-2">${stages.map((s, i) =>
-      `<li class="flex items-center gap-2 rounded-full border border-black/5 bg-white py-1.5 pl-1.5 pr-3.5 text-sm shadow-sm"><span class="grid h-6 w-6 place-items-center rounded-full bg-ink font-mono text-[10px] text-white">${String(i + 1).padStart(2, '0')}</span>${s}</li>`).join('')}
+      `<li class="flex items-center gap-2 rounded-full border border-black/5 bg-white py-1.5 pl-1.5 pr-3.5 text-sm shadow-sm"><span class="stage-dot grid h-6 w-6 place-items-center rounded-full bg-ink font-mono text-[10px] text-white">${String(i + 1).padStart(2, '0')}</span>${s}</li>`).join('')}
     </ol>
   </div>`;
 }
@@ -63,10 +63,11 @@ function resultsCard(c) {
 
 function metricCard(m) {
   if (!m) return '';
+  const [, prefix, num, suffix] = m.value.match(/^(\D*)(\d+)(.*)$/);
   return `<div class="reveal flex flex-col justify-between rounded-3xl border border-black/5 bg-white p-7 shadow-card sm:p-9">
     <p class="font-mono text-[11px] uppercase tracking-[0.18em] text-muted">Главная метрика</p>
     <div class="mt-8">
-      <p class="font-display text-6xl font-medium tracking-[-0.05em] sm:text-7xl">${m.value}</p>
+      <p class="font-display text-6xl font-medium tracking-[-0.05em] sm:text-7xl" data-count="${num}" data-prefix="${prefix}" data-suffix="${suffix}">${m.value}</p>
       <p class="mt-3 max-w-xs text-[15px] leading-relaxed text-muted">${m.text}</p>
     </div>
   </div>`;
@@ -74,8 +75,8 @@ function metricCard(m) {
 
 function caseCard(id, label) {
   const c = CASES[id];
-  return `<a href="case.html?id=${id}" class="reveal group flex flex-col overflow-hidden rounded-2xl border border-black/5 bg-white shadow-card transition-all duration-300 hover:scale-[1.02] hover:shadow-xl">
-    <div class="overflow-hidden" style="background:${c.coverBg}">${picture(c.cover, { alt: c.title, zoom: false, cls: 'aspect-[5/4] object-cover transition-transform duration-700 group-hover:scale-105' })}</div>
+  return `<a href="case.html?id=${id}" class="reveal group press flex flex-col overflow-hidden rounded-2xl border border-black/5 bg-white shadow-card transition-all duration-300 hover:scale-[1.02] hover:shadow-xl">
+    <div class="overflow-hidden" style="background:${c.coverBg}; view-transition-name: cover-${id}">${picture(c.cover, { alt: c.title, zoom: false, cls: 'aspect-[5/4] object-cover transition-transform duration-700 group-hover:scale-105' })}</div>
     <div class="flex items-start justify-between gap-4 p-5">
       <div>
         <p class="font-mono text-[11px] uppercase tracking-[0.18em] text-muted">${label || c.kicker || 'Проект'}</p>
@@ -91,9 +92,9 @@ function render(id) {
   const parent = c.parent && CASES[c.parent];
   document.title = `${c.title} — Полина Артамонова`;
 
-  const back = parent
-    ? `<a href="case.html?id=${c.parent}" class="inline-flex items-center gap-2 text-sm text-muted transition-colors hover:text-ink">← ${parent.title}</a>`
-    : `<a href="index.html#work" class="inline-flex items-center gap-2 text-sm text-muted transition-colors hover:text-ink">← Все проекты</a>`;
+  const backLink = (href, text) =>
+    `<a href="${href}" class="group inline-flex items-center gap-2 text-sm text-muted transition-colors hover:text-ink"><span class="nudge-left inline-block">←</span>${text}</a>`;
+  const back = parent ? backLink(`case.html?id=${c.parent}`, parent.title) : backLink('index.html#work', 'Все проекты');
 
   const badge = c.kicker || c.period;
 
@@ -102,12 +103,12 @@ function render(id) {
     <div class="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[520px] bg-[radial-gradient(60%_60%_at_50%_30%,#ffffff_0%,#fafafa_70%)]"></div>
     <div class="reveal">${back}</div>
     ${badge ? `<div class="reveal mt-6 inline-flex items-center gap-2 rounded-lg bg-ink px-3 py-1.5 text-[13px] font-medium text-white shadow-lg">${badge}${c.kicker && parent ? `<span class="rounded-full border border-white/70 px-1.5 text-[10px] leading-4">${parent.title}</span>` : ''}</div>` : ''}
-    <h1 class="reveal mx-auto mt-6 max-w-3xl font-display text-[2.5rem] font-medium leading-[1.05] tracking-[-0.04em] sm:text-6xl">${c.title}</h1>
-    ${c.lead ? `<p class="reveal prose-case mx-auto mt-6 max-w-xl text-[15px] leading-relaxed text-muted sm:text-base">${c.lead}</p>` : ''}
-    <div class="reveal mt-6 flex justify-center">${tags(c.tags)}</div>
+    <h1 data-split class="mx-auto mt-6 max-w-3xl font-display text-[2.5rem] font-medium leading-[1.05] tracking-[-0.04em] sm:text-6xl">${c.title}</h1>
+    ${c.lead ? `<p style="--stagger:480ms" class="reveal prose-case mx-auto mt-6 max-w-xl text-[15px] leading-relaxed text-muted sm:text-base">${c.lead}</p>` : ''}
+    <div style="--stagger:600ms" class="reveal mt-6 flex justify-center">${tags(c.tags)}</div>
   </section>
-  <div class="reveal px-4 pb-20 sm:px-8 sm:pb-28">
-    <div class="overflow-hidden rounded-3xl border border-black/5 shadow-card" style="background:${c.coverBg}">${picture(c.cover, { alt: c.title, eager: true })}</div>
+  <div class="px-4 pb-20 sm:px-8 sm:pb-28">
+    <div class="overflow-hidden rounded-3xl border border-black/5 shadow-card" style="background:${c.coverBg}; view-transition-name: cover-${id}">${picture(c.cover, { alt: c.title, eager: true })}</div>
   </div>`;
 
   const summary = `
@@ -116,7 +117,7 @@ function render(id) {
       <p class="font-mono text-[11px] uppercase tracking-[0.2em] text-muted">Коротко о проекте</p>
       <h2 class="mt-3 font-display text-[2rem] font-medium tracking-[-0.04em] sm:text-5xl">Задача и итог</h2>
     </div>
-    <div class="mt-12 grid gap-4 md:grid-cols-2">
+    <div data-stagger class="mt-12 grid gap-4 md:grid-cols-2">
       ${c.summary.map((s, i) => summaryCard(s, s.list || (c.summary.length % 2 === 1 && i === c.summary.length - 1))).join('')}
       ${resultsCard(c)}
       ${metricCard(c.metric)}
@@ -150,15 +151,17 @@ function render(id) {
 
   const subcases = c.subcases ? `
     <section class="px-4 pb-20 sm:px-8 sm:pb-28">
-      <div class="grid gap-6 sm:grid-cols-2">${c.subcases.map((k) => caseCard(k)).join('')}</div>
+      <div data-stagger class="grid gap-6 sm:grid-cols-2">${c.subcases.map((k) => caseCard(k)).join('')}</div>
     </section>` : '';
 
   const next = CASE_ORDER[(CASE_ORDER.indexOf(id) + 1) % CASE_ORDER.length];
   const nc = CASES[next];
+  // одно имя перехода на странице может быть только у одного элемента
+  const nextVT = c.subcases?.includes(next) ? '' : `; view-transition-name: cover-${next}`;
   const nextBlock = `
   <section class="cross relative border-t border-line px-4 py-20 sm:px-8 sm:py-28">
     <a href="case.html?id=${next}" class="reveal group grid items-center gap-8 md:grid-cols-2">
-      <div class="overflow-hidden rounded-2xl border border-black/5 shadow-card transition-all duration-500 group-hover:-translate-y-1 group-hover:shadow-xl" style="background:${nc.coverBg}">
+      <div class="overflow-hidden rounded-2xl border border-black/5 shadow-card transition-all duration-500 group-hover:-translate-y-1 group-hover:shadow-xl" style="background:${nc.coverBg}${nextVT}">
         ${picture(nc.cover, { alt: nc.title, zoom: false, cls: 'aspect-[5/3] object-cover transition-transform duration-700 group-hover:scale-[1.03]' })}
       </div>
       <div>
@@ -179,42 +182,42 @@ if (CASES[id]) {
   location.replace('index.html#work');
 }
 
-// Появление блоков при скролле
-const io = new IntersectionObserver((entries) => {
-  entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
-}, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
-document.querySelectorAll('.reveal').forEach((el, i) => {
-  el.style.transitionDelay = (i % 3) * 60 + 'ms';
-  io.observe(el);
-});
-
-// Увеличение картинок
+// Увеличение картинок: картинка вырастает из миниатюры и возвращается в неё
 const lb = document.getElementById('lightbox');
 const lbImg = document.createElement('img');
 lbImg.className = 'max-h-full max-w-full rounded-xl object-contain shadow-2xl';
 lb.prepend(lbImg);
+const lbReduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+let lbThumb = null;
+
+function flipFrom(thumb) {
+  const a = thumb.getBoundingClientRect();
+  const b = lbImg.getBoundingClientRect();
+  return `translate(${a.left + a.width / 2 - (b.left + b.width / 2)}px, ${a.top + a.height / 2 - (b.top + b.height / 2)}px) scale(${a.width / b.width})`;
+}
+
+async function openLb(thumb) {
+  lbThumb = thumb;
+  lbImg.src = thumb.currentSrc || thumb.src;
+  lbImg.alt = thumb.alt;
+  lb.classList.remove('hidden-lb');
+  if (lbReduce) return;
+  await lbImg.decode().catch(() => {});
+  lbImg.animate([{ transform: flipFrom(thumb), opacity: 0.6 }, { transform: 'none', opacity: 1 }],
+    { duration: 420, easing: 'cubic-bezier(0.16, 1, 0.3, 1)' });
+}
+
+function closeLb() {
+  if (lb.classList.contains('hidden-lb')) return;
+  lb.classList.add('hidden-lb');
+  if (lbReduce || !lbThumb) return;
+  lbImg.animate([{ transform: 'none' }, { transform: flipFrom(lbThumb) }],
+    { duration: 260, easing: 'cubic-bezier(0.4, 0, 1, 1)' });
+}
+
 document.addEventListener('click', (e) => {
   const img = e.target.closest('img.zoomable');
-  if (!img) return;
-  lbImg.src = img.src;
-  lbImg.alt = img.alt;
-  lb.classList.remove('hidden-lb');
+  if (img) openLb(img);
 });
-const closeLb = () => lb.classList.add('hidden-lb');
 lb.addEventListener('click', closeLb);
 document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeLb(); });
-
-// Меню в pill-навбаре
-const btn = document.getElementById('menuBtn');
-const menu = document.getElementById('menu');
-const nav = document.getElementById('nav');
-const [l1, l2] = btn.querySelectorAll('span');
-function toggle(open) {
-  btn.setAttribute('aria-expanded', open);
-  menu.style.gridTemplateRows = open ? '1fr' : '0fr';
-  nav.classList.toggle('bg-white/90', open);
-  l1.style.transform = open ? 'translateY(3.75px) rotate(45deg)' : '';
-  l2.style.transform = open ? 'translateY(-3.75px) rotate(-45deg)' : '';
-}
-btn.addEventListener('click', () => toggle(btn.getAttribute('aria-expanded') !== 'true'));
-menu.querySelectorAll('a').forEach((a) => a.addEventListener('click', () => toggle(false)));

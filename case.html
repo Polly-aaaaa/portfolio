@@ -9,6 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <script>document.documentElement.classList.add('js')</script>
   <script src="https://cdn.tailwindcss.com/3.4.17"></script>
   <script>
     tailwind.config = {
@@ -28,28 +29,10 @@
       },
     };
   </script>
-  <style>
-    html { scroll-behavior: smooth; }
-    body { background: #fafafa; -webkit-font-smoothing: antialiased; overflow-x: clip; }
-    .cross::before, .cross::after {
-      content: ''; position: absolute; top: -5px; width: 9px; height: 9px;
-      background:
-        linear-gradient(#cfcfcf,#cfcfcf) center/1px 100% no-repeat,
-        linear-gradient(#cfcfcf,#cfcfcf) center/100% 1px no-repeat;
-    }
-    .cross::before { left: -5px; } .cross::after { right: -5px; }
-    .reveal { opacity: 0; transform: translateY(18px); filter: blur(6px);
-      transition: opacity .8s cubic-bezier(.2,.7,.2,1), transform .8s cubic-bezier(.2,.7,.2,1), filter .8s; }
-    .reveal.in { opacity: 1; transform: none; filter: none; }
-    @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; filter: none; transition: none; } }
-    .arrow-line { transition: width .35s cubic-bezier(.2,.7,.2,1); }
-    .group:hover .arrow-line { width: 4.5rem; }
-    .prose-case b { font-weight: 500; color: #0a0a0a; }
-    #lightbox { transition: opacity .25s; }
-    #lightbox.hidden-lb { opacity: 0; pointer-events: none; }
-  </style>
+  <link rel="stylesheet" href="css/site.css" />
 </head>
 <body class="font-sans text-ink selection:bg-ink selection:text-white">
+  <div class="read-progress" aria-hidden="true"></div>
 
   <!-- ===== Nav ===== -->
   <header class="fixed inset-x-0 top-4 z-50 flex justify-center px-4">
@@ -86,12 +69,12 @@
         <p class="mx-auto mt-5 max-w-md text-[15px] leading-relaxed text-muted">Часть проектов под NDA — подробные макеты могу показать на личном созвоне.</p>
         <div class="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
           <a href="https://t.me/p_p_polly" target="_blank" rel="noopener"
-             class="group inline-flex items-center gap-5 rounded-full bg-gradient-to-b from-[#3a3a3a] to-ink px-6 py-4 font-display text-[15px] font-medium tracking-tight text-white shadow-pill transition-all duration-300 hover:scale-[1.03]">
+             class="group inline-flex items-center gap-5 rounded-full bg-gradient-to-b from-[#3a3a3a] to-ink px-6 py-4 font-display text-[15px] font-medium tracking-tight text-white shadow-pill transition-all duration-300 press hover:scale-[1.03]">
             Телеграм
             <span class="flex items-center"><span class="arrow-line block h-px w-12 bg-white/80"></span><svg width="8" height="10" viewBox="0 0 8 10" class="-ml-1"><path d="M1 1l5 4-5 4" fill="none" stroke="white" stroke-width="1.2"/></svg></span>
           </a>
           <a href="mailto:psineleva@bk.ru"
-             class="inline-flex items-center gap-2 rounded-full border border-black/10 bg-white px-6 py-4 font-display text-[15px] font-medium tracking-tight shadow-sm transition-all duration-300 hover:scale-[1.03] hover:shadow-card">
+             class="inline-flex items-center gap-2 rounded-full border border-black/10 bg-white px-6 py-4 font-display text-[15px] font-medium tracking-tight shadow-sm transition-all duration-300 press hover:scale-[1.03] hover:shadow-card">
             psineleva@bk.ru
           </a>
         </div>
@@ -103,9 +86,9 @@
       <div class="flex flex-col items-center justify-between gap-4 py-8 text-sm text-muted sm:flex-row">
         <p>© 2026 Полина Артамонова · Санкт-Петербург</p>
         <div class="flex gap-5">
-          <a href="https://t.me/p_p_polly" target="_blank" rel="noopener" class="transition-colors hover:text-ink">Телеграм</a>
-          <a href="mailto:psineleva@bk.ru" class="transition-colors hover:text-ink">Почта</a>
-          <a href="https://drive.google.com/file/d/1vTA9CH9CJkSyZ6TN2uQzDy6aibkoubeJ/view" target="_blank" rel="noopener" class="transition-colors hover:text-ink">Резюме</a>
+          <a href="https://t.me/p_p_polly" target="_blank" rel="noopener" class="link-u transition-colors hover:text-ink">Телеграм</a>
+          <a href="mailto:psineleva@bk.ru" class="link-u transition-colors hover:text-ink">Почта</a>
+          <a href="https://drive.google.com/file/d/1vTA9CH9CJkSyZ6TN2uQzDy6aibkoubeJ/view" target="_blank" rel="noopener" class="link-u transition-colors hover:text-ink">Резюме</a>
         </div>
       </div>
       <p aria-hidden="true" class="select-none overflow-hidden whitespace-nowrap pb-2 text-center font-display text-[15vw] font-medium leading-[0.8] tracking-[-0.06em] text-black/[0.05] lg:text-[10.5rem]">Артамонова</p>
@@ -119,5 +102,6 @@
 
   <script src="js/cases.js"></script>
   <script src="js/case.js"></script>
+  <script src="js/site.js"></script>
 </body>
 </html>

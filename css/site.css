@@ -1,0 +1,101 @@
+/* Общие стили и движение для всех страниц */
+
+:root {
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ink: #0a0a0a;
+}
+
+html { scroll-behavior: smooth; }
+body { background: #fafafa; -webkit-font-smoothing: antialiased; overflow-x: clip; }
+
+/* Поверхности браузера */
+:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+html { scrollbar-color: #cfcfcf transparent; }
+
+/* Плюсики на пересечении линий, как у референса */
+.cross::before, .cross::after {
+  content: ''; position: absolute; top: -5px; width: 9px; height: 9px;
+  background:
+    linear-gradient(#cfcfcf,#cfcfcf) center/1px 100% no-repeat,
+    linear-gradient(#cfcfcf,#cfcfcf) center/100% 1px no-repeat;
+}
+.cross::before { left: -5px; } .cross::after { right: -5px; }
+
+/* ---------- Появление при скролле ----------
+   Скрываем только когда JS точно есть; если site.js не загрузился — показываем через 2 с. */
+html.js .reveal {
+  opacity: 0; transform: translateY(16px);
+  transition: opacity .6s var(--ease-out), transform .7s var(--ease-out);
+  transition-delay: var(--stagger, 0ms);
+}
+html.js .reveal.in { opacity: 1; transform: none; }
+html.js:not(.motion-ready) .reveal { animation: failsafe-show 0s 2s forwards; }
+@keyframes failsafe-show { to { opacity: 1; transform: none; visibility: visible; } }
+
+/* ---------- Заголовок по словам из-под маски ---------- */
+.w { display: inline-block; overflow: clip; overflow-clip-margin: 0.08em; padding-bottom: .08em; margin-bottom: -.08em; vertical-align: top; }
+.w > .wi { display: inline-block; }
+html.js [data-split]:not(.split-done) { visibility: hidden; }
+html.js:not(.motion-ready) [data-split] { animation: failsafe-show 0s 2s forwards; }
+.split-done .w > .wi { animation: word-up .9s var(--ease-out) both; animation-delay: var(--d, 0ms); }
+@keyframes word-up { from { transform: translateY(105%); } to { transform: none; } }
+
+/* Аватар в заголовке */
+.split-done .avatar-pop { animation: avatar-pop 1s var(--ease-out) backwards; animation-delay: var(--d, 0ms); }
+@keyframes avatar-pop {
+  from { transform: scale(.2) rotate(-60deg); opacity: 0; }
+  to { transform: scale(1) rotate(-6deg); opacity: 1; }
+}
+
+/* ---------- Кнопки и ссылки ---------- */
+.press { transition: scale .3s var(--ease-out), box-shadow .3s var(--ease-out), background-color .2s; }
+.press:active { scale: .97; transition-duration: .1s; }
+
+.arrow-line { transition: width .4s var(--ease-out); }
+.group:hover .arrow-line, .group:focus-visible .arrow-line { width: 4.5rem; }
+
+.link-u {
+  background: linear-gradient(currentColor, currentColor) 0 100% / 0 1px no-repeat;
+  transition: background-size .3s var(--ease-out), color .2s;
+}
+.link-u:hover, .link-u:focus-visible { background-size: 100% 1px; }
+
+.nudge-left { transition: transform .25s var(--ease-out); }
+.group:hover .nudge-left { transform: translateX(-4px); }
+
+/* ---------- Навбар ---------- */
+#nav { transition: background-color .3s, box-shadow .4s var(--ease-out), max-width .4s var(--ease-out); }
+#nav.nav-scrolled { background-color: rgba(255,255,255,.78); box-shadow: 0 10px 30px -14px rgba(0,0,0,.28); }
+#menu li { opacity: 0; transform: translateY(-6px); transition: opacity .2s, transform .3s var(--ease-out); }
+#nav.open #menu li { opacity: 1; transform: none; transition-delay: calc(var(--i, 0) * 45ms + 60ms); }
+
+/* ---------- Этапы загораются по очереди ---------- */
+html.js .stages .stage-dot { background: rgba(10,10,10,.08); color: var(--ink); }
+.stage-dot { transition: background-color .35s, color .35s; transition-delay: calc(var(--i, 0) * 110ms + 250ms); }
+html.js .stages.in .stage-dot { background: var(--ink); color: #fff; }
+
+/* ---------- Цифры ---------- */
+[data-count] { font-variant-numeric: tabular-nums; }
+
+/* ---------- Прогресс чтения ---------- */
+.read-progress { position: fixed; inset: 0 0 auto 0; height: 2px; z-index: 70; background: var(--ink); transform-origin: 0 50%; transform: scaleX(0); }
+
+/* ---------- Переходы между страницами (обложка перетекает в кейс) ---------- */
+@view-transition { navigation: auto; }
+::view-transition-group(*) { animation-duration: .55s; animation-timing-function: var(--ease-out); }
+::view-transition-old(root), ::view-transition-new(root) { animation-duration: .3s; }
+
+/* ---------- Увеличение картинок ---------- */
+#lightbox { transition: opacity .3s var(--ease-out); }
+#lightbox.hidden-lb { opacity: 0; pointer-events: none; }
+
+/* ---------- Меньше движения ---------- */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  html.js .reveal { transform: none; transition: opacity .3s; }
+  .split-done .w > .wi { animation: none; }
+  .split-done .avatar-pop { animation: none; transform: rotate(-6deg); }
+  #menu li, #nav.open #menu li { transform: none; }
+  .stage-dot { transition-delay: 0ms; }
+  ::view-transition-group(*), ::view-transition-old(*), ::view-transition-new(*) { animation: none !important; }
+}
