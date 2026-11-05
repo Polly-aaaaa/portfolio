@@ -1,0 +1,172 @@
+<!doctype html>
+<!-- Шаблон страниц кейсов: case-<id>.html собирает tools/build.mjs. Правьте здесь, а не в готовых страницах. -->
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Живой подарок — Полина Артамонова</title>
+  <meta name="description" content="Цифровой подарок: сначала человек встречает цветок, и только потом видит сертификат. Даритель собирает его за минуту. Получатель открывает касанием купола." />
+  <link rel="canonical" href="https://polly-aaaaa.github.io/portfolio/case-gift.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="Полина Артамонова — UI/UX дизайнер" />
+  <meta property="og:title" content="Живой подарок" />
+  <meta property="og:description" content="Цифровой подарок: сначала человек встречает цветок, и только потом видит сертификат. Даритель собирает его за минуту. Получатель открывает касанием купола." />
+  <meta property="og:url" content="https://polly-aaaaa.github.io/portfolio/case-gift.html" />
+  <meta property="og:image" content="https://polly-aaaaa.github.io/portfolio/assets/og/gift.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+  <link rel="icon" href="assets/favicon-32.png" sizes="32x32" type="image/png" />
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Onest:wght@400..900&family=Caveat:wght@500..700&display=swap" rel="stylesheet" />
+  <script>document.documentElement.classList.add('js')</script>
+  <link rel="stylesheet" href="css/site.css?v=20261105220703" />
+  <link rel="stylesheet" href="css/tw.css?v=20261105220703" />
+</head>
+<body class="font-sans text-ink">
+  <div class="read-progress" aria-hidden="true"></div>
+
+  <!-- ===== Nav ===== -->
+  <header class="fixed inset-x-0 top-4 z-50 flex justify-center px-4">
+    <nav id="nav" class="w-full max-w-[22rem] rounded-xl border border-black/10 bg-white shadow-[0_2px_8px_rgba(0,0,0,.08)]">
+      <div class="flex items-center justify-between py-2.5 pl-3 pr-2">
+        <a href="index.html" class="pill pill-blue !m-0 !text-[11px]">П. Артамонова</a>
+        <button id="menuBtn" aria-label="Меню" aria-expanded="false" class="flex h-8 w-8 flex-col items-center justify-center gap-[5px]">
+          <span class="block h-[2.5px] w-5 rounded bg-ink transition-transform duration-300"></span>
+          <span class="block h-[2.5px] w-5 rounded bg-ink transition-transform duration-300"></span>
+        </button>
+      </div>
+      <div id="menu" class="grid grid-rows-[0fr] transition-all duration-300">
+        <div class="overflow-hidden">
+          <ul class="mono flex flex-col gap-1 px-3 pb-3 text-[13px]">
+            <li><a href="index.html" class="block rounded-md px-2 py-2 transition-colors hover:bg-[#e5f4ff]">Главная</a></li>
+            <li><a href="index.html#work" class="block rounded-md px-2 py-2 transition-colors hover:bg-[#e5f4ff]">Все проекты</a></li>
+            <li><a href="#contact" class="block rounded-md px-2 py-2 transition-colors hover:bg-[#e5f4ff]">Контакты</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <div id="top" class="mx-auto max-w-[1200px] px-4 sm:px-8">
+    <main id="app">
+
+  <section class="pb-14 pt-32 sm:pb-20 sm:pt-40">
+    <div class="reveal"><a href="index.html#work" class="mono group inline-flex items-center gap-2 text-[12px]"><span class="nudge-left inline-block"><span data-icon="arrow-l" class="inline-block shrink-0 h-4 w-4"></span></span><span class="link-u">Все проекты</span></a></div>
+    <div class="relative mt-14 max-w-5xl">
+      <p class="drop hand absolute -top-10 left-0 text-[1.6rem] leading-none text-purple" style="--d:250ms">Октябрь 2026</p>
+      <h1 data-split class="display text-[1.95rem] sm:text-[4.5rem] lg:text-[6rem]">Живой подарок</h1>
+    </div>
+    <p style="--stagger:450ms" class="reveal prose-case mt-8 max-w-3xl text-[1.2rem] leading-[1.5] sm:text-[1.45rem]">Цифровой подарок: сначала человек встречает цветок, и только потом видит сертификат. Даритель собирает его за минуту. Получатель открывает касанием купола.</p>
+    <p style="--stagger:550ms" class="reveal mt-6 text-[22px] leading-[1.9]"><span class="pill pill-marker !ml-0">B2C</span><span class="pill pill-white">Web</span><span class="pill pill-white">Прототип</span></p>
+  </section>
+  <div class="pb-16 sm:pb-24"><div class="grid items-start justify-center gap-x-10 gap-y-16 md:grid-cols-2">
+    <figure class="proto-wrap">
+      <div class="print" data-label="Даритель" data-size="393 × 852">
+        <div class="proto"><iframe src="https://zhivoy-podarok.github.io/" title="Прототип дарителя, Живой подарок" loading="eager" allow="autoplay; fullscreen"></iframe></div>
+      </div>
+      <figcaption class="mt-8 text-center text-[15px]"><a class="link-u" href="https://zhivoy-podarok.github.io/" target="_blank" rel="noopener">Открыть прототип дарителя</a></figcaption>
+    </figure>
+    <figure class="proto-wrap">
+      <div class="print" data-label="Получатель" data-size="393 × 852">
+        <div class="proto"><iframe src="https://zhivoy-podarok.github.io/recipient/" title="Прототип получателя, Живой подарок" loading="lazy" allow="autoplay; fullscreen"></iframe></div>
+      </div>
+      <figcaption class="mt-8 text-center text-[15px]"><a class="link-u" href="https://zhivoy-podarok.github.io/recipient/" target="_blank" rel="noopener">Открыть прототип получателя</a></figcaption>
+    </figure></div></div>
+  <section class="py-16 sm:py-24">
+    <div class="reveal"><h2 class="display text-[2.1rem] sm:text-[4.5rem]">Задача и итог</h2></div>
+    <div class="mt-12">
+      
+  <div class="grid gap-10 md:grid-cols-2 md:gap-12">
+    <div class="reveal note note-lined">
+      <p class="hand text-[2.1rem]">Проблема</p>
+      <p class="prose-case mt-3 text-[17px] leading-[1.6]">Сертификат считывают по сумме. Пока номинал стоит на первом экране, цветок остаётся упаковкой, и подарок ощущается как перевод.</p>
+    </div>
+    <div class="reveal note note-marker" style="--stagger:120ms">
+      <p class="hand text-[2.1rem] leading-none">Задача</p>
+      <p class="prose-case mt-4 text-[1.2rem] font-medium leading-[1.45]">Поставить встречу с цветком раньше денег. Даритель не выбирает готовую картинку: он задаёт, кому дарит, и три черты. Получатель решает, забрать сертификат сразу или оставить цветок себе.</p>
+    </div>
+  </div>
+      <div class="mt-14">
+  <div class="reveal grid gap-4 border-t-[1.5px] border-ink py-8 md:grid-cols-[13rem_1fr] md:gap-10">
+    <p class="mono pt-1 text-[13px]">Моя роль</p>
+    <div><p class="prose-case max-w-[62ch] text-[18px] leading-[1.6] text-ink/85">Собрала оба сценария в живые прототипы, которые открываются с телефона и которые можно показать бренду: путь дарителя из пяти шагов и путь получателя с открытием, сертификатом и уходом за цветком.</p></div>
+  </div></div>
+      
+  <div class="mt-16">
+    <h3 class="reveal display text-[2.6rem] sm:text-[4rem]">Результаты</h3>
+    <ul class="mt-8 space-y-6"><li class="reveal border-t-[1.5px] border-ink pt-5 text-[1.3rem] leading-[1.45] sm:text-[1.55rem] [&_b]:bg-[rgba(13,153,255,.2)] [&_b]:font-semibold">Сумма <b>не появляется раньше цветка</b>. Дарителю прямо сказано, что получатель узнает её только после раскрытия, а у получателя сертификат лежит внутри.</li><li class="reveal border-t-[1.5px] border-ink pt-5 text-[1.3rem] leading-[1.45] sm:text-[1.55rem] [&_b]:bg-[rgba(13,153,255,.2)] [&_b]:font-semibold">Открытие — <b>жест, а не ролик на фоне</b>. Купол остаётся частью ритуала: к нему прикасаются и удерживают, пока роза расцветает.</li><li class="reveal border-t-[1.5px] border-ink pt-5 text-[1.3rem] leading-[1.45] sm:text-[1.55rem] [&_b]:bg-[rgba(13,153,255,.2)] [&_b]:font-semibold"><b>Выбор внешности убран.</b> Остались тип отношений и три черты: две про форму бутона и одна про лепестки. Цветок получается личным и при этом непредсказуемым.</li><li class="reveal border-t-[1.5px] border-ink pt-5 text-[1.3rem] leading-[1.45] sm:text-[1.55rem] [&_b]:bg-[rgba(13,153,255,.2)] [&_b]:font-semibold">После открытия есть второй шаг. Сертификат можно <b>забрать сразу или оставить цветок</b>: сегодня короткий тест, каждый день полив одного гена, через год — секретный ген у тех, кто сохранил его живым.</li></ul>
+    <p class="mono mt-8 text-[12px] leading-relaxed text-ink/70">* Это прототипы для показа сценария, не запущенный продукт. Цифр по конверсии нет, и я их не подставляю.</p>
+  </div>
+    </div>
+  </section>
+    <section class="border-t-[1.5px] border-ink py-16 sm:py-24">
+      <div class="reveal mb-12"><h2 class="display text-[2.1rem] sm:text-[4.5rem]">Как шла работа</h2></div>
+      <div class="space-y-7">
+        <div class="reveal note note-red mx-auto max-w-md"><p class="hand text-[1.6rem] leading-[1.1]">Прототипы выше живые: их можно пролистать прямо здесь.</p></div>
+        <div class="reveal stages mx-auto max-w-2xl">
+    <p class="mono text-[12px] text-ink/70">Этапы</p>
+    <ol class="mt-3 flex flex-wrap gap-2"><li class="flex items-center gap-2 rounded-full border-[1.5px] border-ink bg-white py-1 pl-1 pr-3.5 text-[15px]"><span class="stage-dot mono grid h-6 w-6 place-items-center rounded-full border-[1.5px] border-ink !text-[10px] !tracking-normal">1</span>Где всплывает сумма</li><li class="flex items-center gap-2 rounded-full border-[1.5px] border-ink bg-white py-1 pl-1 pr-3.5 text-[15px]"><span class="stage-dot mono grid h-6 w-6 place-items-center rounded-full border-[1.5px] border-ink !text-[10px] !tracking-normal">2</span>Чем открывают подарок</li><li class="flex items-center gap-2 rounded-full border-[1.5px] border-ink bg-white py-1 pl-1 pr-3.5 text-[15px]"><span class="stage-dot mono grid h-6 w-6 place-items-center rounded-full border-[1.5px] border-ink !text-[10px] !tracking-normal">3</span>Что выбирает даритель</li><li class="flex items-center gap-2 rounded-full border-[1.5px] border-ink bg-white py-1 pl-1 pr-3.5 text-[15px]"><span class="stage-dot mono grid h-6 w-6 place-items-center rounded-full border-[1.5px] border-ink !text-[10px] !tracking-normal">4</span>Зачем возвращаться</li>
+    </ol>
+  </div>
+        <h3 class="reveal mx-auto max-w-2xl pt-8 text-[1.75rem] font-extrabold leading-tight tracking-tight sm:text-[2rem]">Где всплывает сумма</h3>
+<p class="reveal prose-case mx-auto max-w-2xl text-[18px] leading-[1.65] text-ink/85">Если номинал виден сразу, цветок ничего не меняет: человек уже понял, сколько ему подарили. Поэтому сумму убрала с порога. На шаге дарителя написано прямо: получатель узнает её только после того, как цветок раскроется. У получателя сертификат открывается следом за цветком, а не вместо него.</p>
+<h3 class="reveal mx-auto max-w-2xl pt-8 text-[1.75rem] font-extrabold leading-tight tracking-tight sm:text-[2rem]">Чем открывают подарок</h3>
+<p class="reveal prose-case mx-auto max-w-2xl text-[18px] leading-[1.65] text-ink/85">Пассивная анимация не оставляет человеку действия: ролик прошёл, и подарок как будто открылся сам. Купол оставила частью жеста. Получатель касается его и удерживает, пока роза расцветает. Пока палец на стекле, подарок ещё не «вручён».</p>
+<h3 class="reveal mx-auto max-w-2xl pt-8 text-[1.75rem] font-extrabold leading-tight tracking-tight sm:text-[2rem]">Что выбирает даритель</h3>
+<p class="reveal prose-case mx-auto max-w-2xl text-[18px] leading-[1.65] text-ink/85">Если собирать цветок как конструктор, сюрприза не остаётся: даритель уже видел результат. Внешность он не выбирает. Путь короткий, на одну минуту: бренд сертификата, номинал, кому подарок — романтический, дружеский или благодарственный — и три черты. Две задают форму бутона, одна — форму лепестков. Черты становятся характером цветка, а не готовой картинкой.</p>
+<h3 class="reveal mx-auto max-w-2xl pt-8 text-[1.75rem] font-extrabold leading-tight tracking-tight sm:text-[2rem]">Зачем возвращаться</h3>
+<p class="reveal prose-case mx-auto max-w-2xl text-[18px] leading-[1.65] text-ink/85">Сертификат можно забрать в ту же минуту, и тогда история кончается. Рядом оставила второй путь: оставить цветок. Сегодня — тест на две минуты, и в цветке появляется часть самого человека. Каждый день — полив, и крепнет один выбранный ген. Через год — секретный ген, только у тех, кто сохранил цветок живым.</p>
+      </div>
+    </section>
+  <section class="border-t-[1.5px] border-ink py-16 sm:py-24">
+    <a href="case-corp.html" class="reveal group grid items-center gap-10 md:grid-cols-2">
+      <div class="print" data-label="Следующий проект" data-size="2880 × 1728">
+        <div class="overflow-hidden" style="background:#eef3ff;view-transition-name: cover-corp"><img src="assets/corp.webp" width="2880" height="1728" alt="Корпоративный сервис" loading="lazy" decoding="async"
+    class="block h-auto w-full aspect-[5/3] object-cover" /></div>
+      </div>
+      <div>
+        <span class="pill pill-marker !ml-0 !text-[12px]">Следующий проект</span>
+        <h2 class="display mt-5 text-[1.7rem] sm:text-[3.6rem]"><span class="link-u">Корпоративный сервис</span></h2>
+      </div>
+    </a>
+  </section>
+    </main>
+
+    <!-- ===== CTA ===== -->
+    <section id="contact" class="relative py-24 sm:py-32">
+      <h2 class="reveal display max-w-4xl text-[3rem] sm:text-[6rem]">Давайте обсудим ваш продукт</h2>
+      <div class="reveal note note-red mt-8 w-56 md:absolute md:right-2 md:top-10 md:mt-0">
+        <p class="hand text-[1.6rem] leading-[1.05]">Часть проектов под NDA — покажу макеты на созвоне</p>
+      </div>
+      <div class="reveal mt-10 flex flex-wrap items-center gap-3">
+        <a href="https://t.me/p_p_polly" target="_blank" rel="noopener" class="btn bg-blue text-white">Телеграм</a>
+        <a href="mailto:psineleva@bk.ru" class="btn bg-purple text-white">psineleva@bk.ru</a>
+        <a href="https://drive.google.com/file/d/1vTA9CH9CJkSyZ6TN2uQzDy6aibkoubeJ/view" target="_blank" rel="noopener" class="btn bg-marker">Резюме</a>
+      </div>
+    </section>
+
+    <!-- ===== Footer ===== -->
+    <footer class="mono flex flex-col items-center justify-between gap-4 border-t border-black/15 py-8 text-[12px] sm:flex-row">
+      <p>© 2026 Полина Артамонова · Санкт-Петербург</p>
+      <div class="flex gap-6">
+        <a href="https://t.me/p_p_polly" target="_blank" rel="noopener" class="link-u">Телеграм</a>
+        <a href="mailto:psineleva@bk.ru" class="link-u">Почта</a>
+        <a href="https://drive.google.com/file/d/1vTA9CH9CJkSyZ6TN2uQzDy6aibkoubeJ/view" target="_blank" rel="noopener" class="link-u">Резюме</a>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Увеличение картинок -->
+  <div id="lightbox" class="hidden-lb fixed inset-0 z-[60] flex cursor-zoom-out items-center justify-center bg-ink/85 p-4 sm:p-10" role="dialog" aria-modal="true" aria-label="Изображение">
+    <button id="lightboxClose" aria-label="Закрыть" class="mono absolute right-4 top-4 rounded-full bg-marker px-4 py-2 text-[12px] text-ink">Закрыть</button>
+  </div>
+
+  <script src="js/case.js?v=20261105220703"></script>
+  <script src="js/doodles.js?v=20261105220703"></script>
+  <script src="js/site.js?v=20261105220703"></script>
+</body>
+</html>

@@ -233,6 +233,12 @@ html.js .stages.in .stage-dot { background: var(--blue); color: #fff; }
 body footer.mono { padding-bottom: 88px; }
 @media (min-width: 640px) { body footer.mono { padding-bottom: 32px; padding-right: 72px; } }
 
+/* Живой прототип внутри фрейма: ширина до 393px, чтобы чужая страница
+   сама переключилась в полноэкранный режим телефона. */
+.proto-wrap { width: min(100%, 393px); margin-inline: auto; }
+.proto { position: relative; aspect-ratio: 393 / 852; background: #0f261d; overflow: hidden; }
+.proto iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; display: block; background: #0f261d; }
+
 /* ---------- Меньше движения ---------- */
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }

@@ -95,6 +95,16 @@ function caseCard(id, i) {
 
 const h2 = (html) => `<h2 class="display text-[2.1rem] sm:text-[4.5rem]">${html}</h2>`;
 
+function phonesBlock(phones) {
+  return `<div class="grid items-start justify-center gap-x-10 gap-y-16 md:grid-cols-2">${phones.map((p) => `
+    <figure class="proto-wrap">
+      <div class="print" data-label="${p.label}" data-size="393 × 852">
+        <div class="proto"><iframe src="${p.src}" title="${p.title}" loading="${p.eager ? 'eager' : 'lazy'}" allow="autoplay; fullscreen"></iframe></div>
+      </div>
+      <figcaption class="mt-8 text-center text-[15px]"><a class="link-u" href="${p.src}" target="_blank" rel="noopener">${p.caption}</a></figcaption>
+    </figure>`).join('')}</div>`;
+}
+
 function caseHTML(id) {
   const c = CASES[id];
   const parent = c.parent && CASES[c.parent];
@@ -114,11 +124,11 @@ function caseHTML(id) {
     ${c.lead ? `<p style="--stagger:450ms" class="reveal prose-case mt-8 max-w-3xl text-[1.2rem] leading-[1.5] sm:text-[1.45rem]">${c.lead}</p>` : ''}
     <p style="--stagger:550ms" class="reveal mt-6 text-[22px] leading-[1.9]">${pills(c.tags)}</p>
   </section>
-  <div class="pb-20 sm:pb-28">
+  ${c.phones ? `<div class="pb-16 sm:pb-24">${phonesBlock(c.phones)}</div>` : `<div class="pb-20 sm:pb-28">
     <div class="print" data-label="Обложка" data-size="${(DIMS[c.cover] || []).join(' × ')}">
       <div class="overflow-hidden" style="background:${c.coverBg}; view-transition-name: cover-${id}">${picture(c.cover, { alt: c.title, eager: true })}</div>
     </div>
-  </div>`;
+  </div>`}`;
 
   const problem = c.summary.find((x) => x.label === 'Проблема');
   const goal = c.summary.find((x) => x.label === 'Задача' || x.label === 'Цель');
